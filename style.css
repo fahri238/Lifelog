@@ -144,10 +144,10 @@ body {
 
 .card-btn--detail {
   -webkit-text-stroke: 0.8px;
-  color:#7b61ff
+  color: #7b61ff;
 }
 
-.card--date-create{
+.card--date-create {
   text-align: right;
   font-weight: var(--font-weight-medium);
   opacity: 0.6;
@@ -161,4 +161,11 @@ body {
   background-color: var(--color-neutral-2);
   padding: 10px;
   border-radius: var(--border-radius-default);
+  transition: all  0.3s ease;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.04);
+  box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.1);
 }
