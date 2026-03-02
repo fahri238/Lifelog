@@ -121,8 +121,10 @@ body {
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   list-style: none;
-  padding-top: inherit;
   color: #404040;
+  height: 120px;
+
+  grid-area: 1/1/2/4;
 }
 
 .card--header {
@@ -157,15 +159,43 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100px;
   background-color: var(--color-neutral-2);
   padding: 10px;
   border-radius: var(--border-radius-default);
-  transition: all  0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .card:hover {
   cursor: pointer;
   transform: scale(1.04);
   box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* card content */
+.card-content {
+  border-radius: var(--border-radius-default);
+  padding: 10px;
+  background-color: var(--color-neutral-2);
+}
+
+.dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  column-gap: 20px;
+  row-gap: 20px;
+  margin-top: 20px;
+}
+
+.card-activity {
+  grid-area: 2/1/3/3;
+}
+.card-summary {
+  grid-area: 2/3/3/4;
+}
+.card-weather {
+  grid-area: 3/1/4/4;
+}
+.card-activities {
+  grid-area: 1/4/4/5;
 }
