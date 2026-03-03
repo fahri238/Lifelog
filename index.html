@@ -44,66 +44,102 @@
       <div class="dashboard-container">
         <ul class="cards">
           <li class="card">
-            <div class="card--header">
-              <h3 class="card--title">Newest Acitivity</h3>
+            <div class="card__header">
+              <h3 class="card__title">Newest Acitivity</h3>
               <i class="bi bi-arrow-up-right card-btn--detail"></i>
             </div>
-            <p class="card--description">
+            <p class="card__description">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Assumenda doloribus qui, est facere, nihil veniam iste nostrum
               nisi alias consequuntur commodi quis officia nemo magnam, ipsam
               asperiores a consectetur nesciunt!
             </p>
-            <p class="card--date-create">02 January 2025</p>
+            <p class="card__date-create">02 January 2025</p>
           </li>
           <li class="card">
-            <div class="card--header">
-              <h3 class="card--title">Total Activity this Week</h3>
+            <div class="card__header">
+              <h3 class="card__title">Total Activity this Week</h3>
               <i class="bi bi-arrow-up-right card-btn--detail"></i>
             </div>
-            <p class="card--description">
+            <p class="card__description">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
               eum tempore vero. Sunt enim aut quod.
             </p>
-            <p class="card--date-create">02 January 2025</p>
+            <p class="card__date-create">02 January 2025</p>
           </li>
           <li class="card">
-            <div class="card--header">
-              <h3 class="card--title">Productive Time Today</h3>
+            <div class="card__header">
+              <h3 class="card__title">Productive Time Today</h3>
               <i class="bi bi-arrow-up-right card-btn--detail"></i>
             </div>
-            <p class="card--description">
+            <p class="card__description">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
               eum tempore vero. Sunt enim aut quod.
             </p>
-            <p class="card--date-create">02 January 2025</p>
+            <p class="card__date-create">02 January 2025</p>
           </li>
           <li class="card">
-            <div class="card--header">
-              <h3 class="card--title">Top Activity</h3>
+            <div class="card__header">
+              <h3 class="card__title">Top Activity</h3>
               <i class="bi bi-arrow-up-right card-btn--detail"></i>
             </div>
-            <p class="card--description">
+            <p class="card__description">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
               eum tempore vero. Sunt enim aut quod.
             </p>
-            <p class="card--date-create">02 January 2025</p>
+            <p class="card__date-create">02 January 2025</p>
           </li>
         </ul>
 
-
         <!-- card-content -->
         <div class="card-content card-activity">
-          <h2>Weekly Activity Chart</h2>
+          <h2 class="card__title">Weekly Activity Chart</h2>
+          <ul class="activity-bar">
+            <li class="bar"><p>SUN</p></li>
+            <li class="bar"><p>MON</p></li>
+            <li class="bar"><p>TUE</p></li>
+            <li class="bar"><p>WED</p></li>
+            <li class="bar"><p>THU</p></li>
+            <li class="bar"><p>FRI</p></li>
+            <li class="bar"><p>SAT</p></li>
+          </ul>
         </div>
-        <div class="card-content card-summary">
-          <h2>summary</h2>
-        </div>
+
+        <!-- weather -->
         <div class="card-content card-weather">
-          <h2>weather status</h2>
+          <h2 class="card__title">Weather Status</h2>
+          <div class="weather-content">
+            <h3 class="weather-city">Banjarmasin</h3>
+            <div class="weather-info">
+              <i class="bi bi-cloud-sun weather-icon"></i>
+              <p class="weather-status">31°</p>
+            </div>
+            <p class="weather-today">Mon, 23 Jun 2026</p>
+          </div>
         </div>
+
+        <!-- lis of activities -->
         <div class="card-content card-activities">
-          <h2>list of activities</h2>
+          <div class="activities-header">
+            <h2 class="card__title">List of Activities</h2>
+            <i class="bi bi-sort-alpha-down activities--sort"></i>
+          </div>
+          <ul class="activities-list">
+            <li class="activity">Deep Work Session</li>
+            <li class="activity">Team Sync Meeting</li>
+            <li class="activity">Bug Fixing Code</li>
+            <li class="activity">Project Planning</li>
+            <li class="activity">Client Call Presentation</li>
+            <li class="activity">Writing Technical Docs</li>
+            <li class="activity">UI/UX Designing</li>
+            <li class="activity">Code Review Session</li>
+            <li class="activity">Email Inbox Clearing</li>
+            <li class="activity">Learning New Framework</li>
+          </ul>
+        </div>
+
+        <div class="card-content card-summary">
+          <h2 class="card__title">Summary</h2>
         </div>
       </div>
     </section>

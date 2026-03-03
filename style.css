@@ -83,6 +83,7 @@ body {
   align-items: center;
   text-decoration: none;
   color: var(--color-neutral-3);
+  font-weight: var(--font-weight-default);
 }
 
 .menu--icon {
@@ -91,6 +92,7 @@ body {
 }
 .menu__focus {
   color: var(--color-primary-darker);
+  font-weight: var(--font-weight-bold);
 }
 
 .menu__focus::after {
@@ -121,22 +123,21 @@ body {
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   list-style: none;
-  color: #404040;
   height: 120px;
 
   grid-area: 1/1/2/4;
 }
 
-.card--header {
+.card__header {
   display: flex;
   justify-content: space-between;
 }
 
-.card--title {
+.card__title {
   opacity: 0.8;
 }
 
-.card--description {
+.card__description {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -145,8 +146,8 @@ body {
 }
 
 .card-btn--detail {
-  -webkit-text-stroke: 0.8px;
-  color: #7b61ff;
+  -webkit-text-stroke: 0.6px;
+  color: var(--color-primary);
 }
 
 .card--date-create {
@@ -171,6 +172,15 @@ body {
   box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.1);
 }
 
+.card:first-child {
+  background-color: var(--color-primary);
+  color: var(--color-neutral-2);
+}
+
+.card:first-child .card-btn--detail {
+  color: var(--color-neutral-2);
+}
+
 /* card content */
 .card-content {
   border-radius: var(--border-radius-default);
@@ -181,21 +191,128 @@ body {
 .dashboard-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(3, auto);
   column-gap: 20px;
   row-gap: 20px;
   margin-top: 20px;
+  color: #404040;
 }
 
 .card-activity {
   grid-area: 2/1/3/3;
+  height: 200px;
 }
-.card-summary {
+
+/* chart */
+
+.activity-bar {
+  display: flex;
+  gap: 8px;
+  height: 70%;
+  width: 100%;
+  list-style: none;
+  border-left: 1px dashed var(--color-neutral-3);
+  margin-top: 20px;
+  padding-left: 20px;
+  border-bottom: 1px double var(--color-neutral-4);
+  /* background-color: red; */
+}
+
+.bar {
+  height: 100%;
+  width: 100%;
+  border-radius: var(--border-radius-default) var(--border-radius-default) 0 0;
+  background-color: var(--color-tertiary);
+  position: relative;
+  transform-origin: bottom;
+  transition: all 0.3s ease;
+}
+.bar:hover {
+  cursor: pointer;
+  transform: scale(1.04, 1.06);
+  box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.1);
+}
+
+.bar p {
+  font-weight: var(--font-weight-semi-bold);
+  color: var(--color-primary-darker);
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* weather */
+.card-weather {
   grid-area: 2/3/3/4;
 }
-.card-weather {
-  grid-area: 3/1/4/4;
+
+.weather-content {
+  display: flex;
+  flex-direction: column;
 }
+.weather-city {
+  padding-top: 10px;
+  opacity: 0.8;
+}
+
+.weather-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-icon {
+  font-size: 90px;
+  align-self: center;
+  padding: 8px;
+  color: var(--color-primary);
+}
+
+.weather-status {
+  font-size: 70px;
+  border-left: 2px solid var(--color-neutral-1);
+  padding: 8px;
+  color: var(--color-secondary);
+}
+
+.weather-today {
+  grid-area: 3/2/3/3;
+  align-self: end;
+  opacity: 0.6;
+}
+
+/* list of activities */
 .card-activities {
   grid-area: 1/4/4/5;
+}
+
+.activities-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.activities--sort {
+  color: var(--color-primary);
+  font-size: 16px;
+  -webkit-text-stroke: 0.6px;
+}
+
+.activities-list {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+}
+
+.activity{
+  font-size: 1.2rem;
+  border-bottom: dashed 1px var(--color-secondary);
+  padding-bottom: 5px;
+  font-weight: var(--font-weight-semi-bold);
+}
+
+.card-summary {
+  grid-area: 3/1/4/4;
 }
