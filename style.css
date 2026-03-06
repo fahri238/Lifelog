@@ -78,16 +78,24 @@ body {
 
 .menu {
   display: flex;
-  display: relative;
   gap: 12px;
   align-items: center;
   text-decoration: none;
   color: var(--color-neutral-3);
   font-weight: var(--font-weight-default);
+  padding: 8px;
+  border-radius: var(--border-radius-default);
+
+  transition: all 0.3s ease;
 }
 
-.menu--icon {
-  -webkit-text-stroke: 1.2px;
+.menu:hover {
+  cursor: pointer;
+  background-color: var(--color-primary-opacity);
+}
+
+.menu__icon {
+  /* -webkit-text-stroke: 1px; */
   font-size: 2.4rem;
 }
 .menu__focus {
@@ -151,6 +159,8 @@ body {
   cursor: pointer;
 }
 
+/* /////////////////////////////////////////////// */
+/* Stat Card */
 .cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -175,6 +185,52 @@ body {
   line-clamp: 2;
   overflow: hidden;
 }
+
+.card__total-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card:nth-child(2) .card__description {
+  font-size: 48px;
+  align-self: center;
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semi-bold);
+  border-right: 2px solid var(--color-neutral-1);
+  padding-right: 12px;
+}
+
+.card__total-calc {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semi-bold);
+  font-size: 16px;
+  padding-left: 12px;
+  line-height: 0.9;
+  text-decoration: underline;
+}
+
+.card__total-calc span {
+  font-size: 12px;
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.card:nth-child(3) .card__description {
+  font-size: 48px;
+  color: var(--color-tertiary);
+  align-self: center;
+  font-weight: var(--font-weight-semi-bold);
+}
+
+.card:nth-child(4) .card__description {
+  font-size: 24px;
+  color: var(--color-secondary);
+  align-self: center;
+  font-weight: var(--font-weight-semi-bold);
+}
+
+
 
 .card-btn--detail {
   -webkit-text-stroke: 0.6px;
@@ -216,6 +272,7 @@ body {
   opacity: 0.6;
   align-self: flex-end;
 }
+
 
 /* card content */
 .card-content {
@@ -413,7 +470,7 @@ body {
   /* Membuat lingkaran warna berdasarkan persen */
   background: conic-gradient(
     var(--color-secondary) var(--persen),
-    var(--color-secondary-opacity) 0
+    var(--color-primary) 0
   );
   display: flex;
   justify-content: center;

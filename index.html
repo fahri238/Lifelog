@@ -17,22 +17,30 @@
       <ul class="menus">
         <li>
           <a href="#dashboard" class="menu menu__focus">
-            <i class="bi bi-pie-chart menu--icon"></i>Dashboard</a
+            <!-- <i class="bi bi-grid-1x2 menu__icon"></i> -->
+            <i class="bi bi-grid-1x2-fill menu__icon menu__icon--active"></i>
+            Dashboard</a
           >
         </li>
         <li>
-          <a href="#activities" class="menu"
-            ><i class="bi bi-activity menu--icon"></i>Activities</a
+          <a href="#activities" class="menu">
+            <i class="bi bi-clipboard menu__icon"></i>
+            <!-- <i class="bi bi-clipboard-fill menu__icon"></i> -->
+            Activities</a
           >
         </li>
         <li>
-          <a href="#add-activity" class="menu"
-            ><i class="bi bi-plus-circle menu--icon"></i>Add Activity</a
+          <a href="#add-activity" class="menu">
+            <i class="bi bi-clipboard-plus menu__icon"></i>
+            <!-- <i class="bi bi-clipboard-plus-fill menu__icon"></i> -->
+            Add Activity</a
           >
         </li>
         <li>
-          <a href="#settings" class="menu"
-            ><i class="bi bi-gear menu--icon"></i>Settings</a
+          <a href="#settings" class="menu">
+            <i class="bi bi-gear menu__icon"></i>
+            <!-- <i class="bi bi-gear-fill menu__icon"></i> -->
+            Settings</a
           >
         </li>
       </ul>
@@ -51,7 +59,9 @@
             placeholder="Cari Activity..."
             required
           />
-          <button type="submit" class="header__search-btn"><i class="bi bi-search"></i></button>
+          <button type="submit" class="header__search-btn">
+            <i class="bi bi-search"></i>
+          </button>
         </form>
       </div>
       <div class="dashboard-container">
@@ -62,13 +72,13 @@
               <i class="bi bi-arrow-up-right card-btn--detail"></i>
             </div>
             <div class="newest-content">
-            <h3 class="newest-title">Deep Work Session</h3>
-            <p class="card__description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Assumenda doloribus qui, est facere, nihil veniam iste nostrum
-              nisi alias consequuntur commodi quis officia nemo magnam, ipsam
-              asperiores a consectetur nesciunt!
-            </p>
+              <h3 class="newest-title">Deep Work Session</h3>
+              <p class="card__description">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Assumenda doloribus qui, est facere, nihil veniam iste nostrum
+                nisi alias consequuntur commodi quis officia nemo magnam, ipsam
+                asperiores a consectetur nesciunt!
+              </p>
             </div>
             <p class="card__date-create">02 January 2025</p>
           </li>
@@ -77,21 +87,17 @@
               <h3 class="card__title">Total Activity this Week</h3>
               <i class="bi bi-arrow-up-right card-btn--detail"></i>
             </div>
-            <p class="card__description ">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-              eum tempore vero. Sunt enim aut quod.
-            </p>
+            <div class="card__total-content">
+              <p class="card__description">12</p>
+              <p class="card__total-calc">Higher <span><br>than <br>lasweek</span></p>
+            </div>
             <p class="card__date-create">01 Jan - 07 Jan 2025</p>
           </li>
           <li class="card">
             <div class="card__header">
               <h3 class="card__title">Productive Time Today</h3>
-              <i class="bi bi-arrow-up-right card-btn--detail"></i>
             </div>
-            <p class="card__description">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-              eum tempore vero. Sunt enim aut quod.
-            </p>
+            <p class="card__description">3h 25m</p>
             <p class="card__date-create">Today</p>
           </li>
           <li class="card">
@@ -99,10 +105,7 @@
               <h3 class="card__title">Top Activity</h3>
               <i class="bi bi-arrow-up-right card-btn--detail"></i>
             </div>
-            <p class="card__description">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-              eum tempore vero. Sunt enim aut quod.
-            </p>
+            <p class="card__description">Client Call Presentation</p>
             <p class="card__date-create">01 Jan - 07 Jan 2025</p>
           </li>
         </ul>
