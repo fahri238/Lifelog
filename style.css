@@ -20,8 +20,8 @@
   --color-tertiary-darker: #e6b63f;
 
   --color-primary-opacity: #7b61ff35; /* Purple 20% */
-  --color-secondary-opacity: #ff6b4031; /* Orange 20% */
-  --color-tertiary-opacity: #ffcc4d31; /* Yellow 20% */
+  --color-secondary-opacity: #ff6d4062;
+  --color-tertiary-opacity: #ffcd4da1;
 
   --gradient-primary: linear-gradient(to top left, #7b61ff, #a792ff);
   --gradient-secondary: linear-gradient(to top left, #ff6b40, #ff8f70);
@@ -111,11 +111,44 @@ body {
   padding: 20px;
 }
 
+/* /////////////////////////////////////////// */
+/* Section Header */
+.section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .title {
   font-weight: var(--font-weight-bold);
   font-size: 2.4rem;
-  margin-top: 10px;
   color: var(--color-neutral-4);
+}
+
+.header__search-bar,
+.header__search-btn {
+  padding: 10px;
+  border: none;
+  border-radius: var(--border-radius-default);
+}
+
+.header__search-bar {
+  width: 380px;
+  background-color: var(--color-primary-opacity);
+  margin-right: 5px;
+}
+
+.header__search-bar:focus {
+  outline: none;
+}
+
+.header__search-btn {
+  background-color: #7b61ff;
+  color: var(--color-neutral-2);
+}
+
+.header__search-btn:hover {
+  cursor: pointer;
 }
 
 .cards {
@@ -179,6 +212,11 @@ body {
   color: var(--color-neutral-2);
 }
 
+.card__date-create {
+  opacity: 0.6;
+  align-self: flex-end;
+}
+
 /* card content */
 .card-content {
   border-radius: var(--border-radius-default);
@@ -197,7 +235,8 @@ body {
   min-height: 90%;
 }
 
-/* activity card */
+/* /////////////////////////////////////////// */
+/* Weekly Activity Chart*/
 .card-activity {
   grid-area: 2/1/3/3;
 }
@@ -281,6 +320,7 @@ body {
   font-size: 70px;
   border-left: 2px solid var(--color-neutral-1);
   padding: 8px;
+  font-weight: var(--font-weight-semi-bold);
   color: var(--color-secondary);
 }
 
@@ -301,10 +341,13 @@ body {
   justify-content: space-between;
 }
 
-.activities--sort {
+.activities__sort {
   color: var(--color-primary);
   font-size: 16px;
-  -webkit-text-stroke: 0.6px;
+}
+
+.activities__sort:hover {
+  cursor: pointer;
 }
 
 .activities-list {
@@ -315,7 +358,7 @@ body {
   margin-top: 10px;
   list-style: none;
   height: 92%;
-  overflow:hidden scroll;
+  overflow: hidden scroll;
 }
 
 .activity {
@@ -354,6 +397,13 @@ body {
 .summary__total-activities {
   font-size: 68px;
   color: var(--color-primary);
+  transition: all 0.3s ease;
+}
+
+.summary__total-activities:hover {
+  cursor: pointer;
+  transform: scale(1.04);
+  color: var(--color-primary-darker);
 }
 
 .summary__donut-chart {
@@ -368,32 +418,41 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s ease;
+}
+
+.summary__donut-chart:hover {
+  cursor: pointer;
+  transform: scale(1.04);
+  box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.103);
 }
 
 .summary__donut-chart::before {
   content: "";
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   background-color: var(--color-neutral-2);
   position: absolute;
 }
 
-.summary__activities {
+.summary__activities,
+.summary__total,
+.summary__chart {
   flex: 1;
+  padding: 10px;
 }
-.summary__total{
-  flex: 1
-}
-.summary__chart{
-  flex: 1;
+
+.summary__activities,
+.summary__chart {
+  border-left: solid 2px var(--color-neutral-1);
 }
 
 .summary__content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   /* background-color: red; */
 }
 
@@ -402,21 +461,37 @@ body {
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  width:  100%;
+  width: 100%;
 }
 
 .summary__last-week {
-  background-color: var(--color-tertiary-darker);
+  background-color: var(--color-tertiary);
   width: 100%;
   height: 20px;
   margin-bottom: 8px;
   border-radius: var(--border-radius-medium);
+  transition: all 0.3s ease;
 }
 
 .summary__this-week {
-  background-color: var(--color-tertiary);
+  background-color: var(--color-tertiary-opacity);
   width: 70%;
   height: 20px;
   border-radius: var(--border-radius-medium);
+  transition: all 0.3s ease;
 }
 
+.summary__total-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.summary__last-week:hover,
+.summary__this-week:hover {
+  cursor: pointer;
+  transform: scale(1.04);
+  box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.103);
+  transform-origin: left;
+}
