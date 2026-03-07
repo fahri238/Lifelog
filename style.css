@@ -178,12 +178,25 @@ body {
   opacity: 0.8;
 }
 
-.card__description {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  line-clamp: 2;
-  overflow: hidden;
+.card:first-child {
+  background-color: var(--color-primary);
+  color: var(--color-neutral-2);
+}
+
+.card:first-child .card-btn--detail {
+  color: var(--color-neutral-2);
+}
+
+.newest__title {
+  font-size: 16px;
+}
+
+.newest__detail {
+  display: inline-block;
+  background-color: #9c88ff;
+  padding: 2px 4px;
+  border-radius: var(--border-radius-medium);
+  margin-top: 6px;
 }
 
 .card__total-content {
@@ -193,7 +206,7 @@ body {
 }
 
 .card:nth-child(2) .card__description {
-  font-size: 48px;
+  font-size: 42px;
   align-self: center;
   color: var(--color-primary);
   font-weight: var(--font-weight-semi-bold);
@@ -202,22 +215,21 @@ body {
 }
 
 .card__total-calc {
-  color: var(--color-primary);
   font-weight: var(--font-weight-semi-bold);
-  font-size: 16px;
+  font-size: 12px;
   padding-left: 12px;
-  line-height: 0.9;
-  text-decoration: underline;
+  line-height: 1;
+  color: #7b61ffcb;
 }
 
 .card__total-calc span {
-  font-size: 12px;
-  opacity: 0.8;
-  text-decoration: none;
+  font-size: 16px;
+  text-decoration: underline;
+  color: var(--color-primary);
 }
 
 .card:nth-child(3) .card__description {
-  font-size: 48px;
+  font-size: 42px;
   color: var(--color-tertiary);
   align-self: center;
   font-weight: var(--font-weight-semi-bold);
@@ -230,7 +242,9 @@ body {
   font-weight: var(--font-weight-semi-bold);
 }
 
-
+.card:nth-child(4) .card__description span {
+  text-decoration: underline;
+}
 
 .card-btn--detail {
   -webkit-text-stroke: 0.6px;
@@ -248,7 +262,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   background-color: var(--color-neutral-2);
-  padding: 10px;
+  padding: 16px; /*16px*/
   border-radius: var(--border-radius-default);
   transition: all 0.3s ease;
 }
@@ -259,20 +273,10 @@ body {
   box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.1);
 }
 
-.card:first-child {
-  background-color: var(--color-primary);
-  color: var(--color-neutral-2);
-}
-
-.card:first-child .card-btn--detail {
-  color: var(--color-neutral-2);
-}
-
 .card__date-create {
   opacity: 0.6;
   align-self: flex-end;
 }
-
 
 /* card content */
 .card-content {
@@ -464,9 +468,10 @@ body {
 }
 
 .summary__donut-chart {
-  width: 120px;
-  height: 120px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
+  flex-shrink: 0;
   /* Membuat lingkaran warna berdasarkan persen */
   background: conic-gradient(
     var(--color-secondary) var(--persen),
@@ -486,8 +491,8 @@ body {
 
 .summary__donut-chart::before {
   content: "";
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: var(--color-neutral-2);
   position: absolute;
