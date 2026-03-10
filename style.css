@@ -21,7 +21,7 @@
 
   --color-primary-opacity: #7b61ff35; /* Purple 20% */
   --color-secondary-opacity: #ff6d4062;
-  --color-tertiary-opacity: #ffcd4da1;
+  --color-tertiary-opacity: #ffcd4d69;
 
   --gradient-primary: linear-gradient(to top left, #7b61ff, #a792ff);
   --gradient-secondary: linear-gradient(to top left, #ff6b40, #ff8f70);
@@ -518,29 +518,53 @@ body {
   /* background-color: red; */
 }
 
+
 .summary__bar-chart {
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
   width: 100%;
+  gap: 16px;
 }
 
-.summary__last-week {
-  background-color: var(--color-tertiary);
-  width: 100%;
+.summary-week {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary__bar-desc {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.summary__bar-desc h3 {
+  opacity: 0.8;
+}
+.summary__bar-desc p {
+  color: var(--color-secondary);
+  font-weight: var(--font-weight-semi-bold);
+  font-size: 12px;
+}
+
+.summary__bar-week {
+  position: relative;
+  background-color: var(--color-tertiary-opacity);
   height: 20px;
   margin-bottom: 8px;
+  width: 100%;
   border-radius: var(--border-radius-medium);
   transition: all 0.3s ease;
 }
 
-.summary__this-week {
-  background-color: var(--color-tertiary-opacity);
-  width: 70%;
-  height: 20px;
+.chart-progress {
+  position: absolute;
+  content: " ";
+  background-color: var(--color-tertiary);
+  height: 100%;
+  margin-bottom: 8px;
   border-radius: var(--border-radius-medium);
-  transition: all 0.3s ease;
 }
 
 .summary__total-container {
@@ -550,8 +574,7 @@ body {
   flex: 1;
 }
 
-.summary__last-week:hover,
-.summary__this-week:hover {
+.summary__bar-week:hover {
   cursor: pointer;
   transform: scale(1.04);
   box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.103);
