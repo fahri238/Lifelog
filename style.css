@@ -51,6 +51,11 @@ body {
   background-color: var(--color-neutral-1);
 }
 
+/* remove element */
+.hidden {
+  display: none !important;
+}
+
 /* sidebar/menu-item */
 
 .side-bar {
