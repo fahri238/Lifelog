@@ -10,11 +10,23 @@
     <link rel="stylesheet" href="style.css" />
     <script type="module" src="./src/main.js"></script>
     <title>Lifelog</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/icons/lifelog-logo.svg"
+      type="image/x-icon"
+    />
   </head>
   <body>
     <!-- sidebar -->
     <aside class="side-bar">
-      <h1 class="logo">lifelog</h1>
+      <div class="logo">
+        <img
+          src="./assets/icons/lifelog-logo.svg"
+          alt="LifeLog Logo"
+          class="logo__img"
+        />
+        <h1 class="logo__text">Lifelog</h1>
+      </div>
       <ul class="menus">
         <li>
           <a href="#dashboard" class="menu menu__focus">
@@ -45,6 +57,13 @@
           >
         </li>
       </ul>
+      <div class="profile">
+        <i class="bi bi-person-circle"></i>
+        <div class="bio">
+          <h3>Fahri Ilmi</h3>
+          <span>Fullstack Developer</span>
+        </div>
+      </div>
     </aside>
 
     <!-- content -->
