@@ -29,7 +29,7 @@
       </div>
       <ul class="menus">
         <li>
-          <a href="#dashboard" class="menu menu__focus">
+          <a href="#dashboard" class="menu">
             <!-- <i class="bi bi-grid-1x2 menu__icon"></i> -->
             <i class="bi bi-grid-1x2-fill menu__icon menu__icon--active"></i>
             Dashboard</a
@@ -43,7 +43,7 @@
           >
         </li>
         <li>
-          <a href="#add-activity" class="menu">
+          <a href="#add-activity" class="menu menu__focus">
             <i class="bi bi-clipboard-plus menu__icon"></i>
             <!-- <i class="bi bi-clipboard-plus-fill menu__icon"></i> -->
             Add Activity</a
@@ -61,13 +61,13 @@
         <i class="bi bi-person-circle"></i>
         <div class="bio">
           <h3>Fahri Ilmi</h3>
-          <span>Fullstack Developer</span>
+          <span>Frontend Web Developer</span>
         </div>
       </div>
     </aside>
 
     <!-- content -->
-    <section id="dashboard" class="section-dashboard section-container">
+    <section id="dashboard" class="section-dashboard section-container hidden">
       <div class="section__header">
         <h2 class="title">Dashboard</h2>
 
@@ -576,10 +576,7 @@
       </div>
     </section>
 
-    <section
-      id="add-activity"
-      class="section-add-activity section-container hidden"
-    >
+    <section id="add-activity" class="section-add-activity section-container">
       <div class="section__header">
         <h2 class="title">Add Your New Activity</h2>
       </div>
@@ -594,6 +591,7 @@
                 <input
                   type="text"
                   id="activity-title"
+                  name="activity-title"
                   placeholder="e.g., Deep Work Session"
                   required
                 />
@@ -604,7 +602,7 @@
               <label for="activity-category">Category</label>
               <div class="input-wrapper">
                 <i class="bi bi-tags input-icon"></i>
-                <select id="activity-category" required>
+                <select id="activity-category" name="activity-category" required>
                   <option value="" disabled selected>
                     Select a category...
                   </option>
@@ -622,21 +620,21 @@
                 <label for="activity-date">Date</label>
                 <div class="input-wrapper">
                   <i class="bi bi-calendar-event input-icon"></i>
-                  <input type="date" id="activity-date" required />
+                  <input type="date" id="activity-date" name="activity-date"required />
                 </div>
               </div>
               <div class="form-group">
                 <label for="activity-start">Start Time</label>
                 <div class="input-wrapper">
                   <i class="bi bi-play-circle input-icon"></i>
-                  <input type="time" id="activity-start" required />
+                  <input type="time" id="activity-start" name="activity-start" required />
                 </div>
               </div>
               <div class="form-group">
                 <label for="activity-end">End Time</label>
                 <div class="input-wrapper">
                   <i class="bi bi-stop-circle input-icon"></i>
-                  <input type="time" id="activity-end" required />
+                  <input type="time" id="activity-end" name="activity-end" required />
                 </div>
               </div>
             </div>
@@ -645,12 +643,13 @@
               <label for="activity-notes">Notes / Description</label>
               <textarea
                 id="activity-notes"
+                name="activity-notes"
                 placeholder="Write down what you achieved during this session..."
               ></textarea>
             </div>
 
             <div class="form-actions">
-              <button type="button" class="btn-form btn-form--cancel">
+              <button type="reset" class="btn-form btn-form--clear">
                 Clear Form
               </button>
               <button type="submit" class="btn-form btn-form--submit">
@@ -658,6 +657,104 @@
               </button>
             </div>
           </form>
+
+          <!-- <form id="new-activity-form" class="activity-form">
+            <div class="form-group">
+              <label for="activity-title">Activity Title</label>
+              <div class="input-wrapper">
+                <i class="bi bi-type-h1 input-icon"></i>
+                <input
+                  type="text"
+                  id="activity-title"
+                  name="activity-title"
+                  placeholder="e.g., Deep Work Session"
+                  value="Deep Work Session"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="activity-category">Category</label>
+              <div class="input-wrapper">
+                <i class="bi bi-tags input-icon"></i>
+                <select
+                  id="activity-category"
+                  name="activity-category"
+                  required
+                >
+                  <option value="" disabled>Select a category...</option>
+                  <option value="work" selected>Work</option>
+                  <option value="study">Study</option>
+                  <option value="exercise">Exercise</option>
+                  <option value="social">Social</option>
+                  <option value="hobby">Hobby</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row-3">
+              <div class="form-group">
+                <label for="activity-date">Date</label>
+                <div class="input-wrapper">
+                  <i class="bi bi-calendar-event input-icon"></i>
+                  <input
+                    type="date"
+                    id="activity-date"
+                    name="activity-date"
+                    value="2026-05-23"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="activity-start">Start Time</label>
+                <div class="input-wrapper">
+                  <i class="bi bi-play-circle input-icon"></i>
+                  <input
+                    type="time"
+                    id="activity-start"
+                    name="activity-start"
+                    value="09:00"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="activity-end">End Time</label>
+                <div class="input-wrapper">
+                  <i class="bi bi-stop-circle input-icon"></i>
+                  <input
+                    type="time"
+                    id="activity-end"
+                    name="activity-end"
+                    value="11:00"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group form-group--grow">
+              <label for="activity-notes">Notes / Description</label>
+              <textarea
+                id="activity-notes"
+                name="activity-notes"
+                placeholder="Write down what you achieved during this session..."
+              >
+Menyelesaikan fitur form dan layout grid.</textarea
+              >
+            </div>
+
+            <div class="form-actions">
+              <button type="reset" class="btn-form btn-form--clear">
+                Clear Form
+              </button>
+              <button type="submit" class="btn-form btn-form--submit">
+                <i class="bi bi-save2"></i> Save Activity
+              </button>
+            </div>
+          </form> -->
         </div>
 
         <div class="side-info-panel">
@@ -697,6 +794,14 @@
               <li>
                 <i class="bi bi-check-circle-fill"></i> Logging short 15m tasks
                 helps build momentum.
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill"></i> Use notes to track
+                Review your logs daily to stay on track.
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill"></i> Use notes to track Group
+                similar tasks together for better focus.
               </li>
               <li>
                 <i class="bi bi-check-circle-fill"></i> Use notes to track
