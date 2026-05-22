@@ -220,9 +220,343 @@
       class="section-activities section-container hidden"
     >
       <div class="section__header">
-        <h2 class="title">Activities</h2>
+        <h2 class="title">Inputed Activities</h2>
+
+        <form action="/search" method="GET" class="header__search-container">
+          <input
+            class="header__search-bar"
+            type="search"
+            name="q"
+            placeholder="Cari Activity..."
+            required
+          />
+          <button type="submit" class="header__search-btn">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+      </div>
+
+      <div class="activities-container">
+        <div class="toolbar">
+          <div class="category">
+            <button class="btn-category btn-work btn-category-focus">
+              All
+            </button>
+            <button class="btn-category btn-work">Work</button>
+            <button class="btn-category btn-study">Study</button>
+            <button class="btn-category btn-exercise">Exercise</button>
+            <button class="btn-category btn-social">Social</button>
+            <button class="btn-category btn-hobby">Hobby</button>
+          </div>
+          <div class="sorting">
+            <select name="sort" id="sort">
+              <option value="work">Sort by Date</option>
+              <option value="work">Sort by Duration</option>
+              <option value="study">Sort by Alphabetical</option>
+            </select>
+          </div>
+        </div>
+
+        <ul class="row-container">
+          <li class="list-row">
+            <div class="row-info">
+              <h4>Deep Work Session</h4>
+              <span class="label label--work">Work</span>
+            </div>
+            <div class="row-date">
+              <i class="bi bi-calendar3"></i>
+              <p>May 22, 2026</p>
+            </div>
+            <div class="row-duration">
+              <i class="bi bi-clock"></i>
+              <p>2h 30m</p>
+            </div>
+            <div class="row-actions">
+              <button class="btn-icon btn-edit" title="Edit">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn-icon btn-delete" title="Delete">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </li>
+
+          <li class="list-row">
+            <div class="row-info">
+              <h4>Learning React Fundamentals</h4>
+              <span class="label label--study">Study</span>
+            </div>
+            <div class="row-date">
+              <i class="bi bi-calendar3"></i>
+              <p>May 22, 2026</p>
+            </div>
+            <div class="row-duration">
+              <i class="bi bi-clock"></i>
+              <p>1h 45m</p>
+            </div>
+            <div class="row-actions">
+              <button class="btn-icon btn-edit" title="Edit">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn-icon btn-delete" title="Delete">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </li>
+
+          <li class="list-row">
+            <div class="row-info">
+              <h4>Coffee with Friends</h4>
+              <span class="label label--social">Social</span>
+            </div>
+            <div class="row-date">
+              <i class="bi bi-calendar3"></i>
+              <p>May 21, 2026</p>
+            </div>
+            <div class="row-duration">
+              <i class="bi bi-clock"></i>
+              <p>2h 00m</p>
+            </div>
+            <div class="row-actions">
+              <button class="btn-icon btn-edit" title="Edit">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn-icon btn-delete" title="Delete">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </li>
+
+          <li class="list-row">
+            <div class="row-info">
+              <h4>Playing Acoustic Guitar</h4>
+              <span class="label label--hobby">Hobby</span>
+            </div>
+            <div class="row-date">
+              <i class="bi bi-calendar3"></i>
+              <p>May 21, 2026</p>
+            </div>
+            <div class="row-duration">
+              <i class="bi bi-clock"></i>
+              <p>45m</p>
+            </div>
+            <div class="row-actions">
+              <button class="btn-icon btn-edit" title="Edit">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn-icon btn-delete" title="Delete">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </li>
+
+          <li class="list-row">
+            <div class="row-info">
+              <h4>Morning Yoga Session</h4>
+              <span class="label label--exercise">Exercise</span>
+            </div>
+            <div class="row-date">
+              <i class="bi bi-calendar3"></i>
+              <p>May 21, 2026</p>
+            </div>
+            <div class="row-duration">
+              <i class="bi bi-clock"></i>
+              <p>30m</p>
+            </div>
+            <div class="row-actions">
+              <button class="btn-icon btn-edit" title="Edit">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn-icon btn-delete" title="Delete">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </li>
+
+          <li class="list-row">
+            <div class="row-info">
+              <h4>Team Sync Meeting</h4>
+              <span class="label label--work">Work</span>
+            </div>
+            <div class="row-date">
+              <i class="bi bi-calendar3"></i>
+              <p>May 20, 2026</p>
+            </div>
+            <div class="row-duration">
+              <i class="bi bi-clock"></i>
+              <p>1h 00m</p>
+            </div>
+            <div class="row-actions">
+              <button class="btn-icon btn-edit" title="Edit">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn-icon btn-delete" title="Delete">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </li>
+
+          <li class="list-row">
+            <div class="row-info">
+              <h4>Reading Clean Code Book</h4>
+              <span class="label label--study">Study</span>
+            </div>
+            <div class="row-date">
+              <i class="bi bi-calendar3"></i>
+              <p>May 20, 2026</p>
+            </div>
+            <div class="row-duration">
+              <i class="bi bi-clock"></i>
+              <p>1h 30m</p>
+            </div>
+            <div class="row-actions">
+              <button class="btn-icon btn-edit" title="Edit">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn-icon btn-delete" title="Delete">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </li>
+
+          <li class="list-row">
+            <div class="row-info">
+              <h4>Gym Workout (Upper Body)</h4>
+              <span class="label label--exercise">Exercise</span>
+            </div>
+            <div class="row-date">
+              <i class="bi bi-calendar3"></i>
+              <p>May 19, 2026</p>
+            </div>
+            <div class="row-duration">
+              <i class="bi bi-clock"></i>
+              <p>1h 15m</p>
+            </div>
+            <div class="row-actions">
+              <button class="btn-icon btn-edit" title="Edit">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn-icon btn-delete" title="Delete">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </li>
+
+          <li class="list-row">
+            <div class="row-info">
+              <h4>Family Dinner</h4>
+              <span class="label label--social">Social</span>
+            </div>
+            <div class="row-date">
+              <i class="bi bi-calendar3"></i>
+              <p>May 18, 2026</p>
+            </div>
+            <div class="row-duration">
+              <i class="bi bi-clock"></i>
+              <p>2h 30m</p>
+            </div>
+            <div class="row-actions">
+              <button class="btn-icon btn-edit" title="Edit">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn-icon btn-delete" title="Delete">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </li>
+
+          <li class="list-row">
+            <div class="row-info">
+              <h4>Gaming Session (Valorant)</h4>
+              <span class="label label--hobby">Hobby</span>
+            </div>
+            <div class="row-date">
+              <i class="bi bi-calendar3"></i>
+              <p>May 18, 2026</p>
+            </div>
+            <div class="row-duration">
+              <i class="bi bi-clock"></i>
+              <p>1h 45m</p>
+            </div>
+            <div class="row-actions">
+              <button class="btn-icon btn-edit" title="Edit">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn-icon btn-delete" title="Delete">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </li>
+        </ul>
+
+        <div id="detail-panel" class="detail-panel">
+          <div class="detail-panel__box">
+            <div class="detail-panel__header">
+              <div class="detail-panel__title-group">
+                <span class="badge-category badge--study" id="detail-category"
+                  >Study</span
+                >
+                <h2 class="detail-panel__title" id="detail-title">
+                  Learning React Fundamentals
+                </h2>
+              </div>
+            </div>
+
+            <div class="detail-panel__body">
+              <div class="detail-panel__meta-list">
+                <div class="meta-item">
+                  <i class="bi bi-calendar3 meta-item__icon"></i>
+                  <div class="meta-item__text">
+                    <span class="meta-item__label">Date</span>
+                    <p id="detail-date">May 20, 2026</p>
+                  </div>
+                </div>
+
+                <div class="meta-item">
+                  <i class="bi bi-clock meta-item__icon"></i>
+                  <div class="meta-item__text">
+                    <span class="meta-item__label">Duration</span>
+                    <p id="detail-duration">2h 00m</p>
+                  </div>
+                </div>
+
+                <div class="meta-item">
+                  <i class="bi bi-hourglass-split meta-item__icon"></i>
+                  <div class="meta-item__text">
+                    <span class="meta-item__label">Time Session</span>
+                    <p id="detail-time-session">14:00 - 16:00</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="detail-panel__notes-section">
+                <h3 class="detail-panel__notes-title">Notes / Description</h3>
+                <div class="detail-panel__notes-content" id="detail-notes">
+                  <p>
+                    Today, I learned about functional components, useState, and
+                    useEffect. Built a simple counter application but got stuck
+                    on the re-rendering part.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-panel__footer">
+              <button
+                class="btn-panel btn-panel--secondary"
+                id="detail-delete-btn"
+              >
+                <i class="bi bi-trash"></i> Delete
+              </button>
+              <button class="btn-panel btn-panel--primary" id="detail-edit-btn">
+                <i class="bi bi-pencil"></i> Edit Activity
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
+
     <section
       id="add-activity"
       class="section-add-activity section-container hidden"
@@ -230,10 +564,284 @@
       <div class="section__header">
         <h2 class="title">Add Your New Activity</h2>
       </div>
+
+      <div class="add-activity-container">
+        <div class="form-panel">
+          <form id="new-activity-form" class="activity-form">
+            <div class="form-group">
+              <label for="activity-title">Activity Title</label>
+              <div class="input-wrapper">
+                <i class="bi bi-type-h1 input-icon"></i>
+                <input
+                  type="text"
+                  id="activity-title"
+                  placeholder="e.g., Deep Work Session"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="activity-category">Category</label>
+              <div class="input-wrapper">
+                <i class="bi bi-tags input-icon"></i>
+                <select id="activity-category" required>
+                  <option value="" disabled selected>
+                    Select a category...
+                  </option>
+                  <option value="work">Work</option>
+                  <option value="study">Study</option>
+                  <option value="exercise">Exercise</option>
+                  <option value="social">Social</option>
+                  <option value="hobby">Hobby</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row-3">
+              <div class="form-group">
+                <label for="activity-date">Date</label>
+                <div class="input-wrapper">
+                  <i class="bi bi-calendar-event input-icon"></i>
+                  <input type="date" id="activity-date" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="activity-start">Start Time</label>
+                <div class="input-wrapper">
+                  <i class="bi bi-play-circle input-icon"></i>
+                  <input type="time" id="activity-start" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="activity-end">End Time</label>
+                <div class="input-wrapper">
+                  <i class="bi bi-stop-circle input-icon"></i>
+                  <input type="time" id="activity-end" required />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group form-group--grow">
+              <label for="activity-notes">Notes / Description</label>
+              <textarea
+                id="activity-notes"
+                placeholder="Write down what you achieved during this session..."
+              ></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn-form btn-form--cancel">
+                Clear Form
+              </button>
+              <button type="submit" class="btn-form btn-form--submit">
+                <i class="bi bi-save2"></i> Save Activity
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="side-info-panel">
+          <div class="side-card preview-card">
+            <h3 class="side-card__title">
+              <i class="bi bi-eye"></i> Live Preview
+            </h3>
+            <p class="side-card__desc">
+              This is how your activity will look in the list.
+            </p>
+
+            <div class="preview-box">
+              <li class="list-row preview-list-row">
+                <div class="row-info">
+                  <h4 id="preview-title">Activity Title...</h4>
+                  <span class="label label--work" id="preview-category"
+                    >Category</span
+                  >
+                </div>
+                <div class="row-duration">
+                  <i class="bi bi-clock"></i>
+                  <p id="preview-duration">--h --m</p>
+                </div>
+              </li>
+            </div>
+          </div>
+
+          <div class="side-card tips-card">
+            <h3 class="side-card__title">
+              <i class="bi bi-lightbulb"></i> Quick Tips
+            </h3>
+            <ul class="tips-list">
+              <li>
+                <i class="bi bi-check-circle-fill"></i> Be specific with your
+                titles.
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill"></i> Logging short 15m tasks
+                helps build momentum.
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill"></i> Use notes to track
+                blockers or wins.
+              </li>
+            </ul>
+          </div>
+
+          <div class="side-card goal-card">
+            <div class="goal-header">
+              <h3 class="goal-title">
+                <i class="bi bi-bullseye"></i> Daily Goal
+              </h3>
+              <i class="bi bi-fire goal-icon-fire"></i>
+            </div>
+
+            <div class="goal-progress-wrapper">
+              <div class="goal-progress-text">
+                <span class="goal-current">3</span>
+                <span class="goal-divider">/</span>
+                <span class="goal-total">5</span>
+                <span class="goal-label">Activities</span>
+              </div>
+              <div class="goal-bar-bg">
+                <div class="goal-bar-fill" style="width: 60%"></div>
+              </div>
+              <p class="goal-motivation">
+                Almost there! Keep the momentum going.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-    <section id="settings" class="section-Settings section-container hidden">
+
+    <section id="settings" class="section-settings section-container hidden">
       <div class="section__header">
-        <h2 class="title">Settings</h2>
+        <h2 class="title">Settings & Preferences</h2>
+      </div>
+
+      <div class="settings-container">
+        <div class="setting-card profile-card">
+          <h3 class="setting-card__title">
+            <i class="bi bi-person-circle"></i> User Profile
+          </h3>
+          <div class="profile-content">
+            <div class="profile-avatar">
+              <i class="bi bi-person"></i>
+            </div>
+            <div class="profile-details form-group">
+              <label for="user-name">Display Name</label>
+              <input
+                type="text"
+                id="user-name"
+                value="Fahri Ilmi"
+                class="setting-input"
+              />
+
+              <label for="user-role" style="margin-top: 10px">Role / Bio</label>
+              <input
+                type="text"
+                id="user-role"
+                value="Frontend Web Developer"
+                class="setting-input"
+              />
+            </div>
+          </div>
+          <button class="btn-setting btn-setting--primary">
+            Update Profile
+          </button>
+        </div>
+
+        <div class="setting-card pref-card">
+          <h3 class="setting-card__title">
+            <i class="bi bi-sliders"></i> App Preferences
+          </h3>
+
+          <div class="pref-item">
+            <div class="pref-item__text">
+              <h4>Dark Mode</h4>
+              <p>Switch to dark theme (Coming soon)</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="theme-toggle" />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="pref-item">
+            <div class="pref-item__text">
+              <h4>Time Format</h4>
+              <p>Use 24-hour clock instead of AM/PM</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="time-format-toggle" checked />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-card category-card">
+          <h3 class="setting-card__title">
+            <i class="bi bi-tags"></i> Manage Categories
+          </h3>
+          <p class="setting-card__desc">Customize your activity tags.</p>
+
+          <div class="category-badges-list">
+            <span class="badge-setting badge--work"
+              >Work <i class="bi bi-x"></i
+            ></span>
+            <span class="badge-setting badge--study"
+              >Study <i class="bi bi-x"></i
+            ></span>
+            <span class="badge-setting badge--exercise"
+              >Exercise <i class="bi bi-x"></i
+            ></span>
+            <span class="badge-setting badge--social"
+              >Social <i class="bi bi-x"></i
+            ></span>
+            <span class="badge-setting badge--hobby"
+              >Hobby <i class="bi bi-x"></i
+            ></span>
+          </div>
+
+          <div class="add-category-input mt-16">
+            <input
+              type="text"
+              placeholder="New category name..."
+              class="setting-input"
+            />
+            <button class="btn-setting btn-setting--outline">
+              <i class="bi bi-plus"></i> Add
+            </button>
+          </div>
+        </div>
+
+        <div class="setting-card data-card">
+          <h3 class="setting-card__title danger-text">
+            <i class="bi bi-database-exclamation"></i> Data Management
+          </h3>
+          <p class="setting-card__desc">
+            Your data is stored locally in your browser.
+          </p>
+
+          <div class="data-actions">
+            <div class="data-action-item">
+              <i class="bi bi-cloud-download data-icon"></i>
+              <div class="data-text">
+                <h4>Export Data</h4>
+                <p>Download your logs as JSON</p>
+              </div>
+              <button class="btn-setting btn-setting--outline">Export</button>
+            </div>
+
+            <div class="data-action-item border-top mt-12 pt-12">
+              <i class="bi bi-trash danger-text data-icon"></i>
+              <div class="data-text">
+                <h4 class="danger-text">Delete All Data</h4>
+                <p>This action cannot be undone</p>
+              </div>
+              <button class="btn-setting btn-setting--danger">Delete</button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </body>

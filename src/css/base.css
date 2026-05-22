@@ -1,0 +1,56 @@
+/* ==========================================================================
+   BASE & RESET
+   ========================================================================== */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* color */
+  --color-neutral-1: #dddbe6;
+  --color-neutral-2: #ffffff;
+  --color-neutral-3: #8a8a8a;
+  --color-neutral-4: #4b4b4b;
+
+  --color-primary: #7b61ff; /* Purple */
+  --color-secondary: #ff6b40; /* Orange */
+  --color-tertiary: #ffcc4d; /* Yellow */
+
+  --color-primary-darker: #5a3fe6;
+  --color-secondary-darker: #e65026;
+  --color-tertiary-darker: #e6b63f;
+
+  --color-primary-opacity: #7b61ff35; /* Purple 20% */
+  --color-secondary-opacity: #ff6d4062;
+  --color-tertiary-opacity: #ffcd4d69;
+
+  --gradient-primary: linear-gradient(to top left, #7b61ff, #a792ff);
+  --gradient-secondary: linear-gradient(to top left, #ff6b40, #ff8f70);
+
+  /* Font weight : */
+  --font-weight-default: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+
+  /* border radius */
+  --border-radius-default: 9px;
+  --border-radius-medium: 11px;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--color-neutral-1);
+}
+
+/* Utilities */
+.hidden {
+  display: none !important;
+}
