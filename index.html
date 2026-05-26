@@ -602,7 +602,11 @@
               <label for="activity-category">Category</label>
               <div class="input-wrapper">
                 <i class="bi bi-tags input-icon"></i>
-                <select id="activity-category" name="activity-category" required>
+                <select
+                  id="activity-category"
+                  name="activity-category"
+                  required
+                >
                   <option value="" disabled selected>
                     Select a category...
                   </option>
@@ -620,21 +624,36 @@
                 <label for="activity-date">Date</label>
                 <div class="input-wrapper">
                   <i class="bi bi-calendar-event input-icon"></i>
-                  <input type="date" id="activity-date" name="activity-date" required />
+                  <input
+                    type="date"
+                    id="activity-date"
+                    name="activity-date"
+                    required
+                  />
                 </div>
               </div>
               <div class="form-group">
                 <label for="activity-start">Start Time</label>
                 <div class="input-wrapper">
                   <i class="bi bi-play-circle input-icon"></i>
-                  <input type="time" id="activity-start" name="activity-start" required />
+                  <input
+                    type="time"
+                    id="activity-start"
+                    name="activity-start"
+                    required
+                  />
                 </div>
               </div>
               <div class="form-group">
                 <label for="activity-end">End Time</label>
                 <div class="input-wrapper">
                   <i class="bi bi-stop-circle input-icon"></i>
-                  <input type="time" id="activity-end" name="activity-end" required />
+                  <input
+                    type="time"
+                    id="activity-end"
+                    name="activity-end"
+                    required
+                  />
                 </div>
               </div>
             </div>
@@ -820,17 +839,26 @@ Menyelesaikan fitur form dan layout grid.</textarea
 
             <div class="goal-progress-wrapper">
               <div class="goal-progress-text">
-                <span class="goal-current">3</span>
+                <span class="goal-current">0</span>
                 <span class="goal-divider">/</span>
                 <span class="goal-total">5</span>
                 <span class="goal-label">Activities</span>
               </div>
               <div class="goal-bar-bg">
-                <div class="goal-bar-fill" style="width: 60%"></div>
+                <div class="goal-bar-fill" style="width: 0"></div>
               </div>
+              <p class="goal-motivation">
+                Let's get started today!
+              </p>
+              <!-- <p class="goal-motivation">
+                Good start! Keep going. 
+              </p>
               <p class="goal-motivation">
                 Almost there! Keep the momentum going.
               </p>
+              <p class="goal-motivation">
+                Awesome! Daily goal achieved! 🎉
+              </p> -->
             </div>
           </div>
         </div>

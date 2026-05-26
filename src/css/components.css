@@ -1192,7 +1192,6 @@ ul.row-container::-webkit-scrollbar {
   gap: 6px;
 }
 
-
 .tips-list li {
   display: flex;
   align-items: center;
@@ -1248,7 +1247,24 @@ ul.row-container::-webkit-scrollbar {
 
 .goal-icon-fire {
   font-size: 1.8rem;
-  color: var(--color-tertiary); /* Api warna kuning/oranye */
+  color: rgba(255, 255, 255, 0.3);
+  transition: all 0.4s ease;
+}
+
+.icon-fire-active {
+  color: var(--color-tertiary);
+  text-shadow: 0 0 12px rgba(255, 204, 77, 0.8);
+  transform: scale(1.2);
+  animation: firePulse 1s infinite alternate;
+}
+
+@keyframes firePulse {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1.3);
+  }
 }
 
 .goal-progress-wrapper {
@@ -1296,11 +1312,29 @@ ul.row-container::-webkit-scrollbar {
   overflow: hidden;
 }
 
+/* default bar = 0 activities */
 .goal-bar-fill {
   height: 100%;
-  background-color: var(--color-tertiary); /* Warna kuning mencolok */
   border-radius: 10px;
-  transition: width 1s ease-in-out;
+  transition:
+    width 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.5s ease;
+}
+
+/* activities 1 - 2 / day */
+.state-low {
+  background-color: var(--color-quaternary);
+}
+
+/* activities 3 - 4 / day */
+.state-medium {
+  background-color: var(--color-tertiary);
+}
+
+/* activities 5 / day */
+.state-high {
+  background-color: var(--color-secondary);
+  box-shadow: 0 0 8px var(--color-secondary-darker);
 }
 
 .goal-motivation {

@@ -18,14 +18,17 @@
   --color-primary: #7b61ff; /* Purple */
   --color-secondary: #ff6b40; /* Orange */
   --color-tertiary: #ffcc4d; /* Yellow */
+  --color-quaternary: #00e676; /* Greem */
 
   --color-primary-darker: #5a3fe6;
   --color-secondary-darker: #e65026;
   --color-tertiary-darker: #e6b63f;
+  --color-quaternary-darker: #00cc69; 
 
-  --color-primary-opacity: #7b61ff35; /* Purple 20% */
+  --color-primary-opacity: #7b61ff35; 
   --color-secondary-opacity: #ff6d4062;
   --color-tertiary-opacity: #ffcd4d69;
+  --color-quaternary-opacity: #00e67635;
 
   --gradient-primary: linear-gradient(to top left, #7b61ff, #a792ff);
   --gradient-secondary: linear-gradient(to top left, #ff6b40, #ff8f70);

@@ -71,6 +71,75 @@ inputCategory.addEventListener("input", (e) => {
   input.addEventListener("change", updateDurationPreview);
 });
 
+formInput.addEventListener("reset", () => {
+  previewTitle.textContent = "Activity Title...";
+  previewCategory.textContent = "Category";
+  previewCategory.className = "label label--work";
+  previewDuration.textContent = "--h --m";
+});
+
+const goalCurrent = document.querySelector(".goal-current");
+const goalMotivation = document.querySelector(".goal-motivation");
+const goalBar = document.querySelector(".goal-bar-fill");
+const goalIconFire = document.querySelector(".goal-icon-fire");
+
+const getTodayDateString = () => {
+  const today = new Date();
+  const offset = today.getTimezoneOffset();
+  const localToday = new Date(today.getTime() - offset * 60 * 1000);
+  return localToday.toISOString().split("T")[0];
+};
+
+const updateDailyCounter = (increment = false) => {
+  const today = getTodayDateString();
+
+  const savedData = localStorage.getItem("activity_data_tracker");
+  let currentCount =
+    parseInt(localStorage.getItem("activity_daily_count")) || 0;
+
+  if (savedData !== today) {
+    currentCount = 0;
+    localStorage.setItem("activity_data_tracker", today);
+    localStorage.setItem("activity_daily_count", "0");
+  }
+
+  if (increment) {
+    currentCount += 1;
+    localStorage.setItem("activity_daily_count", currentCount.toString());
+  }
+
+  if (currentCount >= 5) {
+    goalIconFire.classList.add("icon-fire-active");
+    goalCurrent.textContent = currentCount;
+    goalBar.className = "goal-bar-fill state-high";
+    goalBar.style.width = "100%";
+    goalMotivation.textContent = "Awesome! Daily goal achieved!";
+  } else if (currentCount === 3 || currentCount === 4) {
+    goalIconFire.classList.remove("icon-fire-active");
+    goalCurrent.textContent = currentCount;
+    goalBar.className = "goal-bar-fill state-medium";
+    goalBar.style.width = currentCount === 4 ? "80%" : "60%";
+    goalMotivation.textContent = "Almost there! Keep the momentum going.";
+  } else if (currentCount === 1 || currentCount === 2) {
+    goalIconFire.classList.remove("icon-fire-active");
+    goalCurrent.textContent = currentCount;
+    goalBar.className = "goal-bar-fill state-low";
+    goalBar.style.width = currentCount === 1 ? "20%" : "40%";
+    goalMotivation.textContent = "Good start! Keep going.";
+  } else {
+    goalCurrent.textContent = currentCount;
+    goalBar.className = "goal-bar-fill";
+    goalBar.style.width = "0%";
+    goalMotivation.textContent = "Let's get started today!";
+  }
+
+  console.log(currentCount);
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateDailyCounter(false);
+});
+
 formInput.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -81,14 +150,6 @@ formInput.addEventListener("submit", (e) => {
   activityData.endTime = inputEndTime.value;
   activityData.description = inputDescription.value;
   activityData.duration = previewDuration.textContent;
-  console.log(activityData);
-});
 
-console.log("data berhasil disimpan :", activityData);
-
-formInput.addEventListener("reset", () => {
-  previewTitle.textContent = "Acitivvity Title...";
-  previewCategory.textContent = "Category";
-  previewCategory.className = "label";
-  previewDuration.textContent = "--h --m";
+  updateDailyCounter(true);
 });
