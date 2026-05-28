@@ -20,7 +20,15 @@ class AddActivityViews {
   _goalBar = document.querySelector(".goal-bar-fill");
   _goalIconFire = document.querySelector(".goal-icon-fire");
 
-  livePreview(handlerTime) {
+  _updateDuration(handlerTime) {
+    if (!this._inputStartTime.value || !this._inputEndTime.value) return;
+    this._previewDuration.textContent = handlerTime(
+      this._inputStartTime.value,
+      this._inputEndTime.value,
+    );
+  }
+
+  renderLivePreview(handlerTime) {
     this._inputTitle.addEventListener("input", (e) => {
       this._previewTitle.textContent =
         this._inputTitle.value.trim() || "Activity Title...";
@@ -29,28 +37,24 @@ class AddActivityViews {
     this._inputCategory.addEventListener("input", (e) => {
       this._previewCategory.textContent =
         this._inputCategory.options[this._inputCategory.selectedIndex].text;
-      this._previewCategory.className = `label label--${this._inputCategory.value}`;
+      this._previewCategory.className = `label badge--${this._inputCategory.value}`;
     });
 
     [this._inputStartTime, this._inputEndTime].forEach((input) => {
       input.addEventListener("change", () => {
-        if (!this._inputStartTime.value || !this._inputEndTime.value) return;
-        this._previewDuration.textContent = handlerTime(
-          this._inputStartTime.value,
-          this._inputEndTime.value,
-        );
+        this._updateDuration(handlerTime);
       });
     });
 
     this._formInput.addEventListener("reset", () => {
       this._previewTitle.textContent = "Activity Title...";
       this._previewCategory.textContent = "Category";
-      this._previewCategory.className = "label label--work";
+      this._previewCategory.className = "label badge--work";
       this._previewDuration.textContent = "--h --m";
     });
   }
 
-  dailyGoal(currentCount, goalState) {
+  renderDailyGoal(currentCount, goalState) {
     // update daily current number
     this._goalCurrent.textContent = currentCount;
 

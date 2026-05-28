@@ -36,14 +36,14 @@
           >
         </li>
         <li>
-          <a href="#activities" class="menu">
+          <a href="#activities" class="menu menu__focus">
             <i class="bi bi-clipboard menu__icon"></i>
             <!-- <i class="bi bi-clipboard-fill menu__icon"></i> -->
             Activities</a
           >
         </li>
         <li>
-          <a href="#add-activity" class="menu menu__focus">
+          <a href="#add-activity" class="menu">
             <i class="bi bi-clipboard-plus menu__icon"></i>
             <!-- <i class="bi bi-clipboard-plus-fill menu__icon"></i> -->
             Add Activity</a
@@ -234,10 +234,7 @@
       </div>
     </section>
 
-    <section
-      id="activities"
-      class="section-activities section-container hidden"
-    >
+    <section id="activities" class="section-activities section-container">
       <div class="section__header">
         <h2 class="title">Inputed Activities</h2>
 
@@ -280,7 +277,7 @@
           <li class="list-row">
             <div class="row-info">
               <h4>Deep Work Session</h4>
-              <span class="label label--work">Work</span>
+              <span class="label badge--work">Work</span>
             </div>
             <div class="row-date">
               <i class="bi bi-calendar3"></i>
@@ -303,7 +300,7 @@
           <li class="list-row">
             <div class="row-info">
               <h4>Learning React Fundamentals</h4>
-              <span class="label label--study">Study</span>
+              <span class="label badge--study">Study</span>
             </div>
             <div class="row-date">
               <i class="bi bi-calendar3"></i>
@@ -326,7 +323,7 @@
           <li class="list-row">
             <div class="row-info">
               <h4>Coffee with Friends</h4>
-              <span class="label label--social">Social</span>
+              <span class="label badge--social">Social</span>
             </div>
             <div class="row-date">
               <i class="bi bi-calendar3"></i>
@@ -349,7 +346,7 @@
           <li class="list-row">
             <div class="row-info">
               <h4>Playing Acoustic Guitar</h4>
-              <span class="label label--hobby">Hobby</span>
+              <span class="label badge--hobby">Hobby</span>
             </div>
             <div class="row-date">
               <i class="bi bi-calendar3"></i>
@@ -372,7 +369,7 @@
           <li class="list-row">
             <div class="row-info">
               <h4>Morning Yoga Session</h4>
-              <span class="label label--exercise">Exercise</span>
+              <span class="label badge--exercise">Exercise</span>
             </div>
             <div class="row-date">
               <i class="bi bi-calendar3"></i>
@@ -395,7 +392,7 @@
           <li class="list-row">
             <div class="row-info">
               <h4>Team Sync Meeting</h4>
-              <span class="label label--work">Work</span>
+              <span class="label badge--work">Work</span>
             </div>
             <div class="row-date">
               <i class="bi bi-calendar3"></i>
@@ -418,7 +415,7 @@
           <li class="list-row">
             <div class="row-info">
               <h4>Reading Clean Code Book</h4>
-              <span class="label label--study">Study</span>
+              <span class="label badge--study">Study</span>
             </div>
             <div class="row-date">
               <i class="bi bi-calendar3"></i>
@@ -441,7 +438,7 @@
           <li class="list-row">
             <div class="row-info">
               <h4>Gym Workout (Upper Body)</h4>
-              <span class="label label--exercise">Exercise</span>
+              <span class="label badge--exercise">Exercise</span>
             </div>
             <div class="row-date">
               <i class="bi bi-calendar3"></i>
@@ -464,7 +461,7 @@
           <li class="list-row">
             <div class="row-info">
               <h4>Family Dinner</h4>
-              <span class="label label--social">Social</span>
+              <span class="label badge--social">Social</span>
             </div>
             <div class="row-date">
               <i class="bi bi-calendar3"></i>
@@ -487,7 +484,7 @@
           <li class="list-row">
             <div class="row-info">
               <h4>Gaming Session (Valorant)</h4>
-              <span class="label label--hobby">Hobby</span>
+              <span class="label badge--hobby">Hobby</span>
             </div>
             <div class="row-date">
               <i class="bi bi-calendar3"></i>
@@ -512,11 +509,11 @@
           <div class="detail-panel__box">
             <div class="detail-panel__header">
               <div class="detail-panel__title-group">
-                <span class="badge-category badge--study" id="detail-category"
-                  >Study</span
+                <span class="badge-category badge--work" id="detail-category"
+                  >Category</span
                 >
                 <h2 class="detail-panel__title" id="detail-title">
-                  Learning React Fundamentals
+                  Select Your Activity...
                 </h2>
               </div>
             </div>
@@ -527,7 +524,7 @@
                   <i class="bi bi-calendar3 meta-item__icon"></i>
                   <div class="meta-item__text">
                     <span class="meta-item__label">Date</span>
-                    <p id="detail-date">May 20, 2026</p>
+                    <p id="detail-date"></p>
                   </div>
                 </div>
 
@@ -535,7 +532,7 @@
                   <i class="bi bi-clock meta-item__icon"></i>
                   <div class="meta-item__text">
                     <span class="meta-item__label">Duration</span>
-                    <p id="detail-duration">2h 00m</p>
+                    <p id="detail-duration"></p>
                   </div>
                 </div>
 
@@ -543,7 +540,7 @@
                   <i class="bi bi-hourglass-split meta-item__icon"></i>
                   <div class="meta-item__text">
                     <span class="meta-item__label">Time Session</span>
-                    <p id="detail-time-session">14:00 - 16:00</p>
+                    <p id="detail-time-session"></p>
                   </div>
                 </div>
               </div>
@@ -551,11 +548,7 @@
               <div class="detail-panel__notes-section">
                 <h3 class="detail-panel__notes-title">Notes / Description</h3>
                 <div class="detail-panel__notes-content" id="detail-notes">
-                  <p>
-                    Today, I learned about functional components, useState, and
-                    useEffect. Built a simple counter application but got stuck
-                    on the re-rendering part.
-                  </p>
+                  <p>your notes/description...</p>
                 </div>
               </div>
             </div>
@@ -576,7 +569,10 @@
       </div>
     </section>
 
-    <section id="add-activity" class="section-add-activity section-container">
+    <section
+      id="add-activity"
+      class="section-add-activity section-container hidden"
+    >
       <div class="section__header">
         <h2 class="title">Add Your New Activity</h2>
       </div>
@@ -584,100 +580,6 @@
       <div class="add-activity-container">
         <div class="form-panel">
           <form id="new-activity-form" class="activity-form">
-            <div class="form-group">
-              <label for="activity-title">Activity Title</label>
-              <div class="input-wrapper">
-                <i class="bi bi-type-h1 input-icon"></i>
-                <input
-                  type="text"
-                  id="activity-title"
-                  name="activity-title"
-                  placeholder="e.g., Deep Work Session"
-                  required
-                />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="activity-category">Category</label>
-              <div class="input-wrapper">
-                <i class="bi bi-tags input-icon"></i>
-                <select
-                  id="activity-category"
-                  name="activity-category"
-                  required
-                >
-                  <option value="" disabled selected>
-                    Select a category...
-                  </option>
-                  <option value="work">Work</option>
-                  <option value="study">Study</option>
-                  <option value="exercise">Exercise</option>
-                  <option value="social">Social</option>
-                  <option value="hobby">Hobby</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-row-3">
-              <div class="form-group">
-                <label for="activity-date">Date</label>
-                <div class="input-wrapper">
-                  <i class="bi bi-calendar-event input-icon"></i>
-                  <input
-                    type="date"
-                    id="activity-date"
-                    name="activity-date"
-                    required
-                  />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="activity-start">Start Time</label>
-                <div class="input-wrapper">
-                  <i class="bi bi-play-circle input-icon"></i>
-                  <input
-                    type="time"
-                    id="activity-start"
-                    name="activity-start"
-                    required
-                  />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="activity-end">End Time</label>
-                <div class="input-wrapper">
-                  <i class="bi bi-stop-circle input-icon"></i>
-                  <input
-                    type="time"
-                    id="activity-end"
-                    name="activity-end"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group form-group--grow">
-              <label for="activity-notes">Notes / Description</label>
-              <textarea
-                id="activity-notes"
-                name="activity-notes"
-                placeholder="Write down what you achieved during this session..."
-              ></textarea>
-            </div>
-
-            <div class="form-actions">
-              <button type="reset" class="btn-form btn-form--clear">
-                Clear Form
-              </button>
-              <button type="submit" class="btn-form btn-form--submit">
-                <i class="bi bi-save2"></i> Save Activity
-              </button>
-            </div>
-          </form>
-
-          <!-- <form id="new-activity-form" class="activity-form">
             <div class="form-group">
               <label for="activity-title">Activity Title</label>
               <div class="input-wrapper">
@@ -702,8 +604,11 @@
                   name="activity-category"
                   required
                 >
-                  <option value="" disabled>Select a category...</option>
-                  <option value="work" selected>Work</option>
+                  <option value="" disabled>
+                    <!-- <option value="" disabled selected>  -->
+                    Select a category...
+                  </option>
+                  <option value="work">Work</option>
                   <option value="study">Study</option>
                   <option value="exercise">Exercise</option>
                   <option value="social">Social</option>
@@ -721,7 +626,7 @@
                     type="date"
                     id="activity-date"
                     name="activity-date"
-                    value="2026-05-23"
+                    value="2026-05-28"
                     required
                   />
                 </div>
@@ -734,7 +639,7 @@
                     type="time"
                     id="activity-start"
                     name="activity-start"
-                    value="09:00"
+                    value="19:00"
                     required
                   />
                 </div>
@@ -747,7 +652,7 @@
                     type="time"
                     id="activity-end"
                     name="activity-end"
-                    value="11:00"
+                    value="21:00"
                     required
                   />
                 </div>
@@ -761,7 +666,7 @@
                 name="activity-notes"
                 placeholder="Write down what you achieved during this session..."
               >
-Menyelesaikan fitur form dan layout grid.</textarea
+Learn JavaScript programming material with MVC architecture.</textarea
               >
             </div>
 
@@ -773,7 +678,7 @@ Menyelesaikan fitur form dan layout grid.</textarea
                 <i class="bi bi-save2"></i> Save Activity
               </button>
             </div>
-          </form> -->
+          </form>
         </div>
 
         <div class="side-info-panel">
@@ -789,7 +694,7 @@ Menyelesaikan fitur form dan layout grid.</textarea
               <li class="list-row preview-list-row">
                 <div class="row-info">
                   <h4 id="preview-title">Activity Title...</h4>
-                  <span class="label label--work" id="preview-category"
+                  <span class="label badge--work" id="preview-category"
                     >Category</span
                   >
                 </div>
@@ -847,9 +752,7 @@ Menyelesaikan fitur form dan layout grid.</textarea
               <div class="goal-bar-bg">
                 <div class="goal-bar-fill" style="width: 0"></div>
               </div>
-              <p class="goal-motivation">
-                Let's get started today!
-              </p>
+              <p class="goal-motivation">Let's get started today!</p>
               <!-- <p class="goal-motivation">
                 Good start! Keep going. 
               </p>

@@ -1,21 +1,21 @@
 import addActivityView from "../views/addActivityView";
-import * as addActivityModel from "../model/addActivityModel";
+import * as activityManager from "../model/activityManager";
 import { saveDataForm } from "../model/state";
 import { GOAL_STATES } from "../config";
 
 export const livePreviewController = () => {
-  addActivityView.livePreview(addActivityModel.countTimeDifference);
+  addActivityView.renderLivePreview(activityManager.countTimeDifference);
 };
 
 export const addActivityController = () => {
-  const { currentCount, state } = addActivityModel.processdailyCounter(false);
-  addActivityView.dailyGoal(currentCount, state);
+  const { currentCount, state } = activityManager.processdailyCounter(false);
+  addActivityView.renderDailyGoal(currentCount, state);
 
-  addActivityView.formData((formData) => {
-    saveDataForm(formData);
+  addActivityView.formData((data) => {
+    activityManager.countTimeDifference;
+    saveDataForm(data);
 
-    const updateData = addActivityModel.processdailyCounter(true);
-
-    addActivityView.dailyGoal(updateData.currentCount, updateData.state);
+    const updateData = activityManager.processdailyCounter(true);
+    addActivityView.renderDailyGoal(updateData.currentCount, updateData.state);
   });
 };

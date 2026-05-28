@@ -3,7 +3,7 @@ class SidebarView {
   _menusEl = document.querySelectorAll(".menu");
   _contentsEl = document.querySelectorAll(".section-container");
 
-  setFocusMenu(handler) {
+  setFocusMenu() {
     this._parentEl.addEventListener("click", (e) => {
       e.preventDefault();
       const selectEl = e.target.closest(".menu");
