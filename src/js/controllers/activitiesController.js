@@ -1,8 +1,11 @@
 import { state, getActivityData } from "../model/state";
-import ActivitiesView from "../views/ActivitiesView";
+import ActivitiesView from "../views/activitiesView";
 
-export const detailActivityController = (activityData) => {
-  activityData = getActivityData();
+export const detailActivityController = () => {
+  const activityData = getActivityData();
+  activityData.forEach((activity) => {
+    ActivitiesView.renderActivityList(activity);
+  });
 
   console.log(activityData);
   if (!activityData) return;

@@ -1,11 +1,10 @@
-import { state } from "../model/state";
-
 export const formattedDate = (date) => {
+  const dateObject = new Date(date);
   const dateFormatted = new Intl.DateTimeFormat("en-US", {
     month: "long",
     day: "numeric",
     year: "numeric",
   });
 
-  return dateFormatted(date);
+  return dateFormatted.format(dateObject);
 };
