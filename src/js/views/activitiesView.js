@@ -7,10 +7,20 @@ class ActivitiesViews {
   _detailDuration = document.getElementById("detail-duration");
   _detailTimeSesstion = document.getElementById("detail-time-session");
   _detailNotes = document.getElementById("detail-notes");
+
   _rowContainer = document.querySelector(".row-container");
   _btnEdit = document.querySelector(".btn-edit");
   _formEdit = document.querySelector(".form-panel__edit");
   _overlay = document.querySelector(".overlay-blur");
+
+  _inputTitle = document.getElementById("activity-title-edit");
+  _inputCategory = document.getElementById("activity-category-edit");
+  _inputDate = document.getElementById("activity-date-edit");
+  _inputStartTime = document.getElementById("activity-start-edit");
+  _inputEndTime = document.getElementById("activity-end-edit");
+  _inputDescription = document.getElementById("activity-notes-edit");
+  _formInput = document.getElementById("edit-activity-form");
+  _clearInputActivity = document.querySelector(".btn-form--clear");
 
   _detailValue(activity) {
     this._detailCategory.textContent = activity.category;
@@ -29,8 +39,6 @@ class ActivitiesViews {
       if (!selectEl) return;
 
       const activityId = selectEl.dataset.id;
-      console.log(activityId);
-
       const selectDetail = activityData.find((activity) => {
         return activity.id === Number(activityId);
       });
@@ -74,16 +82,32 @@ class ActivitiesViews {
   }
 
   // HANDLE EDIT FORM
-  editActivity() {
+  editActivity(activities) {
     this._rowContainer.addEventListener("click", (e) => {
       const selectEl = e.target.closest(".btn-edit");
+      const selectActivityId = Number(e.target.closest(".list-row").dataset.id);
       if (!selectEl) return;
 
       this._formEdit.classList.toggle("hidden");
       this._overlay.classList.toggle("hidden");
 
-      console.log("test");
+      console.log(selectActivityId);
+
+      const currentActivity = activities.find(
+        (activity) => activity.id === selectActivityId,
+      );
+
+      this._selectedActivity(currentActivity);
     });
+  }
+
+  _selectedActivity(activity) {
+    this._inputTitle.value = activity.title;
+    this._inputCategory.value = activity.category;
+    this._inputDate.value = activity.date;
+    this._inputStartTime.value = activity.startTime;
+    this._inputEndTime.value = activity.endTime;
+    this._inputDescription.value = activity.description;
   }
 
   _closeBtn = document.querySelector(".btn-form--close");

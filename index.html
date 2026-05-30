@@ -682,10 +682,9 @@ Learn JavaScript programming material with MVC architecture.</textarea
             <i class="bi bi-type-h1 input-icon"></i>
             <input
               type="text"
-              id="activity-title"
+              id="activity-title-edit"
               name="activity-title"
               placeholder="e.g., Deep Work Session"
-              value="Deep Work Session"
               required
             />
           </div>
@@ -695,11 +694,8 @@ Learn JavaScript programming material with MVC architecture.</textarea
           <label for="activity-category">Category</label>
           <div class="input-wrapper">
             <i class="bi bi-tags input-icon"></i>
-            <select id="activity-category" name="activity-category" required>
-              <option value="" disabled>
-                <!-- <option value="" disabled selected>  -->
-                Select a category...
-              </option>
+            <select id="activity-category-edit" name="activity-category" required>
+              <option value="" disabled selected>Select a category...</option>
               <option value="work">Work</option>
               <option value="study">Study</option>
               <option value="exercise">Exercise</option>
@@ -716,9 +712,8 @@ Learn JavaScript programming material with MVC architecture.</textarea
               <i class="bi bi-calendar-event input-icon"></i>
               <input
                 type="date"
-                id="activity-date"
+                id="activity-date-edit"
                 name="activity-date"
-                value="2026-05-28"
                 required
               />
             </div>
@@ -729,9 +724,8 @@ Learn JavaScript programming material with MVC architecture.</textarea
               <i class="bi bi-play-circle input-icon"></i>
               <input
                 type="time"
-                id="activity-start"
+                id="activity-start-edit"
                 name="activity-start"
-                value="19:00"
                 required
               />
             </div>
@@ -742,9 +736,8 @@ Learn JavaScript programming material with MVC architecture.</textarea
               <i class="bi bi-stop-circle input-icon"></i>
               <input
                 type="time"
-                id="activity-end"
+                id="activity-end-edit"
                 name="activity-end"
-                value="21:00"
                 required
               />
             </div>
@@ -754,18 +747,14 @@ Learn JavaScript programming material with MVC architecture.</textarea
         <div class="form-group form-group--grow form-group__edit">
           <label for="activity-notes">Notes / Description</label>
           <textarea
-            id="activity-notes"
+            id="activity-notes-edit"
             name="activity-notes"
             placeholder="Write down what you achieved during this session..."
-          >
-Learn JavaScript programming material with MVC architecture.</textarea
-          >
+          ></textarea>
         </div>
 
         <div class="form-actions">
-          <button type="button" class="btn-form btn-form--close">
-            Close
-          </button>
+          <button type="button" class="btn-form btn-form--close">Close</button>
           <button type="submit" class="btn-form btn-form--submit">
             Edit Activity
           </button>

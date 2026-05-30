@@ -15,7 +15,7 @@ export const detailActivityController = () => {
 };
 
 export const editActivityController = () => {
-  activitiesView.editActivity();
+  activitiesView.editActivity(getActivityData());
 
   activitiesView.closeEditActivity();
 };
