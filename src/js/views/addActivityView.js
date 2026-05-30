@@ -1,5 +1,6 @@
 import { getTodayDateString } from "../helpers/utils";
 import { DAILY_GOAL } from "../config";
+import { getIdActivity } from "../helpers/format";
 
 class AddActivityViews {
   _inputTitle = document.getElementById("activity-title");
@@ -75,6 +76,7 @@ class AddActivityViews {
       e.preventDefault();
 
       const formData = {
+        id: getIdActivity(),
         title: this._inputTitle.value,
         category: this._inputCategory.value,
         date: this._inputDate.value,

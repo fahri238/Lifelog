@@ -12,5 +12,8 @@ sidebarView.setFocusMenu();
 document.addEventListener("DOMContentLoaded", () => {
   addActivityController.livePreviewController();
   addActivityController.addActivityController();
+
+  // activties
   activitiesController.detailActivityController();
+  activitiesController.editActivityController();
 });

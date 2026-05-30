@@ -3,10 +3,11 @@ export const state = {
 };
 
 export const saveDataForm = (formData) => {
-  state.activityData.push(formData);
-  const activityDataString = JSON.stringify(state.activityData);
-  localStorage.setItem("activity_data", activityDataString);
-  console.log(state.activityData);
+  const existingData = localStorage.getItem("activity_data");
+
+  const currentData = existingData? JSON.parse(existingData) : [];
+  currentData.push(formData);
+  localStorage.setItem("activity_data", JSON.stringify(currentData));
 };
 
 export const getActivityData = () => {

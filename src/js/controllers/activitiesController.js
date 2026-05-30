@@ -1,13 +1,21 @@
 import { state, getActivityData } from "../model/state";
+import activitiesView from "../views/activitiesView";
 import ActivitiesView from "../views/activitiesView";
 
 export const detailActivityController = () => {
   const activityData = getActivityData();
+
   activityData.forEach((activity) => {
     ActivitiesView.renderActivityList(activity);
   });
 
-  console.log(activityData);
   if (!activityData) return;
-  ActivitiesView.renderDetailActivity(activityData[0]);
+
+  ActivitiesView.renderDetailActivity(activityData);
+};
+
+export const editActivityController = () => {
+  activitiesView.editActivity();
+
+  activitiesView.closeEditActivity();
 };

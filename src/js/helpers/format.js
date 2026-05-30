@@ -8,3 +8,7 @@ export const formattedDate = (date) => {
 
   return dateFormatted.format(dateObject);
 };
+
+export const getIdActivity = () => {
+  return Date.now();
+};

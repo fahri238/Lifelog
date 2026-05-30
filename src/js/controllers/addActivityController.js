@@ -18,6 +18,5 @@ export const addActivityController = () => {
 
     const updateData = activityManager.processdailyCounter(true);
     addActivityView.renderDailyGoal(updateData.currentCount, updateData.state);
-    ActivitiesView.renderDetailActivity(getActivityData()[0]);
   });
 };
