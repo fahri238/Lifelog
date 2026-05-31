@@ -1008,16 +1008,16 @@ ul.row-container::-webkit-scrollbar {
   flex-direction: column;
 }
 
-.overlay-blur{
+.overlay-blur {
   position: fixed;
   z-index: 50;
   width: 100%;
   height: 100%;
 
-  background-color: rgba(0, 0, 0, 0.2); 
-  
-  backdrop-filter: blur(5px); 
-  -webkit-backdrop-filter: blur(5px); 
+  background-color: rgba(0, 0, 0, 0.2);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .form-panel__edit {
@@ -1137,24 +1137,28 @@ ul.row-container::-webkit-scrollbar {
   transition: all 0.2s ease;
 }
 
-.btn-form--submit {
+.btn-form--submit,
+.btn-form--edit {
   background-color: var(--color-primary);
   color: white;
 }
 
-.btn-form--submit:hover {
+.btn-form--submit:hover,
+.btn-form--edit:hover {
   background-color: var(--color-primary-darker);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px var(--color-primary-opacity);
 }
 
-.btn-form--clear {
+.btn-form--clear,
+.btn-form--close {
   background-color: #f8f9fa;
   color: var(--color-neutral-3);
   border: 1px solid var(--color-neutral-1);
 }
 
-.btn-form--clear:hover {
+.btn-form--clear:hover,
+.btn-form--close:hover {
   background-color: #e2e8f0;
   color: var(--color-neutral-4);
 }

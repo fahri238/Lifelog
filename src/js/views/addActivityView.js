@@ -1,17 +1,9 @@
 import { getTodayDateString } from "../helpers/utils";
 import { DAILY_GOAL } from "../config";
-import { getIdActivity } from "../helpers/format";
+import FormView from "./formViews";
 
-class AddActivityViews {
-  _inputTitle = document.getElementById("activity-title");
-  _inputCategory = document.getElementById("activity-category");
-  _inputDate = document.getElementById("activity-date");
-  _inputStartTime = document.getElementById("activity-start");
-  _inputEndTime = document.getElementById("activity-end");
-  _inputDescription = document.getElementById("activity-notes");
-  _formInput = document.getElementById("new-activity-form");
-  _clearInputActivity = document.querySelector(".btn-form--clear");
 
+class AddActivityViews extends FormView {
   _previewTitle = document.getElementById("preview-title");
   _previewCategory = document.getElementById("preview-category");
   _previewDuration = document.getElementById("preview-duration");
@@ -20,6 +12,19 @@ class AddActivityViews {
   _goalMotivation = document.querySelector(".goal-motivation");
   _goalBar = document.querySelector(".goal-bar-fill");
   _goalIconFire = document.querySelector(".goal-icon-fire");
+
+  constructor() {
+    super();
+
+    this._inputTitle = document.getElementById("activity-title");
+    this._inputCategory = document.getElementById("activity-category");
+    this._inputDate = document.getElementById("activity-date");
+    this._inputStartTime = document.getElementById("activity-start");
+    this._inputEndTime = document.getElementById("activity-end");
+    this._inputDescription = document.getElementById("activity-notes");
+    this._formInput = document.getElementById("new-activity-form");
+    this._formActionBtn = document.querySelector(".btn-form--clear");
+  }
 
   _updateDuration(handlerTime) {
     if (!this._inputStartTime.value || !this._inputEndTime.value) return;
@@ -71,24 +76,6 @@ class AddActivityViews {
     this._goalIconFire.classList.toggle("icon-fire-active", goalState.fire);
   }
 
-  formData(handlerSaveData) {
-    this._formInput.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const formData = {
-        id: getIdActivity(),
-        title: this._inputTitle.value,
-        category: this._inputCategory.value,
-        date: this._inputDate.value,
-        startTime: this._inputStartTime.value,
-        endTime: this._inputEndTime.value,
-        description: this._inputDescription.value,
-        duration: this._previewDuration.textContent,
-      };
-
-      handlerSaveData(formData);
-    });
-  }
 }
 
 export default new AddActivityViews();

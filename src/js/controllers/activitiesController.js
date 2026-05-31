@@ -1,21 +1,37 @@
-import { state, getActivityData } from "../model/state";
+import {
+  state,
+  getActivityData,
+  saveDataForm,
+  editDataForm,
+} from "../model/state";
 import activitiesView from "../views/activitiesView";
-import ActivitiesView from "../views/activitiesView";
 
 export const detailActivityController = () => {
   const activityData = getActivityData();
 
-  activityData.forEach((activity) => {
-    ActivitiesView.renderActivityList(activity);
-  });
-
   if (!activityData) return;
 
-  ActivitiesView.renderDetailActivity(activityData);
+  activitiesView.renderDetailActivity(activityData);
 };
 
 export const editActivityController = () => {
-  activitiesView.editActivity(getActivityData());
+  const activityData = getActivityData();
+
+  activitiesView.openEditActivity(
+    activityData,
+    (currentActivity, ediedData) => {
+      editDataForm(currentActivity, ediedData);
+    },
+  );
 
   activitiesView.closeEditActivity();
+};
+
+export const renderActivityList = () => {
+  const activityData = getActivityData();
+  if (activityData) {
+    activityData.forEach((activity) => {
+      activitiesView.renderActivityList(activity);
+    });
+  }
 };

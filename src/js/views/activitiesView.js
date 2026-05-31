@@ -1,6 +1,7 @@
 import { formattedDate } from "../helpers/format.js";
+import FormView from "./formViews.js";
 
-class ActivitiesViews {
+class ActivitiesViews extends FormView {
   _detailCategory = document.getElementById("detail-category");
   _detailTitle = document.getElementById("detail-title");
   _detailDate = document.getElementById("detail-date");
@@ -12,15 +13,21 @@ class ActivitiesViews {
   _btnEdit = document.querySelector(".btn-edit");
   _formEdit = document.querySelector(".form-panel__edit");
   _overlay = document.querySelector(".overlay-blur");
+  _currentActivity;
+  _editedData;
+  constructor() {
+    super();
 
-  _inputTitle = document.getElementById("activity-title-edit");
-  _inputCategory = document.getElementById("activity-category-edit");
-  _inputDate = document.getElementById("activity-date-edit");
-  _inputStartTime = document.getElementById("activity-start-edit");
-  _inputEndTime = document.getElementById("activity-end-edit");
-  _inputDescription = document.getElementById("activity-notes-edit");
-  _formInput = document.getElementById("edit-activity-form");
-  _clearInputActivity = document.querySelector(".btn-form--clear");
+    this._inputTitle = document.getElementById("activity-title-edit");
+    this._inputCategory = document.getElementById("activity-category-edit");
+    this._inputDate = document.getElementById("activity-date-edit");
+    this._inputStartTime = document.getElementById("activity-start-edit");
+    this._inputEndTime = document.getElementById("activity-end-edit");
+    this._inputDescription = document.getElementById("activity-notes-edit");
+    this._formInput = document.getElementById("edit-activity-form");
+    this._formActionBtn = document.querySelector(".btn-form--close");
+    this._editFormBtn = document.querySelector(".btn-form--edit");
+  }
 
   _detailValue(activity) {
     this._detailCategory.textContent = activity.category;
@@ -82,7 +89,7 @@ class ActivitiesViews {
   }
 
   // HANDLE EDIT FORM
-  editActivity(activities) {
+  openEditActivity(activities, handler) {
     this._rowContainer.addEventListener("click", (e) => {
       const selectEl = e.target.closest(".btn-edit");
       const selectActivityId = Number(e.target.closest(".list-row").dataset.id);
@@ -91,13 +98,39 @@ class ActivitiesViews {
       this._formEdit.classList.toggle("hidden");
       this._overlay.classList.toggle("hidden");
 
-      console.log(selectActivityId);
-
-      const currentActivity = activities.find(
+      const foundActivity = activities.find(
         (activity) => activity.id === selectActivityId,
       );
 
-      this._selectedActivity(currentActivity);
+      this._currentActivity = foundActivity;
+      this._selectedActivity(
+        this._editedData ? this.editedData : this._currentActivity,
+      );
+    });
+
+    this._formInput.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      this._editedData = {
+        id: this._currentActivity.id,
+        title: this._inputTitle.value,
+        category: this._inputCategory.value,
+        date: this._inputDate.value,
+        startTime: this._inputStartTime.value,
+        endTime: this._inputEndTime.value,
+        description: this._inputDescription.value,
+        duration: this._previewDuration.textContent,
+      };
+
+      // replace old formated list activity
+      const selectedActivity = this._rowContainer.querySelector(
+        `[data-id="${this._editedData.id}"]`,
+      );
+      selectedActivity.outerHTML = this.activityMarkup(this._editedData);
+
+      this._detailValue(this._editedData);
+
+      handler(this._currentActivity, this._editedData);
     });
   }
 
@@ -110,14 +143,15 @@ class ActivitiesViews {
     this._inputDescription.value = activity.description;
   }
 
-  _closeBtn = document.querySelector(".btn-form--close");
   closeEditActivity() {
-    [this._overlay, this._closeBtn].forEach((element) => {
-      element.addEventListener("click", (e) => {
-        this._formEdit.classList.toggle("hidden");
-        this._overlay.classList.toggle("hidden");
-      });
-    });
+    [this._overlay, this._formActionBtn, this._editFormBtn].forEach(
+      (element) => {
+        element.addEventListener("click", (e) => {
+          this._formEdit.classList.toggle("hidden");
+          this._overlay.classList.toggle("hidden");
+        });
+      },
+    );
   }
 }
 export default new ActivitiesViews();

@@ -1,15 +1,27 @@
 export const state = {
-  activityData: [],
+  activities: [],
 };
 
 export const saveDataForm = (formData) => {
-  const existingData = localStorage.getItem("activity_data");
+  const existingData = getActivityData();
 
-  const currentData = existingData? JSON.parse(existingData) : [];
+  const currentData = existingData ? existingData : [];
   currentData.push(formData);
-  localStorage.setItem("activity_data", JSON.stringify(currentData));
+  state.activities = currentData;
+  localStorage.setItem("activity_data", JSON.stringify(state.activities));
+};
+
+export const editDataForm = (currentActivity, editedData) => {
+  const selectedIndex = state.activities.findIndex((activity) => {
+    return activity.id === currentActivity.id;
+  });
+
+  const storageData = (state.activities[selectedIndex] = editedData);
+
+  localStorage.setItem("activity_data", JSON.stringify(state.activities));
 };
 
 export const getActivityData = () => {
-  return JSON.parse(localStorage.getItem("activity_data"));
+  state.activities = JSON.parse(localStorage.getItem("activity_data"));
+  return state.activities;
 };
