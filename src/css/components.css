@@ -843,6 +843,7 @@ ul.row-container::-webkit-scrollbar {
   font-size: 1.1rem;
   font-weight: var(--font-weight-semi-bold);
   width: fit-content;
+  text-transform: uppercase;
 }
 
 .detail-panel__title {

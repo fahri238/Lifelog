@@ -2,12 +2,14 @@ import { formattedDate } from "../helpers/format.js";
 import FormView from "./formViews.js";
 
 class ActivitiesViews extends FormView {
+  _detailContainer = document.getElementById("detail-panel");
   _detailCategory = document.getElementById("detail-category");
   _detailTitle = document.getElementById("detail-title");
   _detailDate = document.getElementById("detail-date");
   _detailDuration = document.getElementById("detail-duration");
   _detailTimeSesstion = document.getElementById("detail-time-session");
   _detailNotes = document.getElementById("detail-notes");
+  _editDetailBtn = document.getElementById("detail-edit-btn");
 
   _rowContainer = document.querySelector(".row-container");
   _btnEdit = document.querySelector(".btn-edit");
@@ -15,6 +17,7 @@ class ActivitiesViews extends FormView {
   _overlay = document.querySelector(".overlay-blur");
   _currentActivity;
   _editedData;
+  _selectActivityId;
   constructor() {
     super();
 
@@ -30,6 +33,8 @@ class ActivitiesViews extends FormView {
   }
 
   _detailValue(activity) {
+    this._detailContainer.dataset.id = activity.id;
+
     this._detailCategory.textContent = activity.category;
     this._detailCategory.className = `badge-category badge--${activity.category}`;
     this._detailTitle.textContent = activity.title;
@@ -39,18 +44,18 @@ class ActivitiesViews extends FormView {
     this._detailNotes.textContent = activity.description;
   }
 
-  renderDetailActivity(activityData) {
+  renderDetailActivity(activities) {
     const rowContainer = document.querySelector(".row-container");
     rowContainer.addEventListener("click", (e) => {
       const selectEl = e.target.closest(".list-row");
       if (!selectEl) return;
 
       const activityId = selectEl.dataset.id;
-      const selectDetail = activityData.find((activity) => {
-        return activity.id === Number(activityId);
-      });
+      const selectedActivity = activities.find(
+        (activity) => activity.id === Number(activityId),
+      );
 
-      this._detailValue(selectDetail);
+      this._detailValue(selectedActivity);
     });
   }
 
@@ -77,7 +82,7 @@ class ActivitiesViews extends FormView {
         <p>${activiy.duration}</p>
       </div>
       <div class="row-actions">
-        <button class="btn-icon btn-edit" title="Edit">
+        <button class="btn-icon btn-edit " title="Edit">
           <i class="bi bi-pencil"></i>
         </button>
         <button class="btn-icon btn-delete" title="Delete">
@@ -89,25 +94,45 @@ class ActivitiesViews extends FormView {
   }
 
   // HANDLE EDIT FORM
-  openEditActivity(activities, handler) {
-    this._rowContainer.addEventListener("click", (e) => {
-      const selectEl = e.target.closest(".btn-edit");
-      const selectActivityId = Number(e.target.closest(".list-row").dataset.id);
-      if (!selectEl) return;
+  openEditActivites(activities) {
+    [this._rowContainer, this._detailContainer].forEach((editBtn) => {
+      editBtn.addEventListener("click", (e) => {
+        let selectEl;
 
-      this._formEdit.classList.toggle("hidden");
-      this._overlay.classList.toggle("hidden");
+        editBtn === this._rowContainer
+          ? (selectEl = e.target.closest(".btn-edit"))
+          : (selectEl = e.target.closest(".btn-panel--primary"));
 
-      const foundActivity = activities.find(
-        (activity) => activity.id === selectActivityId,
-      );
+        if (!selectEl) return;
 
-      this._currentActivity = foundActivity;
-      this._selectedActivity(
-        this._editedData ? this.editedData : this._currentActivity,
-      );
+        selectEl === e.target.closest(".btn-edit")
+          ? (this._selectActivityId = Number(
+              e.target.closest(".list-row").dataset.id,
+            ))
+          : (this._selectActivityId = Number(
+              e.target.closest(".detail-panel").dataset.id,
+            ));
+
+        if (!editBtn || !this._selectActivityId) return;
+
+        this._formEdit.classList.toggle("hidden");
+        this._overlay.classList.toggle("hidden");
+
+        this._editSelectedActivities(activities());
+      });
     });
+  }
 
+  _editSelectedActivities(activities) {
+    const foundActivity = activities.find(
+      (activity) => activity.id === this._selectActivityId,
+    );
+
+    this._currentActivity = foundActivity;
+    this._selectedActivity(this._currentActivity);
+  }
+
+  submitEditActivity(activities, handler) {
     this._formInput.addEventListener("submit", (e) => {
       e.preventDefault();
 
@@ -132,9 +157,12 @@ class ActivitiesViews extends FormView {
 
       handler(this._currentActivity, this._editedData);
     });
+
+    this.closeEditActivity();
   }
 
   _selectedActivity(activity) {
+    id: activity.id;
     this._inputTitle.value = activity.title;
     this._inputCategory.value = activity.category;
     this._inputDate.value = activity.date;

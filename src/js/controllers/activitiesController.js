@@ -7,28 +7,26 @@ import {
 import activitiesView from "../views/activitiesView";
 
 export const detailActivityController = () => {
-  const activityData = getActivityData();
+  const activityData = state.activities;
 
   if (!activityData) return;
-
   activitiesView.renderDetailActivity(activityData);
 };
 
 export const editActivityController = () => {
-  const activityData = getActivityData();
+  const activityData = state.activities;
 
-  activitiesView.openEditActivity(
+  activitiesView.openEditActivites(getActivityData);
+  activitiesView.submitEditActivity(
     activityData,
-    (currentActivity, ediedData) => {
-      editDataForm(currentActivity, ediedData);
+    (currentActivity, editedData) => {
+      editDataForm(currentActivity, editedData);
     },
   );
-
-  activitiesView.closeEditActivity();
 };
 
 export const renderActivityList = () => {
-  const activityData = getActivityData();
+  const activityData = state.activities;
   if (activityData) {
     activityData.forEach((activity) => {
       activitiesView.renderActivityList(activity);

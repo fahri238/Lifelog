@@ -44,7 +44,7 @@ export const processdailyCounter = (increment = false) => {
     localStorage.setItem("activity_daily_count", currentCount.toString());
   }
 
-  const state = getGoalState(currentCount);
+  const stateDailyGoal = getGoalState(currentCount);
 
-  return { currentCount, state };
+  return { currentCount, stateDailyGoal };
 };

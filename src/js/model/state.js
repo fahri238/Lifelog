@@ -1,13 +1,15 @@
 export const state = {
-  activities: [],
+  activities: JSON.parse(localStorage.getItem("activity_data")),
 };
 
 export const saveDataForm = (formData) => {
-  const existingData = getActivityData();
+  console.log("BEFORE:", state.activities);
+  const existingData = state.activities;
 
   const currentData = existingData ? existingData : [];
   currentData.push(formData);
   state.activities = currentData;
+  console.log("AFTER:", state.activities);
   localStorage.setItem("activity_data", JSON.stringify(state.activities));
 };
 
@@ -16,12 +18,12 @@ export const editDataForm = (currentActivity, editedData) => {
     return activity.id === currentActivity.id;
   });
 
-  const storageData = (state.activities[selectedIndex] = editedData);
+  state.activities[selectedIndex] = editedData;
 
   localStorage.setItem("activity_data", JSON.stringify(state.activities));
 };
 
 export const getActivityData = () => {
-  state.activities = JSON.parse(localStorage.getItem("activity_data"));
-  return state.activities;
+  const activitiesData = state.activities;
+  return activitiesData;
 };

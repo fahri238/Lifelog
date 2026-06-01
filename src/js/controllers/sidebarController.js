@@ -1,5 +1,6 @@
 import sidebarView from "../views/sidebarView";
+import { state } from "../model/state";
 
-const setFocusMenuController = function () {
-  console.log("focused");
+export const setFocusMenuController = function () {
+  sidebarView.setFocusMenu()
 };

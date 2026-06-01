@@ -1,20 +1,21 @@
 import "../style.css";
-
-import sidebarView from "./js/views/sidebarView";
+import * as sidebarController from "./js/controllers/sidebarController";
 import { DEFAULT_TIME } from "./js/config";
 import addActivityView from "./js/views/addActivityView";
+import activitiesView from "./js/views/activitiesView";
 import * as addActivityController from "./js/controllers/addActivityController";
 import * as config from "./js/config";
 import * as activitiesController from "./js/controllers/activitiesController";
-sidebarView.setFocusMenu();
-
+import { state } from "./js/model/state";
 
 document.addEventListener("DOMContentLoaded", () => {
+  sidebarController.setFocusMenuController();
+
   addActivityController.livePreviewController();
   addActivityController.addActivityController();
 
   // activties
   activitiesController.detailActivityController();
-  activitiesController.editActivityController();
   activitiesController.renderActivityList();
+  activitiesController.editActivityController();
 });
