@@ -23,12 +23,16 @@
   --color-primary-darker: #5a3fe6;
   --color-secondary-darker: #e65026;
   --color-tertiary-darker: #e6b63f;
-  --color-quaternary-darker: #00cc69; 
+  --color-quaternary-darker: #00cc69;
 
-  --color-primary-opacity: #7b61ff35; 
+  --color-primary-opacity: #7b61ff35;
   --color-secondary-opacity: #ff6d4062;
   --color-tertiary-opacity: #ffcd4d69;
   --color-quaternary-opacity: #00e67635;
+
+  --color-danger: #ff4d4f;
+  --color-danger-opacity: #ff4d4f20;
+  --color-danger-darker: #e63e40;
 
   --gradient-primary: linear-gradient(to top left, #7b61ff, #a792ff);
   --gradient-secondary: linear-gradient(to top left, #ff6b40, #ff8f70);

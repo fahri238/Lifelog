@@ -1,6 +1,5 @@
 import { detailActivityController } from "../controllers/activitiesController.js";
 import { formattedDate } from "../helpers/format.js";
-import { DEFAULT_DETAIL_VALUE } from "../config.js";
 import FormView from "./formViews.js";
 
 class ActivitiesViews extends FormView {

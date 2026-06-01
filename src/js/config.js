@@ -30,14 +30,3 @@ export const GOAL_STATES = {
     fire: false,
   },
 };
-
-export const DEFAULT_DETAIL_VALUE = {
-  id: "",
-  category: "Category",
-  title: "Select Your Activity...",
-  date: "",
-  startTime: "",
-  endTime: "",
-  duration: "00:00 - 00:00",
-  description: "your note/description...",
-};
