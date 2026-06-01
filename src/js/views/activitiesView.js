@@ -1,4 +1,6 @@
+import { detailActivityController } from "../controllers/activitiesController.js";
 import { formattedDate } from "../helpers/format.js";
+import { DEFAULT_DETAIL_VALUE } from "../config.js";
 import FormView from "./formViews.js";
 
 class ActivitiesViews extends FormView {
@@ -32,7 +34,7 @@ class ActivitiesViews extends FormView {
     this._editFormBtn = document.querySelector(".btn-form--edit");
   }
 
-  _detailValue(activity) {
+  _detailValue(activity = null) {
     this._detailContainer.dataset.id = activity.id;
 
     this._detailCategory.textContent = activity.category;
@@ -180,6 +182,49 @@ class ActivitiesViews extends FormView {
         });
       },
     );
+  }
+
+  // HANDLE DELETE FORM
+  deleteActivites(activities, handler) {
+    [this._rowContainer, this._detailContainer].forEach((editBtn) => {
+      editBtn.addEventListener("click", (e) => {
+        let selectEl;
+
+        editBtn === this._rowContainer
+          ? (selectEl = e.target.closest(".btn-delete"))
+          : (selectEl = e.target.closest(".btn-panel--secondary"));
+
+        if (!selectEl) return;
+
+        selectEl === e.target.closest(".btn-delete")
+          ? (this._selectActivityId = Number(
+              e.target.closest(".list-row").dataset.id,
+            ))
+          : (this._selectActivityId = Number(
+              e.target.closest(".detail-panel").dataset.id,
+            ));
+
+        if (!editBtn || !this._selectActivityId) return;
+
+        const activityEl = document.querySelector(".list-row");
+
+        activityEl.remove();
+        this._detailDefaultValue();
+        handler(this._selectedActivity);
+      });
+    });
+  }
+
+  _detailDefaultValue() {
+    this._detailContainer.dataset.id = "";
+
+    this._detailCategory.textContent = "Category";
+    this._detailCategory.className = `badge-category badge--work`;
+    this._detailTitle.textContent = "Select Your Activity...";
+    this._detailDate.textContent = "";
+    this._detailDuration.textContent = "";
+    this._detailTimeSesstion.textContent = "";
+    this._detailNotes.textContent = "your note/description...";
   }
 }
 export default new ActivitiesViews();

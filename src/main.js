@@ -18,4 +18,5 @@ document.addEventListener("DOMContentLoaded", () => {
   activitiesController.detailActivityController();
   activitiesController.renderActivityList();
   activitiesController.editActivityController();
+  activitiesController.deleteActivityController();
 });

@@ -23,6 +23,16 @@ export const editDataForm = (currentActivity, editedData) => {
   localStorage.setItem("activity_data", JSON.stringify(state.activities));
 };
 
+export const deleteDataForm = (selectedActivity) => {
+  const selectedIndex = state.activities.findIndex((activity) => {
+    return activity.id === selectedActivity.id;
+  });
+
+  state.activities.splice(selectedIndex, 1);
+
+  localStorage.setItem("activity_data", JSON.stringify(state.activities));
+  console.log(state.activities);
+};
 export const getActivityData = () => {
   const activitiesData = state.activities;
   return activitiesData;

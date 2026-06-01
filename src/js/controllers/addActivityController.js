@@ -13,13 +13,11 @@ export const addActivityController = () => {
   const { currentCount, stateDailyGoal } =
     activityManager.processdailyCounter(false);
   addActivityView.renderDailyGoal(currentCount, stateDailyGoal);
-  console.log(stateDailyGoal);
 
   addActivityView.formData((data) => {
     activityManager.countTimeDifference;
     saveDataForm(data);
 
-    console.log(data);
     activitiesView.renderActivityList(data);
     activitiesView._detailValue(data);
 

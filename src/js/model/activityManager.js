@@ -1,5 +1,6 @@
 import { DEFAULT_TIME, GOAL_STATES } from "../config";
 import { getTodayDateString } from "../helpers/utils";
+import { getActivityData } from "./state";
 
 export const countTimeDifference = (startTime, endTime) => {
   const [startHour, startMinute] = startTime.split(":").map(Number);
@@ -26,7 +27,7 @@ export const getGoalState = (count) => {
   return GOAL_STATES.empty;
 };
 
-export const processdailyCounter = (increment = false) => {
+export const processdailyCounter = (increment = false, decrement = false) => {
   const today = getTodayDateString();
 
   const savedData = localStorage.getItem("activity_data_tracker");
@@ -41,6 +42,11 @@ export const processdailyCounter = (increment = false) => {
 
   if (increment) {
     currentCount += 1;
+    localStorage.setItem("activity_daily_count", currentCount.toString());
+  }
+
+  if (decrement) {
+    currentCount -= 1;
     localStorage.setItem("activity_daily_count", currentCount.toString());
   }
 

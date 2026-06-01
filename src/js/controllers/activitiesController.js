@@ -3,8 +3,12 @@ import {
   getActivityData,
   saveDataForm,
   editDataForm,
+  deleteDataForm,
 } from "../model/state";
+
+import { processdailyCounter } from "../model/activityManager";
 import activitiesView from "../views/activitiesView";
+import addActivityView from "../views/addActivityView";
 
 export const detailActivityController = () => {
   const activityData = state.activities;
@@ -23,6 +27,22 @@ export const editActivityController = () => {
       editDataForm(currentActivity, editedData);
     },
   );
+};
+
+export const deleteActivityController = () => {
+  const activityData = state.activities;
+  const { currentCount, stateDailyGoal } = processdailyCounter(false);
+  addActivityView.renderDailyGoal(currentCount, stateDailyGoal);
+
+  activitiesView.deleteActivites(activityData, (selectedActivity) => {
+    deleteDataForm(selectedActivity);
+
+    const updateData = processdailyCounter(false, true);
+    const updateGoalState = addActivityView.renderDailyGoal(
+      updateData.currentCount,
+      updateData.stateDailyGoal,
+    );
+  });
 };
 
 export const renderActivityList = () => {
