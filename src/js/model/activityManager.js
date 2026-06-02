@@ -27,27 +27,17 @@ export const getGoalState = (count) => {
   return GOAL_STATES.empty;
 };
 
-export const processdailyCounter = (increment = false, decrement = false) => {
+export const processdailyCounter = () => {
   const today = getTodayDateString();
 
   const savedData = localStorage.getItem("activity_data_tracker");
   let currentCount =
-    parseInt(localStorage.getItem("activity_daily_count")) || 0;
+    getActivityData().length || 0;
 
   if (savedData !== today) {
     currentCount = 0;
     localStorage.setItem("activity_data_tracker", today);
     localStorage.setItem("activity_daily_count", "0");
-  }
-
-  if (increment) {
-    currentCount += 1;
-    localStorage.setItem("activity_daily_count", currentCount.toString());
-  }
-
-  if (decrement) {
-    currentCount -= 1;
-    localStorage.setItem("activity_daily_count", currentCount.toString());
   }
 
   const stateDailyGoal = getGoalState(currentCount);

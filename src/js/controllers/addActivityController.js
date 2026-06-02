@@ -10,10 +10,6 @@ export const livePreviewController = () => {
 };
 
 export const addActivityController = () => {
-  const { currentCount, stateDailyGoal } =
-    activityManager.processdailyCounter(false);
-  addActivityView.renderDailyGoal(currentCount, stateDailyGoal);
-
   addActivityView.formData((data) => {
     activityManager.countTimeDifference;
     saveDataForm(data);
@@ -21,7 +17,7 @@ export const addActivityController = () => {
     activitiesView.renderActivityList(data);
     activitiesView._detailValue(data);
 
-    const updateData = activityManager.processdailyCounter(true);
+    const updateData = activityManager.processdailyCounter();
     addActivityView.renderDailyGoal(
       updateData.currentCount,
       updateData.stateDailyGoal,

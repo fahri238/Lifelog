@@ -31,13 +31,14 @@ export const editActivityController = () => {
 
 export const deleteActivityController = () => {
   const activityData = state.activities;
-  const { currentCount, stateDailyGoal } = processdailyCounter(false);
+  const { currentCount, stateDailyGoal } = processdailyCounter();
   addActivityView.renderDailyGoal(currentCount, stateDailyGoal);
 
   activitiesView.deleteActivites(activityData, (selectedActivity) => {
     deleteDataForm(selectedActivity);
 
-    const updateData = processdailyCounter(false, true);
+    console.log(selectedActivity);
+    const updateData = processdailyCounter();
     const updateGoalState = addActivityView.renderDailyGoal(
       updateData.currentCount,
       updateData.stateDailyGoal,

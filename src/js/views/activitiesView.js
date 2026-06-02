@@ -1,6 +1,7 @@
 import { detailActivityController } from "../controllers/activitiesController.js";
 import { formattedDate } from "../helpers/format.js";
 import FormView from "./formViews.js";
+import { showDeleteValidation } from "../helpers/utils.js";
 
 class ActivitiesViews extends FormView {
   _detailContainer = document.getElementById("detail-panel");
@@ -207,9 +208,11 @@ class ActivitiesViews extends FormView {
 
         const activityEl = document.querySelector(".list-row");
 
-        activityEl.remove();
-        this._detailDefaultValue();
-        handler(this._selectedActivity);
+        showDeleteValidation(() => {
+          activityEl.remove();
+          this._detailDefaultValue();
+          handler(this._selectedActivity);
+        });
       });
     });
   }
