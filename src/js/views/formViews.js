@@ -1,5 +1,5 @@
 import { getIdActivity } from "../helpers/format";
-
+import { succesMessage } from "../helpers/utils";
 export default class FormView {
   _inputTitle;
   _inputCategory;
@@ -28,6 +28,7 @@ export default class FormView {
       };
 
       handlerSaveData(formData);
+      succesMessage("Activity has been added!");
     });
   }
 

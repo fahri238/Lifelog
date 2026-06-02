@@ -22,6 +22,7 @@ export const addActivityController = () => {
       updateData.currentCount,
       updateData.stateDailyGoal,
     );
+
   });
 
   addActivityView.resetForm();

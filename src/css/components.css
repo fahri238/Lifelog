@@ -1696,7 +1696,6 @@ input:checked + .slider:before {
   align-items: center;
   z-index: 9999;
   transition: all 0.3s ease;
-
 }
 
 .delete-modal .hidden {
@@ -1849,16 +1848,6 @@ input:checked + .slider:before {
   color: #666;
 }
 
-.toast-close {
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  color: #999;
-  cursor: pointer;
-  padding: 0;
-  transition: color 0.2s;
-}
-
 .toast-close:hover {
   color: #333;
 }
@@ -1888,5 +1877,6 @@ input:checked + .slider:before {
   to {
     transform: translateX(100%);
     opacity: 0;
+    display: none;
   }
 }

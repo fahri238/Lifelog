@@ -31,8 +31,7 @@ export const processdailyCounter = () => {
   const today = getTodayDateString();
 
   const savedData = localStorage.getItem("activity_data_tracker");
-  let currentCount =
-    getActivityData().length || 0;
+  let currentCount = getActivityData() ? getActivityData().length : 0;
 
   if (savedData !== today) {
     currentCount = 0;

@@ -767,7 +767,7 @@ Learn JavaScript programming material with MVC architecture.</textarea
     </div>
 
     <!-- toast popup -->
-    <div class="delete-modal overlay-blur hidden " id="delete-modal">
+    <div class="delete-modal overlay-blur hidden" id="delete-modal">
       <div class="delete-modal-content">
         <div class="delete-modal-icon">
           <i class="bi bi-exclamation-triangle"></i>
@@ -793,18 +793,20 @@ Learn JavaScript programming material with MVC architecture.</textarea
         <i class="bi bi-check-circle-fill toast-icon"></i>
         <div class="toast-content">
           <p class="toast-title">Success</p>
-          <p class="toast-message">Activity has been saved successfully.</p>
+          <p class="toast-message" id="message-success">
+            Activity has been saved successfully.
+          </p>
         </div>
-        <button class="toast-close"><i class="bi bi-x"></i></button>
       </div>
 
       <div class="toast toast--error hidden">
         <i class="bi bi-exclamation-octagon-fill toast-icon"></i>
         <div class="toast-content">
           <p class="toast-title">Error</p>
-          <p class="toast-message">Please fill out all required fields!</p>
+          <p class="toast-message" id="message-error">
+            Please fill out all required fields!
+          </p>
         </div>
-        <button class="toast-close"><i class="bi bi-x"></i></button>
       </div>
     </div>
   </body>

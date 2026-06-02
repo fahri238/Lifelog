@@ -1,7 +1,11 @@
 import { detailActivityController } from "../controllers/activitiesController.js";
 import { formattedDate } from "../helpers/format.js";
 import FormView from "./formViews.js";
-import { showDeleteValidation } from "../helpers/utils.js";
+import {
+  errorMessage,
+  showDeleteValidation,
+  succesMessage,
+} from "../helpers/utils.js";
 
 class ActivitiesViews extends FormView {
   _detailContainer = document.getElementById("detail-panel");
@@ -115,7 +119,10 @@ class ActivitiesViews extends FormView {
               e.target.closest(".detail-panel").dataset.id,
             ));
 
-        if (!editBtn || !this._selectActivityId) return;
+        if (!editBtn || !this._selectActivityId) {
+          errorMessage("Click any one of activies on list first!");
+          return;
+        }
 
         this._formEdit.classList.toggle("hidden");
         this._overlay.classList.toggle("hidden");
@@ -204,7 +211,10 @@ class ActivitiesViews extends FormView {
               e.target.closest(".detail-panel").dataset.id,
             ));
 
-        if (!editBtn || !this._selectActivityId) return;
+        if (!editBtn || !this._selectActivityId) {
+          errorMessage("Click any one of activies on list first!");
+          return;
+        }
 
         const activityEl = document.querySelector(".list-row");
 

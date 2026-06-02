@@ -32,3 +32,23 @@ export const showDeleteValidation = (handler) => {
     overlayParentEl.className = "delete-modal overlay hidden";
   });
 };
+
+export const succesMessage = (message) => {
+  const succesMessage = document.getElementById("message-success");
+  const toastParentEl = document.querySelector(".toast--success");
+  succesMessage.textContent = message;
+  toastParentEl.classList.toggle("hidden");
+  setTimeout(() => {
+    toastParentEl.classList.toggle("fade-out");
+  }, 3000);
+};
+
+export const errorMessage = (message) => {
+  const succesMessage = document.getElementById("message-error");
+  const toastParentEl = document.querySelector(".toast--error");
+  succesMessage.textContent = message;
+  toastParentEl.classList.toggle("hidden");
+  setTimeout(() => {
+    toastParentEl.classList.toggle("fade-out");
+  }, 3000);
+};
