@@ -568,13 +568,12 @@
   display: inline-block;
   background-color: var(--color-primary-opacity);
   color: var(--color-primary-darker);
-  padding: 10px 14px;
   border-radius: var(--border-radius-default);
-  font-size: 1.2rem;
-  font-weight: var(--font-weight-semi-bold);
+   text-shadow: 0 0 0.6px currentColor, 0 0 0.6px currentColor;
   width: fit-content;
-  border: none;
+  border: solid 2px var(--color-primary);
 }
+
 .category {
   display: flex;
   gap: 0.8rem;
@@ -768,6 +767,49 @@ ul.row-container::-webkit-scrollbar {
     justify-content: flex-start;
     margin-top: 8px;
   }
+}
+
+/* ==========================================
+   EMPTY STATE STYLING
+   ========================================== */
+
+.list-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  margin: 1rem 0;
+  
+  /* Membuat kotak dengan garis putus-putus yang elegan */
+  background-color: #fafafa;
+  border: 2px dashed #e0e0e0;
+  border-radius: 12px;
+  
+  /* Supaya tidak dikira tombol atau list aktif */
+  cursor: default;
+  pointer-events: none; 
+}
+
+.empty-icon {
+  font-size: 2.5rem;
+  color: #c4c4c4;
+  margin-bottom: 0.5rem;
+}
+
+.empty-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #555555;
+  margin-bottom: 0.25rem;
+}
+
+.empty-subtitle {
+  font-size: 0.9rem;
+  color: #888888;
+  max-width: 250px;
+  line-height: 1.4;
 }
 
 /* ==========================================================================
