@@ -54,3 +54,8 @@ export const renderActivityList = () => {
     });
   }
 };
+
+export const categoriesController = () => {
+  const activityData = state.activities;
+  activitiesView.categories(activityData);
+}

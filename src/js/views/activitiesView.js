@@ -1,4 +1,3 @@
-import { detailActivityController } from "../controllers/activitiesController.js";
 import { formattedDate } from "../helpers/format.js";
 import FormView from "./formViews.js";
 import {
@@ -70,6 +69,24 @@ class ActivitiesViews extends FormView {
       "afterbegin",
       this.activityMarkup(activity),
     );
+  }
+
+  removeActivityList() {
+    this._rowContainer.replaceChildren();
+  }
+
+  emptyActivityMarkup() {
+    return `
+    <li class="list-empty-state">
+      <div class="empty-icon">
+        <i class="bi bi-inbox"></i>
+      </div>
+      <h4 class="empty-title">No Activities Found</h4>
+      <p class="empty-subtitle">
+        There are no activities saved in this category yet.
+      </p>
+    </li>
+    `;
   }
 
   activityMarkup(activiy) {
@@ -238,5 +255,39 @@ class ActivitiesViews extends FormView {
     this._detailTimeSesstion.textContent = "";
     this._detailNotes.textContent = "your note/description...";
   }
+
+  // HANDLE CATEGORY
+  categories(activies) {
+    const categories = document.querySelector(".category");
+    const categoryBtns = document.querySelectorAll(".btn-category");
+
+    categories.addEventListener("click", (e) => {
+      const selectBtn = e.target.closest(".btn-category");
+      if (!selectBtn) return;
+
+      categoryBtns.forEach((btn) => btn.classList.remove("btn-category-focus"));
+      selectBtn.classList.add("btn-category-focus");
+
+      const selectedCategory = selectBtn.innerText.toLowerCase();
+      const selectedActivity = activies.filter((activity) => {
+        return activity.category === selectedCategory;
+      });
+
+      this.removeActivityList();
+
+      if (selectedActivity.length === 0 && selectedCategory !== "all") {
+        this._rowContainer.insertAdjacentHTML(
+          "afterbegin",
+          this.emptyActivityMarkup(),
+        );
+      }
+
+      if (selectedCategory === "all")
+        activies.forEach((activity) => this.renderActivityList(activity));
+
+      selectedActivity.forEach((activity) => this.renderActivityList(activity));
+    });
+  }
 }
+
 export default new ActivitiesViews();
