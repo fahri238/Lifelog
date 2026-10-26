@@ -22,7 +22,6 @@ export const editActivityController = () => {
 
   activitiesView.openEditActivites(getActivityData);
   activitiesView.submitEditActivity(
-    activityData,
     (currentActivity, editedData) => {
       editDataForm(currentActivity, editedData);
     },
@@ -34,7 +33,7 @@ export const deleteActivityController = () => {
   const { currentCount, stateDailyGoal } = processdailyCounter();
   addActivityView.renderDailyGoal(currentCount, stateDailyGoal);
 
-  activitiesView.deleteActivites(activityData, (selectedActivity) => {
+  activitiesView.deleteActivites((selectedActivity) => {
     deleteDataForm(selectedActivity);
 
     const updateData = processdailyCounter();
@@ -57,4 +56,4 @@ export const renderActivityList = () => {
 export const categoriesController = () => {
   const activityData = state.activities;
   activitiesView.categories(activityData);
-}
+};

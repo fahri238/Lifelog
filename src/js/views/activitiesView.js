@@ -1,10 +1,12 @@
 import { formattedDate } from "../helpers/format.js";
 import FormView from "./formViews.js";
+import * as activityManager from "../model/activityManager.js";
 import {
   errorMessage,
   showDeleteValidation,
   succesMessage,
 } from "../helpers/utils.js";
+import { countTimeDifference } from "../model/activityManager.js";
 
 class ActivitiesViews extends FormView {
   _detailContainer = document.getElementById("detail-panel");
@@ -158,7 +160,7 @@ class ActivitiesViews extends FormView {
     this._selectedActivity(this._currentActivity);
   }
 
-  submitEditActivity(activities, handler) {
+  submitEditActivity(handler) {
     this._formInput.addEventListener("submit", (e) => {
       e.preventDefault();
 
@@ -170,7 +172,10 @@ class ActivitiesViews extends FormView {
         startTime: this._inputStartTime.value,
         endTime: this._inputEndTime.value,
         description: this._inputDescription.value,
-        duration: this._previewDuration.textContent,
+        duration: activityManager.countTimeDifference(
+          this._inputStartTime.value,
+          this._inputEndTime.value,
+        ),
       };
 
       // replace old formated list activity
@@ -181,7 +186,7 @@ class ActivitiesViews extends FormView {
 
       this._detailValue(this._editedData);
       handler(this._currentActivity, this._editedData);
-      succesMessage("Activity has been edited")
+      succesMessage("Activity has been edited");
     });
 
     this.closeEditActivity();
@@ -209,7 +214,7 @@ class ActivitiesViews extends FormView {
   }
 
   // HANDLE DELETE FORM
-  deleteActivites(activities, handler) {
+  deleteActivites(handler) {
     [this._rowContainer, this._detailContainer].forEach((deleteBtn) => {
       deleteBtn.addEventListener("click", (e) => {
         const deleteBtn = e.target.closest(
@@ -222,20 +227,20 @@ class ActivitiesViews extends FormView {
           ? deleteBtn.closest(".list-row")
           : deleteBtn.closest(".detail-panel");
 
-          const activityId = getId.dataset.id;
+        const activityId = getId.dataset.id;
 
         if (!activityId) {
           errorMessage("Click any one of activies on list first!");
           return;
         }
-        
+
         const activityEl = document.querySelector(`[data-id="${activityId}"]`);
 
         showDeleteValidation(() => {
           activityEl.remove();
           this._detailDefaultValue();
           handler(activityId);
-          succesMessage("Activity has been deleted")
+          succesMessage("Activity has been deleted");
         });
       });
     });

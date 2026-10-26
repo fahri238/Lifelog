@@ -1,4 +1,5 @@
 import { getIdActivity } from "../helpers/format";
+import * as activityManager from "../model/activityManager";
 import { succesMessage } from "../helpers/utils";
 export default class FormView {
   _inputTitle;
@@ -10,7 +11,6 @@ export default class FormView {
   _formInput;
   _formActionBtn;
   _currentActivity;
-  _previewDuration = document.getElementById("preview-duration");
 
   formData(handlerSaveData) {
     this._formInput.addEventListener("submit", (e) => {
@@ -24,29 +24,16 @@ export default class FormView {
         startTime: this._inputStartTime.value,
         endTime: this._inputEndTime.value,
         description: this._inputDescription.value,
-        duration: this._previewDuration.textContent,
+        duration: activityManager.countTimeDifference(
+          this._inputStartTime.value,
+          this._inputEndTime.value,
+        ),
       };
 
       handlerSaveData(formData);
       succesMessage("Activity has been added!");
     });
   }
-
-  // editData(activityId, handlerEditData) {
-  //   this._formInput.addEventListener("click", (e) => {
-  //     const editedData = {
-  //       title: activityId._inputTitle.value,
-  //       category: activityId._inputCategory.value,
-  //       date: activityId._inputDate.value,
-  //       startTime: activityId._inputStartTime.value,
-  //       endTime: activityId._inputEndTime.value,
-  //       description: activityId._inputDescription.value,
-  //       duration: activityId._previewDuration.textContent,
-  //     };
-
-  //     handlerEditData(editedData)
-  //   });
-  // }
 
   resetForm() {
     this._formInput.addEventListener("submit", (e) => {
