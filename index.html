@@ -264,9 +264,10 @@
           </div>
           <div class="sorting">
             <select name="sort" id="sort">
-              <option value="work">Sort by Date</option>
-              <option value="work">Sort by Duration</option>
-              <option value="study">Sort by Alphabetical</option>
+              <option>Sort by Default</option>
+              <option>Sort by Date</option>
+              <option>Sort by Duration</option>
+              <option>Sort by Alphabetical</option>
             </select>
           </div>
         </div>
@@ -360,7 +361,6 @@
                   id="activity-title"
                   name="activity-title"
                   placeholder="e.g., Deep Work Session"
-                  value="Deep Work Session"
                   required
                 />
               </div>
@@ -376,7 +376,7 @@
                   required
                 >
                   <option value="" disabled>
-                    <!-- <option value="" disabled selected>  -->
+                    <option value="" disabled selected> 
                     Select a category...
                   </option>
                   <option value="work">Work</option>
@@ -397,7 +397,6 @@
                     type="date"
                     id="activity-date"
                     name="activity-date"
-                    value="2026-05-28"
                     required
                   />
                 </div>
@@ -410,7 +409,6 @@
                     type="time"
                     id="activity-start"
                     name="activity-start"
-                    value="19:00"
                     required
                   />
                 </div>
@@ -423,7 +421,6 @@
                     type="time"
                     id="activity-end"
                     name="activity-end"
-                    value="21:00"
                     required
                   />
                 </div>
@@ -436,8 +433,7 @@
                 id="activity-notes"
                 name="activity-notes"
                 placeholder="Write down what you achieved during this session..."
-              >
-Learn JavaScript programming material with MVC architecture.</textarea
+              ></textarea
               >
             </div>
 

@@ -74,6 +74,8 @@ class AddActivityViews extends FormView {
     // update achieved fire streak
     this._goalIconFire.classList.toggle("icon-fire-active", goalState.fire);
   }
+
+  
 }
 
 export default new AddActivityViews();

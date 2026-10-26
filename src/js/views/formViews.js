@@ -49,6 +49,8 @@ export default class FormView {
   // }
 
   resetForm() {
-    this._formInput.addEventListener("reset", (e) => {});
+    this._formInput.addEventListener("submit", (e) => {
+      this._formInput.reset();
+    });
   }
 }

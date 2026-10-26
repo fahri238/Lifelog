@@ -180,8 +180,8 @@ class ActivitiesViews extends FormView {
       selectedActivity.outerHTML = this.activityMarkup(this._editedData);
 
       this._detailValue(this._editedData);
-
       handler(this._currentActivity, this._editedData);
+      succesMessage("Activity has been edited")
     });
 
     this.closeEditActivity();
@@ -235,6 +235,7 @@ class ActivitiesViews extends FormView {
           activityEl.remove();
           this._detailDefaultValue();
           handler(activityId);
+          succesMessage("Activity has been deleted")
         });
       });
     });
