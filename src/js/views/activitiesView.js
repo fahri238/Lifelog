@@ -210,35 +210,31 @@ class ActivitiesViews extends FormView {
 
   // HANDLE DELETE FORM
   deleteActivites(activities, handler) {
-    [this._rowContainer, this._detailContainer].forEach((editBtn) => {
-      editBtn.addEventListener("click", (e) => {
-        let selectEl;
+    [this._rowContainer, this._detailContainer].forEach((deleteBtn) => {
+      deleteBtn.addEventListener("click", (e) => {
+        const deleteBtn = e.target.closest(
+          ".btn-delete, .btn-panel--secondary",
+        );
 
-        editBtn === this._rowContainer
-          ? (selectEl = e.target.closest(".btn-delete"))
-          : (selectEl = e.target.closest(".btn-panel--secondary"));
+        if (!deleteBtn) return;
 
-        if (!selectEl) return;
+        const getId = deleteBtn.closest(".btn-delete")
+          ? deleteBtn.closest(".list-row")
+          : deleteBtn.closest(".detail-panel");
 
-        selectEl === e.target.closest(".btn-delete")
-          ? (this._selectActivityId = Number(
-              e.target.closest(".list-row").dataset.id,
-            ))
-          : (this._selectActivityId = Number(
-              e.target.closest(".detail-panel").dataset.id,
-            ));
+          const activityId = getId.dataset.id;
 
-        if (!editBtn || !this._selectActivityId) {
+        if (!activityId) {
           errorMessage("Click any one of activies on list first!");
           return;
         }
-
-        const activityEl = document.querySelector(".list-row");
+        
+        const activityEl = document.querySelector(`[data-id="${activityId}"]`);
 
         showDeleteValidation(() => {
           activityEl.remove();
           this._detailDefaultValue();
-          handler(this._selectedActivity);
+          handler(activityId);
         });
       });
     });

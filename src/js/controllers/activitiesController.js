@@ -37,7 +37,6 @@ export const deleteActivityController = () => {
   activitiesView.deleteActivites(activityData, (selectedActivity) => {
     deleteDataForm(selectedActivity);
 
-    console.log(selectedActivity);
     const updateData = processdailyCounter();
     const updateGoalState = addActivityView.renderDailyGoal(
       updateData.currentCount,
