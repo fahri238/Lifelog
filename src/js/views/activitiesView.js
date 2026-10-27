@@ -90,8 +90,9 @@ class ActivitiesViews extends FormView {
     </li>
     `;
   }
-
+  
   activityMarkup(activiy) {
+
     return `
     <li class="list-row" data-id="${activiy.id}">
       <div class="row-info">

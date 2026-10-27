@@ -7,6 +7,7 @@ import * as addActivityController from "./js/controllers/addActivityController";
 import * as config from "./js/config";
 import * as activitiesController from "./js/controllers/activitiesController";
 import { state } from "./js/model/state";
+import * as sortingController from "./js/controllers/sortingController"
 
 document.addEventListener("DOMContentLoaded", () => {
   sidebarController.setFocusMenuController();
@@ -20,4 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   activitiesController.editActivityController();
   activitiesController.deleteActivityController();
   activitiesController.categoriesController();
+
+  // sorting
+  sortingController.sortingDefaultController();
 });
