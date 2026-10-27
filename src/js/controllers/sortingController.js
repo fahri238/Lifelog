@@ -14,7 +14,6 @@ export const sortingDefaultController = () => {
     return getDurationMin(b.duration) - getDurationMin(a.duration);
   });
 
-  console.log(state.activities)
   const dateSorting = [...state.activities].sort((a, b) => {
     return new Date(b.date) - new Date(a.date)
   });
@@ -29,7 +28,6 @@ export const sortingDefaultController = () => {
   };
 
   sortingViews.sortingActivity((userChoice) => {
-    console.log(sortingMap[userChoice]);
     const dynamicSortingType = sortingMap[userChoice] || sortingMap.default;
 
     sortingViews.renderActivites(dynamicSortingType);

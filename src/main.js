@@ -1,17 +1,19 @@
 import "../style.css";
 import * as sidebarController from "./js/controllers/sidebarController";
-import { DEFAULT_TIME } from "./js/config";
-import addActivityView from "./js/views/addActivityView";
-import activitiesView from "./js/views/activitiesView";
 import * as addActivityController from "./js/controllers/addActivityController";
-import * as config from "./js/config";
 import * as activitiesController from "./js/controllers/activitiesController";
-import { state } from "./js/model/state";
 import * as sortingController from "./js/controllers/sortingController"
+// import * as dfa from "./js/controllers/dashboardController"
+import * as dashboardController from "./js/controllers/dashboardController"
 
 document.addEventListener("DOMContentLoaded", () => {
+  // DASHBOARD
+  dashboardController.listOfActivityController();
+
+  // SIDEBAR
   sidebarController.setFocusMenuController();
 
+  // ADD ACTIVITY
   addActivityController.livePreviewController();
   addActivityController.addActivityController();
 
@@ -24,4 +26,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // sorting
   sortingController.sortingDefaultController();
+
 });
