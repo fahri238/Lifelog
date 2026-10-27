@@ -1,18 +1,18 @@
 class SidebarView {
-  _parentEl = document.querySelector(".menus");
-  _menusEl = document.querySelectorAll(".menu");
-  _contentsEl = document.querySelectorAll(".section-container");
+  parentEl = document.querySelector(".menus");
+  menusEl = document.querySelectorAll(".menu");
+  contentsEl = document.querySelectorAll(".section-container");
 
   setFocusMenu() {
-    this._parentEl.addEventListener("click", (e) => {
+    this.parentEl.addEventListener("click", (e) => {
       e.preventDefault();
       const selectEl = e.target.closest(".menu");
       if (!selectEl) return;
 
-      this._menusEl.forEach((menu) => menu.classList.remove("menu__focus"));
+      this.menusEl.forEach((menu) => menu.classList.remove("menu__focus"));
       selectEl.classList.add("menu__focus");
 
-      this._contentsEl.forEach((content) => content.classList.add("hidden"));
+      this.contentsEl.forEach((content) => content.classList.add("hidden"));
       const targetId = selectEl.getAttribute("href");
       
       // selected content

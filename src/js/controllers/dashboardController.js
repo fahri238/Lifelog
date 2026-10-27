@@ -1,9 +1,19 @@
 import dashboardView from "../views/dashboardView";
 import { state } from "../model/state";
+import activitiesView from "../views/activitiesView";
 
 export const listOfActivityController = () => {
-  state.activities.forEach(activity => {
-    console.log(activity.title)
-    return dashboardView.listOfActivity(activity.title);
+  const activityData = state.activities;
+
+  activityData.forEach((activity) => {
+    return dashboardView.renderActivityList(activity);
+  });
+
+  dashboardView.goToClickedActivity((activityId) => {
+    const selectedActivity = activityData.find((activity) => {
+      return activity.id === Number(activityId);
+    });
+
+    activitiesView._detailValue(selectedActivity);
   });
 };
