@@ -1,5 +1,5 @@
 export const state = {
-  activities: JSON.parse(localStorage.getItem("activity_data")),
+  activities: JSON.parse(localStorage.getItem("activity_data")) || [],
   sortType: ['default', 'date', 'duration', 'alphabet']
 };
 
