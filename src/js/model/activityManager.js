@@ -1,6 +1,8 @@
 import { DEFAULT_TIME, GOAL_STATES } from "../config";
 import { getTodayDateString } from "../helpers/utils";
 import { getActivityData } from "./state";
+import { state } from "./state";
+import { getDurationMin } from "../helpers/format";
 
 export const countTimeDifference = (startTime, endTime) => {
   const [startHour, startMinute] = startTime.split(":").map(Number);
@@ -43,3 +45,27 @@ export const processdailyCounter = () => {
 
   return { currentCount, stateDailyGoal };
 };
+
+export const alphabetSorting = () => {
+  return [...state.activities].sort((a, b) => b.title.localeCompare(a.title));
+};
+
+export const alphabetSortingDescending = () => {
+  return [...state.activities].sort((a, b) => a.title.localeCompare(b.title));
+};
+
+export const durationSorting = () => {
+  return [...state.activities].sort(
+    (a, b) => getDurationMin(b.duration) - getDurationMin(a.duration),
+  );
+};
+
+export const dateSorting = () => {
+  return [...state.activities].sort(
+    (a, b) => new Date(a.date) - new Date(b.date),
+  );
+};
+
+export const defaultSorting = () => {
+  return state.activities;
+}

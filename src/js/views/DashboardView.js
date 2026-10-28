@@ -4,6 +4,7 @@ class DashboardViews {
   _activityListContainer = document.querySelector(".activities-list");
   _activityMenu = document.getElementById("activity-menu");
   _activityContent = document.getElementById("activities");
+  _sortBtn = document.getElementsByClassName("activities__sort")
 
   renderActivityList(activities) {
     const listActivityMarkup = `
@@ -35,6 +36,10 @@ class DashboardViews {
         handler(selectedActivity.id);
       }),
     );
+  }
+
+  sortingListOfActivities(activities) {
+    
   }
 }
 

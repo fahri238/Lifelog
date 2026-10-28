@@ -6,7 +6,6 @@ import {
   showDeleteValidation,
   succesMessage,
 } from "../helpers/utils.js";
-import { countTimeDifference } from "../model/activityManager.js";
 
 class ActivitiesViews extends FormView {
   _detailContainer = document.getElementById("detail-panel");
