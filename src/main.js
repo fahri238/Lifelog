@@ -2,13 +2,15 @@ import "../style.css";
 import * as sidebarController from "./js/controllers/sidebarController";
 import * as addActivityController from "./js/controllers/addActivityController";
 import * as activitiesController from "./js/controllers/activitiesController";
-import * as sortingController from "./js/controllers/sortingController"
+import * as sortingController from "./js/controllers/sortingController";
 // import * as dfa from "./js/controllers/dashboardController"
-import * as dashboardController from "./js/controllers/dashboardController"
+import * as dashboardController from "./js/controllers/dashboardController";
 
 document.addEventListener("DOMContentLoaded", () => {
   // DASHBOARD
   dashboardController.listOfActivityController();
+  dashboardController.sortingActivityList();
+  dashboardController.goToActivityController();
 
   // SIDEBAR
   sidebarController.setFocusMenuController();
@@ -26,5 +28,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // sorting
   sortingController.sortingDefaultController();
-
 });

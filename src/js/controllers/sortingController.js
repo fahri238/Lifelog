@@ -8,13 +8,14 @@ import {
 } from "../model/activityManager";
 
 export const sortingDefaultController = () => {
+  const activitiesData = state.activities;
   const sortType = state.sortType;
 
   const sortingMap = {
-    default: defaultSorting(),
-    date: dateSorting(),
-    alphabet: alphabetSorting(),
-    duration: durationSorting(),
+    default: defaultSorting(activitiesData),
+    date: dateSorting(activitiesData),
+    alphabet: alphabetSorting(activitiesData),
+    duration: durationSorting(activitiesData),
   };
 
   sortingViews.sortingActivity((userChoice) => {

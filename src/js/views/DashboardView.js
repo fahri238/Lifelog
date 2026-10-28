@@ -4,23 +4,29 @@ class DashboardViews {
   _activityListContainer = document.querySelector(".activities-list");
   _activityMenu = document.getElementById("activity-menu");
   _activityContent = document.getElementById("activities");
-  _sortBtn = document.getElementsByClassName("activities__sort")
+  _sortBtn = document.querySelectorAll(".activities__sort");
+  _activitiesEl = document.querySelector(".activity");
+  _selectedSort = document.getElementById("ascending-sort");
+  _selectedSortDescending = document.getElementById("descending-sort");
 
   renderActivityList(activities) {
-    const listActivityMarkup = `
-        <li class="activity" id=${activities.id}>${activities.title}</li>
+    console.log("test")
+    activities.forEach((activity) => {
+      const listActivityMarkup = `
+        <li class="activity" id=${activity.id}>${activity.title}</li>
     `;
 
-    this._activityListContainer.insertAdjacentHTML(
-      "afterbegin",
-      listActivityMarkup,
-    );
+      this._activityListContainer.insertAdjacentHTML(
+        "afterbegin",
+        listActivityMarkup,
+      );
+    });
   }
 
   goToClickedActivity(handler) {
-    const activityEl = document.querySelectorAll(".activity");
-    activityEl.forEach((elemen) =>
+    this._activitiesEl.forEach((elemen) =>
       elemen.addEventListener("click", (e) => {
+        console.log("clicked");
         sidebarView.menusEl.forEach((menu) =>
           menu.classList.remove("menu__focus"),
         );
@@ -38,8 +44,26 @@ class DashboardViews {
     );
   }
 
-  sortingListOfActivities(activities) {
-    
+  sortingListOfActivities(handlerAscending, handlerDescending) {
+    this._sortBtn.forEach((btnEl) => {
+      btnEl.addEventListener("click", (e) => {
+        this._sortBtn.forEach((btn) => btn.classList.toggle("hidden"));
+
+        const element = this._activityListContainer;
+
+        while (element.firstChild) {
+          element.removeChild(element.firstChild);
+        }
+
+        if (this._selectedSort.classList.contains("hidden")) {
+          return handlerAscending();
+        }
+
+        if (this._selectedSortDescending.classList.contains("hidden")) {
+          return handlerDescending();
+        }
+      });
+    });
   }
 }
 
