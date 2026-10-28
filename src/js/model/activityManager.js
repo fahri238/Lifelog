@@ -46,26 +46,26 @@ export const processdailyCounter = () => {
   return { currentCount, stateDailyGoal };
 };
 
-export const alphabetSorting = () => {
-  return [...state.activities].sort((a, b) => b.title.localeCompare(a.title));
+export const alphabetSorting = (activitiesState) => {
+  return [...activitiesState].sort((a, b) => b.title.localeCompare(a.title));
 };
 
-export const alphabetSortingDescending = () => {
-  return [...state.activities].sort((a, b) => a.title.localeCompare(b.title));
+export const alphabetSortingDescending = (activitiesState) => {
+  return [...activitiesState].sort((a, b) => a.title.localeCompare(b.title));
 };
 
-export const durationSorting = () => {
-  return [...state.activities].sort(
+export const durationSorting = (activitiesState) => {
+  return [...activitiesState].sort(
     (a, b) => getDurationMin(b.duration) - getDurationMin(a.duration),
   );
 };
 
-export const dateSorting = () => {
-  return [...state.activities].sort(
+export const dateSorting = (activitiesState) => {
+  return [...activitiesState].sort(
     (a, b) => new Date(a.date) - new Date(b.date),
   );
 };
 
-export const defaultSorting = () => {
-  return state.activities;
+export const defaultSorting = (activitiesState) => {
+  return activitiesState;
 }

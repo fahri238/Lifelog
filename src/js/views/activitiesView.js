@@ -38,7 +38,7 @@ class ActivitiesViews extends FormView {
     this._editFormBtn = document.querySelector(".btn-form--edit");
   }
 
-  _detailValue(activity = null) {
+  detailValue(activity = null) {
     this._detailContainer.dataset.id = activity.id;
 
     this._detailCategory.textContent = activity.category;
@@ -61,7 +61,7 @@ class ActivitiesViews extends FormView {
         (activity) => activity.id === Number(activityId),
       );
 
-      this._detailValue(selectedActivity);
+      this.detailValue(selectedActivity);
     });
   }
 
@@ -184,7 +184,7 @@ class ActivitiesViews extends FormView {
       );
       selectedActivity.outerHTML = this.activityMarkup(this._editedData);
 
-      this._detailValue(this._editedData);
+      this.detailValue(this._editedData);
       handler(this._currentActivity, this._editedData);
       succesMessage("Activity has been edited");
     });

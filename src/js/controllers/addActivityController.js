@@ -15,7 +15,7 @@ export const addActivityController = () => {
     saveDataForm(data);
 
     activitiesView.renderActivityList(data);
-    activitiesView._detailValue(data);
+    activitiesView.detailValue(data);
 
     const updateData = activityManager.processdailyCounter();
     addActivityView.renderDailyGoal(
