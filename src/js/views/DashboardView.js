@@ -5,12 +5,11 @@ class DashboardViews {
   _activityMenu = document.getElementById("activity-menu");
   _activityContent = document.getElementById("activities");
   _sortBtn = document.querySelectorAll(".activities__sort");
-  _activitiesEl = document.querySelector(".activity");
+  _activitiesEl = document.querySelectorAll(".activity");
   _selectedSort = document.getElementById("ascending-sort");
   _selectedSortDescending = document.getElementById("descending-sort");
 
   renderActivityList(activities) {
-    console.log("test")
     activities.forEach((activity) => {
       const listActivityMarkup = `
         <li class="activity" id=${activity.id}>${activity.title}</li>
@@ -24,24 +23,23 @@ class DashboardViews {
   }
 
   goToClickedActivity(handler) {
-    this._activitiesEl.forEach((elemen) =>
-      elemen.addEventListener("click", (e) => {
-        console.log("clicked");
-        sidebarView.menusEl.forEach((menu) =>
-          menu.classList.remove("menu__focus"),
-        );
-        this._activityMenu.classList.add("menu__focus");
+    this._activityListContainer.addEventListener("click", (e) => {
+      const selectedActivity = e.target.closest(".activity");
 
-        sidebarView.contentsEl.forEach((content) =>
-          content.classList.add("hidden"),
-        );
-        this._activityContent.classList.remove("hidden");
+      if (!selectedActivity) return;
 
-        const selectedActivity = e.target.closest(".activity");
+      sidebarView.menusEl.forEach((menu) =>
+        menu.classList.remove("menu__focus"),
+      );
+      this._activityMenu.classList.add("menu__focus");
 
-        handler(selectedActivity.id);
-      }),
-    );
+      sidebarView.contentsEl.forEach((content) =>
+        content.classList.add("hidden"),
+      );
+      this._activityContent.classList.remove("hidden");
+
+      handler(selectedActivity.id);
+    });
   }
 
   sortingListOfActivities(handlerAscending, handlerDescending) {
