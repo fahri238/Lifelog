@@ -9,6 +9,7 @@ class DashboardViews {
   _selectedSort = document.getElementById("ascending-sort");
   _selectedSortDescending = document.getElementById("descending-sort");
 
+  // HANDLE LIST OF ACTIVITY
   renderActivityList(activities) {
     activities.forEach((activity) => {
       const listActivityMarkup = `
@@ -63,6 +64,9 @@ class DashboardViews {
       });
     });
   }
+
+  // HANDLE NEWEST ACTIVITY
+  
 }
 
 export default new DashboardViews();

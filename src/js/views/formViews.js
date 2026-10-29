@@ -1,4 +1,4 @@
-import { getIdActivity } from "../helpers/format";
+import { getIdActivity, getTimeNow } from "../helpers/format";
 import * as activityManager from "../model/activityManager";
 import { succesMessage } from "../helpers/utils";
 export default class FormView {
@@ -28,6 +28,7 @@ export default class FormView {
           this._inputStartTime.value,
           this._inputEndTime.value,
         ),
+        createdAt: getTimeNow(),
       };
 
       handlerSaveData(formData);

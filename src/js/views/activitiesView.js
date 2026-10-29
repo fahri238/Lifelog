@@ -1,4 +1,8 @@
-import { formattedDate } from "../helpers/format.js";
+import {
+  formattedCreatedAt,
+  formattedDate,
+  getTimeNow,
+} from "../helpers/format.js";
 import FormView from "./formViews.js";
 import * as activityManager from "../model/activityManager.js";
 import {
@@ -14,6 +18,7 @@ class ActivitiesViews extends FormView {
   _detailDate = document.getElementById("detail-date");
   _detailDuration = document.getElementById("detail-duration");
   _detailTimeSesstion = document.getElementById("detail-time-session");
+  _detailCreatedAt = document.getElementById("detail-created-at");
   _detailNotes = document.getElementById("detail-notes");
   _editDetailBtn = document.getElementById("detail-edit-btn");
 
@@ -48,6 +53,7 @@ class ActivitiesViews extends FormView {
     this._detailDuration.textContent = `${activity.startTime} - ${activity.endTime}`;
     this._detailTimeSesstion.textContent = activity.duration;
     this._detailNotes.textContent = activity.description;
+    this._detailCreatedAt.textContent = formattedCreatedAt(activity.createdAt);
   }
 
   renderDetailActivity(activities) {
@@ -89,9 +95,8 @@ class ActivitiesViews extends FormView {
     </li>
     `;
   }
-  
-  activityMarkup(activiy) {
 
+  activityMarkup(activiy) {
     return `
     <li class="list-row" data-id="${activiy.id}">
       <div class="row-info">
@@ -176,6 +181,7 @@ class ActivitiesViews extends FormView {
           this._inputStartTime.value,
           this._inputEndTime.value,
         ),
+        createdAt: createdAt,
       };
 
       // replace old formated list activity
@@ -256,6 +262,7 @@ class ActivitiesViews extends FormView {
     this._detailDuration.textContent = "";
     this._detailTimeSesstion.textContent = "";
     this._detailNotes.textContent = "your note/description...";
+    this._detailCreatedAt.textContent = "";
   }
 
   // HANDLE CATEGORY
