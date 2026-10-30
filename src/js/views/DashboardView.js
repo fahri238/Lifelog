@@ -18,6 +18,9 @@ class DashboardViews {
   _newestDuration = document.querySelectorAll(".newest__detail")[1];
   _newestCreatedAt = document.querySelector(".card__date-create");
 
+  // summaries contents
+  _summTotalActivities = document.querySelector(".summary__total-activities");
+
   // HANDLE LIST OF ACTIVITY
   renderActivityList(activities) {
     activities.forEach((activity) => {
@@ -86,8 +89,8 @@ class DashboardViews {
     handlerActivity();
 
     this.moveToActivityMenu(this._newestCardContainer, (id) => {
-      handleGoto(id)
-    })
+      handleGoto(id);
+    });
   }
 
   moveToActivityMenu(parentEl, handler) {
@@ -107,6 +110,11 @@ class DashboardViews {
 
       handler(parentEl.id);
     });
+  }
+
+  // summaries contents
+  summaryTotalActivities(activitiesHandler) {
+    this._summTotalActivities.textContent = activitiesHandler();
   }
 }
 

@@ -16,6 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // newest activity
   dashboardController.newestController();
 
+  // summaries contents
+  dashboardController.sumTotalActivities();
+
   // SIDEBAR
   sidebarController.setFocusMenuController();
 

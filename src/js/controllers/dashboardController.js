@@ -1,7 +1,11 @@
 import dashboardView from "../views/DashboardView";
 import { state } from "../model/state";
 import activitiesView from "../views/activitiesView";
-import { alphabetSorting, defaultSorting } from "../model/activityManager";
+import {
+  alphabetSorting,
+  countDuration,
+  defaultSorting,
+} from "../model/activityManager";
 
 const activityData = state.activities;
 
@@ -33,12 +37,26 @@ export const goToActivityController = () => {
 
 // handle newest activity
 export const newestController = () => {
-  dashboardView.newestActivityView((activityhandler) => {
-    const activity = activityData.at(-1);
-    return activity;
-  }, (id) => {
-    const activity = activityData.find((activity) => activity.id === Number(id)) 
-    activitiesView.detailValue(activity);
-    console.log(activity)
+  dashboardView.newestActivityView(
+    (activityhandler) => {
+      const activity = activityData.at(-1);
+      return activity;
+    },
+    (id) => {
+      const activity = activityData.find(
+        (activity) => activity.id === Number(id),
+      );
+      activitiesView.detailValue(activity);
+      console.log(activity);
+    },
+  );
+};
+
+// handle summaries contents
+export const sumTotalActivities = () => {
+  dashboardView.summaryTotalActivities((activities) => {
+    activities = activityData.length
+
+    return activities;
   });
 };
