@@ -1,6 +1,6 @@
 import { getTodayDateString } from "../helpers/utils";
 import { DAILY_GOAL } from "../config";
-import FormView from "./formViews";
+import FormView from "./FormView";
 
 class AddActivityViews extends FormView {
   _previewTitle = document.getElementById("preview-title");
@@ -74,8 +74,6 @@ class AddActivityViews extends FormView {
     // update achieved fire streak
     this._goalIconFire.classList.toggle("icon-fire-active", goalState.fire);
   }
-
-  
 }
 
 export default new AddActivityViews();

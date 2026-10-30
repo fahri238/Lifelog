@@ -3,8 +3,8 @@ import {
   formattedDate,
   getTimeNow,
 } from "../helpers/format.js";
-import FormView from "./formViews.js";
 import * as activityManager from "../model/activityManager.js";
+import FormView from "./FormView.js";
 import {
   errorMessage,
   showDeleteValidation,
