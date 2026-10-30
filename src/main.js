@@ -8,9 +8,13 @@ import * as dashboardController from "./js/controllers/dashboardController";
 
 document.addEventListener("DOMContentLoaded", () => {
   // DASHBOARD
+  // list of activities
   dashboardController.listOfActivityController();
   dashboardController.sortingActivityList();
   dashboardController.goToActivityController();
+
+  // newest activity
+  dashboardController.newestController();
 
   // SIDEBAR
   sidebarController.setFocusMenuController();

@@ -86,19 +86,19 @@
       </div>
       <div class="dashboard-container">
         <ul class="cards">
-          <li class="card">
+          <li id="" class="card">
             <div class="card__header">
               <h3 class="card__title">Newest Acitivity</h3>
               <i class="bi bi-arrow-up-right card-btn--detail"></i>
             </div>
-            <div class="newest-content">
-              <h3 class="newest__title">Deep Work Session</h3>
+            <div  class="newest-content">
+              <h3 class="newest__title">-</h3>
               <p class="card__description">
-                <span class="newest__detail">Category: Work</span>
-                <span class="newest__detail">Duration: 2h 21m</span>
+                <span class="newest__detail">Category: -</span>
+                <span class="newest__detail">Duration: 00h 00m</span>
               </p>
             </div>
-            <p class="card__date-create">02 January 2025</p>
+            <p class="card__date-create">Mont 00, Year, 00:00</p>
           </li>
           <li class="card">
             <div class="card__header">
@@ -167,8 +167,14 @@
         <div class="card-content card-activities">
           <div class="activities-header">
             <h2 class="card__title">List of Activities</h2>
-            <i id="ascending-sort" class="bi bi-sort-alpha-down activities__sort hidden"></i>
-            <i id="descending-sort" class="bi bi-sort-alpha-down-alt activities__sort "></i>
+            <i
+              id="ascending-sort"
+              class="bi bi-sort-alpha-down activities__sort hidden"
+            ></i>
+            <i
+              id="default-sort"
+              class="bi bi-filter-right activities__sort"
+            ></i>
           </div>
           <ul class="activities-list">
             <!-- <li class="activity">Deep Work Session</li> -->
@@ -215,7 +221,10 @@
       </div>
     </section>
 
-    <section id="activities" class="section-activities section-container hidden">
+    <section
+      id="activities"
+      class="section-activities section-container hidden"
+    >
       <div class="section__header">
         <h2 class="title">Inputed Activities</h2>
 
@@ -253,9 +262,7 @@
           </div>
         </div>
 
-        <ul class="row-container">
-          
-        </ul>
+        <ul class="row-container"></ul>
 
         <div id="detail-panel" class="detail-panel" data-id="">
           <div class="detail-panel__box">
@@ -364,8 +371,8 @@
                   name="activity-category"
                   required
                 >
-                  <option value="" disabled>
-                    <option value="" disabled selected> 
+                  <option value="" disabled></option>
+                  <option value="" disabled selected>
                     Select a category...
                   </option>
                   <option value="work">Work</option>
@@ -422,8 +429,7 @@
                 id="activity-notes"
                 name="activity-notes"
                 placeholder="Write down what you achieved during this session..."
-              ></textarea
-              >
+              ></textarea>
             </div>
 
             <div class="form-actions">
