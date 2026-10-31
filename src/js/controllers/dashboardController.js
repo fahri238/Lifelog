@@ -6,6 +6,7 @@ import {
   countDuration,
   defaultSorting,
 } from "../model/activityManager";
+import { renderActivityList } from "./activitiesController";
 
 const activityData = state.activities;
 
@@ -46,8 +47,12 @@ export const newestController = () => {
       const activity = activityData.find(
         (activity) => activity.id === Number(id),
       );
+
+      activitiesView.removeActivityList();
+      activityData.forEach((activity) =>
+        activitiesView.renderActivityList(activity),
+      );
       activitiesView.detailValue(activity);
-      console.log(activity);
     },
   );
 };
@@ -55,7 +60,7 @@ export const newestController = () => {
 // handle summaries contents
 export const sumTotalActivities = () => {
   dashboardView.summaryTotalActivities((activities) => {
-    activities = activityData.length
+    activities = activityData.length;
 
     return activities;
   });

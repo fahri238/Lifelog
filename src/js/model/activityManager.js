@@ -68,4 +68,13 @@ export const dateSorting = (activitiesState) => {
 
 export const defaultSorting = (activitiesState) => {
   return activitiesState;
-}
+};
+
+export const countDuration = (hourMin) => {
+  let [hour, min] = hourMin.replace(/[^0-9 ]/g, "").split(" ");
+
+  hour = Number(hour);
+  min = Number(min);
+  const totalDurationInHour = hour + min / 60;
+  return totalDurationInHour;
+};

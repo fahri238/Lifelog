@@ -11,6 +11,9 @@ class DashboardViews {
   _selectedSort = document.getElementById("ascending-sort");
   _selectedDefaultSorting = document.getElementById("default-sort");
 
+  // move to activity detail
+  _btnCategory = document.querySelectorAll(".btn-category");
+
   // newest activity
   _newestCardContainer = document.querySelectorAll(".card")[0];
   _newestTitle = document.querySelector(".newest__title");
@@ -20,6 +23,10 @@ class DashboardViews {
 
   // summaries contents
   _summTotalActivities = document.querySelector(".summary__total-activities");
+
+  // constructor() {
+  //   this._btnCategory.forEach((btn) => btn.classList.remove(".btn-category-focus"))
+  // }
 
   // HANDLE LIST OF ACTIVITY
   renderActivityList(activities) {
@@ -95,6 +102,7 @@ class DashboardViews {
 
   moveToActivityMenu(parentEl, handler) {
     parentEl.addEventListener("click", (e) => {
+      const categoryAll = this._btnCategory[0];
       if (!parentEl) return;
 
       // 1. go to activities menu
@@ -107,6 +115,11 @@ class DashboardViews {
         content.classList.add("hidden"),
       );
       this._activityContent.classList.remove("hidden");
+
+      this._btnCategory.forEach((btn) =>
+        btn.classList.remove("btn-category-focus"),
+      );
+      categoryAll.classList.add("btn-category-focus");
 
       handler(parentEl.id);
     });
