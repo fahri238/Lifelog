@@ -32,7 +32,10 @@ class DashboardViews {
   renderActivityList(activities) {
     activities.forEach((activity) => {
       const listActivityMarkup = `
-        <li class="activity" id=${activity.id}>${activity.title}</li>
+        <li class="activity" id=${activity.id}>
+          <span class="shorter-text">${activity.title}</span>
+        </li>
+
     `;
 
       this._activityListContainer.insertAdjacentHTML(

@@ -1,7 +1,6 @@
 import {
   state,
   getActivityData,
-  saveDataForm,
   editDataForm,
   deleteDataForm,
 } from "../model/state";
@@ -21,11 +20,9 @@ export const editActivityController = () => {
   const activityData = state.activities;
 
   activitiesView.openEditActivites(getActivityData);
-  activitiesView.submitEditActivity(
-    (currentActivity, editedData) => {
-      editDataForm(currentActivity, editedData);
-    },
-  );
+  activitiesView.submitEditActivity((currentActivity, editedData) => {
+    editDataForm(currentActivity, editedData);
+  });
 };
 
 export const deleteActivityController = () => {

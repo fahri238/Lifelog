@@ -100,7 +100,7 @@ class ActivitiesViews extends FormView {
     return `
     <li class="list-row" data-id="${activiy.id}">
       <div class="row-info">
-        <h4>${activiy.title}</h4> 
+        <h4 class="shorter-text">${activiy.title}</h4> 
         <span class="label badge--${activiy.category}">${activiy.category}</span>
       </div>
       <div class="row-date">
@@ -181,7 +181,7 @@ class ActivitiesViews extends FormView {
           this._inputStartTime.value,
           this._inputEndTime.value,
         ),
-        createdAt: createdAt,
+        createdAt: new Date(this._detailCreatedAt.textContent),
       };
 
       // replace old formated list activity
