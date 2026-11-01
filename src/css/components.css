@@ -195,6 +195,14 @@
   font-size: 16px;
 }
 
+.shorter-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
 .newest__detail {
   display: inline-block;
   background-color: #9c88ff;
@@ -569,7 +577,9 @@
   background-color: var(--color-primary-opacity);
   color: var(--color-primary-darker);
   border-radius: var(--border-radius-default);
-   text-shadow: 0 0 0.6px currentColor, 0 0 0.6px currentColor;
+  text-shadow:
+    0 0 0.6px currentColor,
+    0 0 0.6px currentColor;
   width: fit-content;
   border: solid 2px var(--color-primary);
 }
@@ -781,15 +791,15 @@ ul.row-container::-webkit-scrollbar {
   text-align: center;
   padding: 3rem 1.5rem;
   margin: 1rem 0;
-  
+
   /* Membuat kotak dengan garis putus-putus yang elegan */
   background-color: #fafafa;
   border: 2px dashed #e0e0e0;
   border-radius: 12px;
-  
+
   /* Supaya tidak dikira tombol atau list aktif */
   cursor: default;
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 .empty-icon {
@@ -1249,9 +1259,9 @@ ul.row-container::-webkit-scrollbar {
 }
 
 .preview-list-row {
-  grid-template-columns: 1fr auto; /* Disesuaikan agar muat di kotak kecil */
+  grid-template-columns: 1fr auto; 
   cursor: default;
-  pointer-events: none; /* Menonaktifkan efek klik */
+  pointer-events: none; 
 }
 
 /* Tips List */
