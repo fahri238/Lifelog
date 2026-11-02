@@ -1,4 +1,5 @@
 import { formattedCreatedAt } from "../helpers/format";
+import { topCategoryModel } from "../model/activityManager";
 import sidebarView, * as SideBar from "./SidebarView";
 
 class DashboardViews {

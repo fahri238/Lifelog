@@ -90,11 +90,10 @@ export const topCategoryModel = () => {
   const categoryArray = Object.values(countCategory);
   const totalHigestCategory = Math.max(...categoryArray);
 
-  const higestCategory = Object.keys(countCategory).reduce((a, b) =>
-    countCategory[a] - countCategory[b] ? a : b,
-  );
+  const higestCategory = Object.keys(countCategory).reduce((a, b) => {
+    return countCategory[a] > countCategory[b] ? a : b;
+  });
 
-  const topCategory = [higestCategory, totalHigestCategory];
-
-  return topCategory;
+  console.log(higestCategory)
+  return  [higestCategory, totalHigestCategory];
 };

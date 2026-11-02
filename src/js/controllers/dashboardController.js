@@ -61,7 +61,6 @@ export const newestController = () => {
 // top category
 export const topCategoryController = () => {
   dashboardView.topCategory(topCategoryModel()[0], topCategoryModel()[1]);
-  console.log(topCategoryModel());
 };
 
 // handle summaries contents

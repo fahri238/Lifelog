@@ -180,7 +180,7 @@
   opacity: 0.6;
   align-self: flex-end;
 }
-.total-category {
+.category-name {
   text-transform: uppercase;
 }
 .card-btn--detail {
