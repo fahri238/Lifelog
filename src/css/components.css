@@ -176,9 +176,12 @@
 .card__title {
   opacity: 0.8;
 }
-.card__date-create {
+.card-footer {
   opacity: 0.6;
   align-self: flex-end;
+}
+.total-category {
+  text-transform: uppercase;
 }
 .card-btn--detail {
   -webkit-text-stroke: 0.6px;

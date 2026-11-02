@@ -78,3 +78,23 @@ export const countDuration = (hourMin) => {
   const totalDurationInHour = hour + min / 60;
   return totalDurationInHour;
 };
+
+export const topCategoryModel = () => {
+  if (!activities) return;
+  const countCategory = [...state.activities].reduce((acc, activity) => {
+    const activityCategory = activity.category;
+    acc[activityCategory] = (acc[activityCategory] || 0) + 1;
+    return acc;
+  }, {});
+
+  const categoryArray = Object.values(countCategory);
+  const totalHigestCategory = Math.max(...categoryArray);
+
+  const higestCategory = Object.keys(countCategory).reduce((a, b) =>
+    countCategory[a] - countCategory[b] ? a : b,
+  );
+
+  const topCategory = [higestCategory, totalHigestCategory];
+
+  return topCategory;
+};

@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
   dashboardController.sortingActivityList();
   dashboardController.goToActivityController();
 
+  // top category
+  dashboardController.topCategoryController();
+
   // newest activity
   dashboardController.newestController();
 

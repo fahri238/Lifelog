@@ -19,7 +19,12 @@ class DashboardViews {
   _newestTitle = document.querySelector(".newest__title");
   _newestCategory = document.querySelectorAll(".newest__detail")[0];
   _newestDuration = document.querySelectorAll(".newest__detail")[1];
-  _newestCreatedAt = document.querySelector(".card__date-create");
+  _cardFooter = document.querySelector(".card-footer");
+
+  // top category
+  _topCategoryContainer = document.querySelectorAll(".card")[3];
+  _categoryName = document.querySelector(".category-name");
+  _totalCategory = document.querySelector(".total-category");
 
   // summaries contents
   _summTotalActivities = document.querySelector(".summary__total-activities");
@@ -92,7 +97,7 @@ class DashboardViews {
     this._newestTitle.textContent = handlerActivity().title;
     this._newestCategory.textContent = `Category: ${handlerActivity().category}`;
     this._newestDuration.textContent = `Duration: ${handlerActivity().duration}`;
-    this._newestCreatedAt.textContent = formattedCreatedAt(
+    this._cardFooter.textContent = formattedCreatedAt(
       handlerActivity().createdAt,
     );
 
@@ -126,6 +131,11 @@ class DashboardViews {
 
       handler(parentEl.id);
     });
+  }
+
+  topCategory(nameCategory, totalCategory) {
+    this._categoryName.textContent = nameCategory;
+    this._totalCategory.textContent = totalCategory;
   }
 
   // summaries contents

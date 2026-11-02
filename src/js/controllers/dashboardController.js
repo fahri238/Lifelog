@@ -5,6 +5,7 @@ import {
   alphabetSorting,
   countDuration,
   defaultSorting,
+  topCategoryModel,
 } from "../model/activityManager";
 import { renderActivityList } from "./activitiesController";
 
@@ -55,6 +56,12 @@ export const newestController = () => {
       activitiesView.detailValue(activity);
     },
   );
+};
+
+// top category
+export const topCategoryController = () => {
+  dashboardView.topCategory(topCategoryModel()[0], topCategoryModel()[1]);
+  console.log(topCategoryModel());
 };
 
 // handle summaries contents
