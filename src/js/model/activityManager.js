@@ -94,6 +94,5 @@ export const topCategoryModel = () => {
     return countCategory[a] > countCategory[b] ? a : b;
   });
 
-  console.log(higestCategory)
-  return  [higestCategory, totalHigestCategory];
+  return [higestCategory, totalHigestCategory];
 };

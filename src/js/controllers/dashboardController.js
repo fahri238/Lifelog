@@ -49,10 +49,7 @@ export const newestController = () => {
         (activity) => activity.id === Number(id),
       );
 
-      activitiesView.removeActivityList();
-      activityData.forEach((activity) =>
-        activitiesView.renderActivityList(activity),
-      );
+      activitiesView.categories(activityData);
       activitiesView.detailValue(activity);
     },
   );
@@ -60,7 +57,18 @@ export const newestController = () => {
 
 // top category
 export const topCategoryController = () => {
-  dashboardView.topCategory(topCategoryModel()[0], topCategoryModel()[1]);
+  const categoryName = topCategoryModel()[0];
+  const categoryTotal = topCategoryModel()[1];
+  dashboardView.topCategoryViews(categoryName, categoryTotal, () => {
+    const filteredCategory = [...activityData].filter(
+      (activity) => activity.category === categoryName,
+    );
+
+    activitiesView.removeActivityList(activityData);
+    filteredCategory.forEach((activity) =>
+      activitiesView.renderActivityList(activity),
+    );
+  });
 };
 
 // handle summaries contents

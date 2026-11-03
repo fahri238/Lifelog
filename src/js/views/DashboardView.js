@@ -13,7 +13,15 @@ class DashboardViews {
   _selectedDefaultSorting = document.getElementById("default-sort");
 
   // move to activity detail
+
+  // category list el
   _btnCategory = document.querySelectorAll(".btn-category");
+  _allCategory = document.querySelectorAll(".btn-category")[0];
+  _workCategory = document.querySelectorAll(".btn-category")[1];
+  _studyCategory = document.querySelectorAll(".btn-category")[2];
+  _exerciseCategory = document.querySelectorAll(".btn-category")[3];
+  _socialCategory = document.querySelectorAll(".btn-category")[4];
+  _hobbyCategory = document.querySelectorAll(".btn-category")[5];
 
   // newest activity
   _newestCardContainer = document.querySelectorAll(".card")[0];
@@ -104,44 +112,55 @@ class DashboardViews {
 
     handlerActivity();
 
-    this.moveToActivityMenu(this._newestCardContainer, (id) => {
-      handleGoto(id);
+    this._newestCardContainer.addEventListener("click", (e) => {
+      if (!this._newestCardContainer) return;
+
+      this._moveToActivitiesMenu();
+
+      handleGoto(this._newestCardContainer.id);
     });
   }
 
-  moveToActivityMenu(parentEl, handler) {
-    parentEl.addEventListener("click", (e) => {
-      const categoryAll = this._btnCategory[0];
-      if (!parentEl) return;
-
-      // 1. go to activities menu
-      sidebarView.menusEl.forEach((menu) =>
-        menu.classList.remove("menu__focus"),
-      );
-      this._activityMenu.classList.add("menu__focus");
-
-      sidebarView.contentsEl.forEach((content) =>
-        content.classList.add("hidden"),
-      );
-      this._activityContent.classList.remove("hidden");
-
-      this._btnCategory.forEach((btn) =>
-        btn.classList.remove("btn-category-focus"),
-      );
-      categoryAll.classList.add("btn-category-focus");
-
-      handler(parentEl.id);
-    });
-  }
-
-  topCategory(nameCategory, totalCategory) {
+  // HANDLE TOP CATEGORY
+  topCategoryViews(nameCategory, totalCategory, handler) {
     this._categoryName.textContent = nameCategory;
     this._totalCategory.textContent = totalCategory;
+
+    this._topCategoryContainer.addEventListener("click", (e) => {
+      const test = [...this._btnCategory].find(
+        (activity) => activity.textContent.toLowerCase() === nameCategory,
+      );
+      this._moveToActivitiesMenu(
+        document.querySelector(`.${nameCategory}-category`),
+      );
+      console.log(nameCategory);
+
+      handler();
+    });
   }
 
   // summaries contents
   summaryTotalActivities(activitiesHandler) {
     this._summTotalActivities.textContent = activitiesHandler();
+  }
+
+  // move to activities menu
+  // default value = category all
+  _moveToActivitiesMenu(
+    categoryFocus = document.querySelector(".all-category"),
+  ) {
+    sidebarView.menusEl.forEach((menu) => menu.classList.remove("menu__focus"));
+    this._activityMenu.classList.add("menu__focus");
+
+    sidebarView.contentsEl.forEach((content) =>
+      content.classList.add("hidden"),
+    );
+    this._activityContent.classList.remove("hidden");
+
+    this._btnCategory.forEach((btn) =>
+      btn.classList.remove("btn-category-focus"),
+    );
+    categoryFocus.classList.add("btn-category-focus");
   }
 }
 
