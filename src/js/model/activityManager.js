@@ -2,7 +2,11 @@ import { DEFAULT_TIME, GOAL_STATES } from "../config";
 import { getTodayDateString } from "../helpers/utils";
 import { getActivityData } from "./state";
 import { state } from "./state";
-import { getDurationMin, getIdActivity } from "../helpers/format";
+import {
+  formattedDuration,
+  getDurationMin,
+  getIdActivity,
+} from "../helpers/format";
 
 // return formatted time difference
 export const countTimeDifference = (startTime, endTime) => {
@@ -31,8 +35,6 @@ export const getGoalState = (count) => {
 };
 
 export const getTodayActivity = () => {
-  
-
   const startDate = new Date(getTodayDateString() + "T00:00:00");
   const endDate = new Date(getTodayDateString() + "T23:59:59");
 
@@ -43,7 +45,7 @@ export const getTodayActivity = () => {
   });
 
   return todayRangeActivity;
-} 
+};
 
 export const processdailyCounter = () => {
   const savedData = localStorage.getItem("activity_data_tracker");
@@ -109,4 +111,13 @@ export const topCategoryModel = () => {
   });
 
   return [higestCategory, totalHigestCategory];
+};
+
+// handle productivity time today card
+export const productivityTodayModel = () => {
+  const totalHourToday = getTodayActivity().reduce(
+    (acc, curr) => countDuration(acc.duration) + countDuration(curr.duration),
+  );
+
+  return formattedDuration(totalHourToday);
 };

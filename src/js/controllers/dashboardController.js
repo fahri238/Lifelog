@@ -6,6 +6,7 @@ import {
   countDuration,
   defaultSorting,
   getTodayActivity,
+  productivityTodayModel,
   topCategoryModel,
 } from "../model/activityManager";
 import { formattedDuration } from "../helpers/format";
@@ -74,13 +75,7 @@ export const topCategoryController = () => {
 
 // productivity time today
 export const productivityTodayController = () => {
-  dashboardView.productyTime(() => {
-    const totalHourToday = getTodayActivity().reduce(
-      (acc, curr) => countDuration(acc.duration) + countDuration(curr.duration),
-    );
-
-    return formattedDuration(totalHourToday);
-  });
+  dashboardView.productyTime(productivityTodayModel);
 };
 
 // handle summaries contents
