@@ -1,5 +1,4 @@
 import { formattedCreatedAt } from "../helpers/format";
-import { topCategoryModel } from "../model/activityManager";
 import sidebarView, * as SideBar from "./SidebarView";
 
 class DashboardViews {
@@ -35,12 +34,11 @@ class DashboardViews {
   _categoryName = document.querySelector(".category-name");
   _totalCategory = document.querySelector(".total-category");
 
+  // producty time today
+  _productyTimeCardContainer = document.querySelectorAll(".card")[2];
+
   // summaries contents
   _summTotalActivities = document.querySelector(".summary__total-activities");
-
-  // constructor() {
-  //   this._btnCategory.forEach((btn) => btn.classList.remove(".btn-category-focus"))
-  // }
 
   // HANDLE LIST OF ACTIVITY
   renderActivityList(activities) {
@@ -135,6 +133,16 @@ class DashboardViews {
       );
 
       handler();
+    });
+  }
+
+  // HANDLE PRODUCTIVE TIME TODAY
+  productyTime(handler) {
+    const cardDescription = document.querySelectorAll(".card__description")[2];
+    cardDescription.textContent = handler();
+
+    this._productyTimeCardContainer.addEventListener("click", () => {
+      this._moveToActivitiesMenu();
     });
   }
 

@@ -5,9 +5,10 @@ import {
   alphabetSorting,
   countDuration,
   defaultSorting,
+  getTodayActivity,
   topCategoryModel,
 } from "../model/activityManager";
-import { renderActivityList } from "./activitiesController";
+import { formattedDuration } from "../helpers/format";
 
 const activityData = state.activities;
 
@@ -68,6 +69,17 @@ export const topCategoryController = () => {
     filteredCategory.forEach((activity) =>
       activitiesView.renderActivityList(activity),
     );
+  });
+};
+
+// productivity time today
+export const productivityTodayController = () => {
+  dashboardView.productyTime(() => {
+    const totalHourToday = getTodayActivity().reduce(
+      (acc, curr) => countDuration(acc.duration) + countDuration(curr.duration),
+    );
+
+    return formattedDuration(totalHourToday);
   });
 };
 

@@ -46,3 +46,10 @@ export const formattedCreatedAt = (unformatedDate) => {
 
   return `${formattedDate(unformated)}, ${formatedHoursMinutes(unformated)}`;
 };
+
+export const formattedDuration = (duration) => {
+  const getHour = String(duration).split(".")[0].padStart(2, "0");
+  const getMinutes = String(duration).split(".")[1].slice(0, 2).padStart(2, "0");
+  
+  return `${getHour}h ${getMinutes}m`;
+};

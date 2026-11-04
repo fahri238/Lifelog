@@ -19,6 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // newest activity
   dashboardController.newestController();
 
+  // productivity time today
+  dashboardController.productivityTodayController();
+
   // summaries contents
   dashboardController.sumTotalActivities();
 

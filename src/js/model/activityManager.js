@@ -30,11 +30,11 @@ export const getGoalState = (count) => {
   return GOAL_STATES.empty;
 };
 
-export const processdailyCounter = () => {
-  const today = getTodayDateString();
+export const getTodayActivity = () => {
+  
 
-  const startDate = new Date(today + "T00:00:00");
-  const endDate = new Date(today + "T23:59:59");
+  const startDate = new Date(getTodayDateString() + "T00:00:00");
+  const endDate = new Date(getTodayDateString() + "T23:59:59");
 
   const todayRangeActivity = getActivityData().filter((activity) => {
     const itemDate = new Date(activity.createdAt);
@@ -42,14 +42,16 @@ export const processdailyCounter = () => {
     return itemDate >= startDate && itemDate <= endDate;
   });
 
-  console.log(todayRangeActivity);
+  return todayRangeActivity;
+} 
 
+export const processdailyCounter = () => {
   const savedData = localStorage.getItem("activity_data_tracker");
-  let currentCount = getActivityData() ? todayRangeActivity.length : 0;
+  let currentCount = getActivityData() ? getTodayActivity().length : 0;
 
-  if (savedData !== today) {
+  if (savedData !== getTodayDateString()) {
     currentCount = 0;
-    localStorage.setItem("activity_data_tracker", today);
+    localStorage.setItem("activity_data_tracker", getTodayDateString());
     localStorage.setItem("activity_daily_count", "0");
   }
 
