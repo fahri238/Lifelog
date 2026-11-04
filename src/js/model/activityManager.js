@@ -125,20 +125,56 @@ export const productivityTodayModel = () => {
 export const getLastWeek = () => {
   const today = new Date();
 
-  const sundayOffset = today.getDate() - today.getDay();
+  const sundayOffset = today.getDate() - today.getDay() - 7;
 
-  return Array.from({ length: 7 }, (_, index) => {
+  const twoWeeksActivty = Array.from({ length: 14 }, (_, index) => {
     const date = new Date(today);
     date.setDate(sundayOffset + index);
+
     return getTodayRange(getTodayDateString(date));
   });
+
+  return {
+    thisWeek: twoWeeksActivty.slice(7),
+    lastWeek: twoWeeksActivty.slice(0, 7),
+  };
 };
 
-export const totalActivityWeek = () => {
-  return getLastWeek().filter((item) => {
-    return item.length != 0;
-  }).reduce((acc, curr) => acc.length + curr.length);
+export const totalActivityThisWeek = () => {
+  const thisWeekTotal = getLastWeek()
+    .thisWeek.filter((item) => {
+      return item.length != 0;
+    })
+    .map((item) => item.length)
+    .reduce((acc, curr) => acc + curr, 0);
+  return String(thisWeekTotal).padStart(2, "0");
 };
 
-// totalActivityWeek();
-console.log(totalActivityWeek());
+export const totalActivityLastWeek = () => {
+  const lastWeekTotal = getLastWeek()
+    .lastWeek.filter((item) => {
+      return item.length != 0;
+    })
+    .map((item) => item.length)
+    .reduce((acc, curr) => acc + curr, 0);
+
+  return String(lastWeekTotal).padStart(2, "0");
+};
+
+export const statusActivityWeek = () => {
+  const thisWeek = getLastWeek()
+    .thisWeek.filter((item) => {
+      return item.length != 0;
+    })
+    .map((item) => item.length)
+    .reduce((acc, curr) => acc + curr, 0);
+
+  const lastWeek = getLastWeek()
+    .lastWeek.filter((item) => {
+      return item.length != 0;
+    })
+    .map((item) => item.length)
+    .reduce((acc, curr) => acc + curr, 0);
+
+  return thisWeek > lastWeek ? "Higher" : "Lower";
+};

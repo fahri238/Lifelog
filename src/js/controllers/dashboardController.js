@@ -3,12 +3,12 @@ import { state } from "../model/state";
 import activitiesView from "../views/activitiesView";
 import {
   alphabetSorting,
-  countDuration,
   defaultSorting,
-  getLastWeek,
   productivityTodayModel,
+  statusActivityWeek,
   topCategoryModel,
-  totalActivityWeek,
+  totalActivityLastWeek,
+  totalActivityThisWeek,
 } from "../model/activityManager";
 import { formattedDuration } from "../helpers/format";
 
@@ -81,7 +81,11 @@ export const productivityTodayController = () => {
 
 // total activity this week
 export const getWeekController = () => {
-  dashboardView.totalActivityWeek(totalActivityWeek);
+  dashboardView.totalActivityWeek(
+    statusActivityWeek,
+    totalActivityThisWeek,
+    totalActivityLastWeek,
+  );
 };
 
 // handle summaries contents

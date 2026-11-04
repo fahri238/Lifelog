@@ -147,11 +147,19 @@ class DashboardViews {
   }
 
   // HANDLE TOTAL ACTIVITY THIS WEEK
-  totalActivityWeek(handler) {
-    const activitiesWeekTotal =
+  totalActivityWeek(
+    statusActivityThisWeek,
+    totalActivityThisWeek,
+    totalActivityLastWeek,
+  ) {
+    const activitiesThisWeekTotal =
       document.querySelectorAll(".card__description")[1];
+    const activitiesLastWeekTotal = document.querySelector(".total-last-week");
+    const countStatusTotal = document.querySelector(".count-status");
 
-    activitiesWeekTotal.textContent = handler();
+    activitiesThisWeekTotal.textContent = totalActivityThisWeek();
+    activitiesLastWeekTotal.textContent = totalActivityLastWeek();
+    countStatusTotal.textContent = statusActivityThisWeek();
   }
 
   // summaries contents
