@@ -146,6 +146,14 @@ class DashboardViews {
     });
   }
 
+  // HANDLE TOTAL ACTIVITY THIS WEEK
+  totalActivityWeek(handler) {
+    const activitiesWeekTotal =
+      document.querySelectorAll(".card__description")[1];
+
+    activitiesWeekTotal.textContent = handler();
+  }
+
   // summaries contents
   summaryTotalActivities(activitiesHandler) {
     this._summTotalActivities.textContent = activitiesHandler();

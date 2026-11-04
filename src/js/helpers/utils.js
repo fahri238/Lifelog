@@ -1,7 +1,6 @@
-export const getTodayDateString = () => {
-  const today = new Date();
-  const offset = today.getTimezoneOffset();
-  const localToday = new Date(today.getTime() - offset * 60 * 1000);
+export const getTodayDateString = (date = new Date()) => {
+  const offset = date.getTimezoneOffset();
+  const localToday = new Date(date.getTime() - offset * 60 * 1000);
   return localToday.toISOString().split("T")[0];
 };
 

@@ -22,6 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // productivity time today
   dashboardController.productivityTodayController();
 
+  // activities this week
+  dashboardController.getWeekController() 
+
   // summaries contents
   dashboardController.sumTotalActivities();
 

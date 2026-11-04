@@ -5,9 +5,10 @@ import {
   alphabetSorting,
   countDuration,
   defaultSorting,
-  getTodayActivity,
+  getLastWeek,
   productivityTodayModel,
   topCategoryModel,
+  totalActivityWeek,
 } from "../model/activityManager";
 import { formattedDuration } from "../helpers/format";
 
@@ -76,6 +77,11 @@ export const topCategoryController = () => {
 // productivity time today
 export const productivityTodayController = () => {
   dashboardView.productyTime(productivityTodayModel);
+};
+
+// total activity this week
+export const getWeekController = () => {
+  dashboardView.totalActivityWeek(totalActivityWeek);
 };
 
 // handle summaries contents

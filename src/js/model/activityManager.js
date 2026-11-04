@@ -34,9 +34,9 @@ export const getGoalState = (count) => {
   return GOAL_STATES.empty;
 };
 
-export const getTodayActivity = () => {
-  const startDate = new Date(getTodayDateString() + "T00:00:00");
-  const endDate = new Date(getTodayDateString() + "T23:59:59");
+export const getTodayRange = (dateRange = getTodayDateString()) => {
+  const startDate = new Date(dateRange + "T00:00:00");
+  const endDate = new Date(dateRange + "T23:59:59");
 
   const todayRangeActivity = getActivityData().filter((activity) => {
     const itemDate = new Date(activity.createdAt);
@@ -49,7 +49,7 @@ export const getTodayActivity = () => {
 
 export const processdailyCounter = () => {
   const savedData = localStorage.getItem("activity_data_tracker");
-  let currentCount = getActivityData() ? getTodayActivity().length : 0;
+  let currentCount = getActivityData() ? getTodayRange().length : 0;
 
   if (savedData !== getTodayDateString()) {
     currentCount = 0;
@@ -115,9 +115,30 @@ export const topCategoryModel = () => {
 
 // handle productivity time today card
 export const productivityTodayModel = () => {
-  const totalHourToday = getTodayActivity().reduce(
+  const totalHourToday = getTodayRange().reduce(
     (acc, curr) => countDuration(acc.duration) + countDuration(curr.duration),
   );
 
   return formattedDuration(totalHourToday);
 };
+
+export const getLastWeek = () => {
+  const today = new Date();
+
+  const sundayOffset = today.getDate() - today.getDay();
+
+  return Array.from({ length: 7 }, (_, index) => {
+    const date = new Date(today);
+    date.setDate(sundayOffset + index);
+    return getTodayRange(getTodayDateString(date));
+  });
+};
+
+export const totalActivityWeek = () => {
+  return getLastWeek().filter((item) => {
+    return item.length != 0;
+  }).reduce((acc, curr) => acc.length + curr.length);
+};
+
+// totalActivityWeek();
+console.log(totalActivityWeek());
