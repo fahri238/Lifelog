@@ -133,7 +133,6 @@ class DashboardViews {
       this._moveToActivitiesMenu(
         document.querySelector(`.${nameCategory}-category`),
       );
-      console.log(nameCategory);
 
       handler();
     });

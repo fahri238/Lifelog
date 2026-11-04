@@ -2,8 +2,9 @@ import { DEFAULT_TIME, GOAL_STATES } from "../config";
 import { getTodayDateString } from "../helpers/utils";
 import { getActivityData } from "./state";
 import { state } from "./state";
-import { getDurationMin } from "../helpers/format";
+import { getDurationMin, getIdActivity } from "../helpers/format";
 
+// return formatted time difference
 export const countTimeDifference = (startTime, endTime) => {
   const [startHour, startMinute] = startTime.split(":").map(Number);
 
@@ -32,8 +33,19 @@ export const getGoalState = (count) => {
 export const processdailyCounter = () => {
   const today = getTodayDateString();
 
+  const startDate = new Date(today + "T00:00:00");
+  const endDate = new Date(today + "T23:59:59");
+
+  const todayRangeActivity = getActivityData().filter((activity) => {
+    const itemDate = new Date(activity.createdAt);
+
+    return itemDate >= startDate && itemDate <= endDate;
+  });
+
+  console.log(todayRangeActivity);
+
   const savedData = localStorage.getItem("activity_data_tracker");
-  let currentCount = getActivityData() ? getActivityData().length : 0;
+  let currentCount = getActivityData() ? todayRangeActivity.length : 0;
 
   if (savedData !== today) {
     currentCount = 0;
@@ -81,7 +93,7 @@ export const countDuration = (hourMin) => {
 
 export const topCategoryModel = () => {
   if (!activities) return;
-  const countCategory = [...state.activities].reduce((acc, activity) => {
+  const countCategory = [...getActivityData()].reduce((acc, activity) => {
     const activityCategory = activity.category;
     acc[activityCategory] = (acc[activityCategory] || 0) + 1;
     return acc;
