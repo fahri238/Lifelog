@@ -279,22 +279,34 @@
   margin-top: 20px;
   padding-left: 20px;
   border-bottom: 1px double var(--color-neutral-4);
+  align-items: flex-end;
 }
 
 .bar {
-  height: 100%;
   width: 100%;
   border-radius: var(--border-radius-default) var(--border-radius-default) 0 0;
   background-color: var(--color-tertiary);
   position: relative;
   transform-origin: bottom;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .bar:hover {
   cursor: pointer;
   transform: scale(1.04, 1.06);
   box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.1);
+}
+
+#tooltip {
+  position: absolute;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  z-index: 999;
 }
 
 .bar p {

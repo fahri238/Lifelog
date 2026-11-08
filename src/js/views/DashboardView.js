@@ -167,6 +167,35 @@ class DashboardViews {
     );
   }
 
+  weeklyActivityChart(activitiesDay, index, maximum) {
+    const bars = document.querySelectorAll(".bar");
+
+    const minimumBarHeigth = 0.5;
+    const activitiesDayFormat =
+      ((!activitiesDay ? minimumBarHeigth : activitiesDay) / maximum) * 100;
+
+    return (bars[index].style.height = `${activitiesDayFormat}%`);
+  }
+
+  displayamount(actvitiesDay, index) {
+    const bars = document.querySelectorAll(".bar");
+    const toolTip = document.getElementById("tooltip");
+
+    bars[index].addEventListener("mouseenter", (e) => {
+      toolTip.textContent = actvitiesDay;
+      toolTip.classList.remove("hidden");
+    });
+
+    bars[index].addEventListener("mousemove", (e) => {
+      toolTip.style.left = e.pageX + 6 + "px";
+      toolTip.style.top = e.pageY + -10 + "px";
+    });
+
+    bars[index].addEventListener("mouseleave", (e) => {
+      toolTip.classList.add("hidden");
+    });
+  }
+
   // summaries contents
   summaryTotalActivities(activitiesHandler) {
     this._summTotalActivities.textContent = activitiesHandler();
