@@ -117,17 +117,18 @@ export const topCategoryModel = () => {
 
 // handle productivity time today card
 export const productivityTodayModel = () => {
+  const singleInputedActivity = getTodayRange().at(-1)
+    ? getDurationMin(getTodayRange().at(-1).duration)
+    : 0;
+
+  if (getTodayRange().length === 0 || getTodayRange().length === 1)
+    return formattedDuration(singleInputedActivity / 60);
+
   const totalHourToday = getTodayRange().reduce(
-    (acc, curr) => countDuration(acc.duration) + countDuration(curr.duration)
+    (acc, curr) => countDuration(acc.duration) + countDuration(curr.duration),
   );
 
-  const singleInputedActivity = getTodayRange().at(-1)
-    ? getTodayRange().at(-1).duration
-    : "00h 00m";
-
-  return totalHourToday
-    ? formattedDuration(totalHourToday)
-    : singleInputedActivity;
+  return formattedDuration(totalHourToday);
 };
 
 export const getLastWeek = () => {
