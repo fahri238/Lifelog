@@ -4,6 +4,7 @@ import activitiesView from "../views/activitiesView";
 import {
   alphabetSorting,
   defaultSorting,
+  getLastWeek,
   productivityTodayModel,
   statusActivityWeek,
   topCategoryModel,
@@ -86,6 +87,21 @@ export const getWeekController = () => {
     totalActivityThisWeek,
     totalActivityLastWeek,
   );
+};
+
+// weekly activity chart
+export const weeklyActivityCartController = () => {
+  const weeklyActivity = getLastWeek().thisWeek.map((day) => day.length);
+
+  const maximum = Math.max(...weeklyActivity)
+  
+  weeklyActivity.forEach((activitiesDay, index) => {
+    dashboardView.weeklyActivityChart(activitiesDay, index, maximum);
+  });
+
+  weeklyActivity.forEach((activitiesDay, index) => {
+    dashboardView.displayamount(activitiesDay, index);
+  });
 };
 
 // handle summaries contents
