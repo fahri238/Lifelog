@@ -156,10 +156,15 @@ class DashboardViews {
       document.querySelectorAll(".card__description")[1];
     const activitiesLastWeekTotal = document.querySelector(".total-last-week");
     const countStatusTotal = document.querySelector(".count-status");
+    const totalActivityWeekContainer = document.querySelectorAll(".card")[1];
 
     activitiesThisWeekTotal.textContent = totalActivityThisWeek();
     activitiesLastWeekTotal.textContent = totalActivityLastWeek();
     countStatusTotal.textContent = statusActivityThisWeek();
+
+    totalActivityWeekContainer.addEventListener("click", () =>
+      this._moveToActivitiesMenu(),
+    );
   }
 
   // summaries contents
