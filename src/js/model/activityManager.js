@@ -87,11 +87,13 @@ export const defaultSorting = (activitiesState) => {
 };
 
 export const countDuration = (hourMin) => {
+  if (!hourMin) return;
   let [hour, min] = hourMin.replace(/[^0-9 ]/g, "").split(" ");
 
   hour = Number(hour);
   min = Number(min);
   const totalDurationInHour = hour + min / 60;
+
   return totalDurationInHour;
 };
 
@@ -117,9 +119,16 @@ export const topCategoryModel = () => {
 export const productivityTodayModel = () => {
   const totalHourToday = getTodayRange().reduce(
     (acc, curr) => countDuration(acc.duration) + countDuration(curr.duration),
+    0,
   );
 
-  return formattedDuration(totalHourToday);
+  const singleInputedActivity = getTodayRange().at(-1)
+    ? getTodayRange().at(-1).duration
+    : "00h 00m";
+
+  return totalHourToday
+    ? formattedDuration(totalHourToday)
+    : singleInputedActivity;
 };
 
 export const getLastWeek = () => {
