@@ -168,11 +168,12 @@ class DashboardViews {
   }
 
   weeklyActivityChart(activitiesDay, index, maximum) {
-    const actvityBarContainer = document.querySelector(".activity-bar");
-
     const bars = document.querySelectorAll(".bar");
 
-    const activitiesDayFormat = ((!activitiesDay ? 0.5 : activitiesDay) / maximum) * 100;
+    const minimumBarHeigth = 0.5;
+    const activitiesDayFormat =
+      ((!activitiesDay ? minimumBarHeigth : activitiesDay) / maximum) * 100;
+
     return (bars[index].style.height = `${activitiesDayFormat}%`);
   }
 
