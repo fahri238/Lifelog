@@ -118,8 +118,7 @@ export const topCategoryModel = () => {
 // handle productivity time today card
 export const productivityTodayModel = () => {
   const totalHourToday = getTodayRange().reduce(
-    (acc, curr) => countDuration(acc.duration) + countDuration(curr.duration),
-    0,
+    (acc, curr) => countDuration(acc.duration) + countDuration(curr.duration)
   );
 
   const singleInputedActivity = getTodayRange().at(-1)
