@@ -49,8 +49,8 @@ export const formattedCreatedAt = (unformatedDate) => {
 
 export const formattedDuration = (duration) => {
   const getHour = Math.trunc(duration);
-
   const getMinutes = (duration * 60) % 60;
 
-  return `${String(getHour).padStart(2, "0")}h ${String(getMinutes).padStart(2, "0")}m`;
+  const formatted = `${String(getHour).padStart(2, "0")}h ${String(getMinutes).padStart(2, "0")}m`;
+  return formatted;
 };
