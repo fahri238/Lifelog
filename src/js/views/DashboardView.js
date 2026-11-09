@@ -201,6 +201,27 @@ class DashboardViews {
     this._summTotalActivities.textContent = activitiesHandler();
   }
 
+  // activities this vs last week chart
+  thisVsLastActivityView(data) {
+    const weeksBarContainer = document.querySelectorAll(".summary__bar-week");
+
+    const thisWeekBar = document.querySelectorAll(".chart-progress")[0];
+    const thisWeekTotal = document.querySelectorAll(".label-total")[0];
+
+    const lastWeekBar = document.querySelectorAll(".chart-progress")[1];
+    const lastWeekTotal = document.querySelectorAll(".label-total")[1];
+
+    weeksBarContainer.forEach((container) => {
+      container.style.width = data.totalTwoWeeks;
+    });
+
+    thisWeekBar.style.width = data.thisWeekPersen;
+    thisWeekTotal.textContent = data.thisWeekTotal;
+
+    lastWeekBar.style.width = data.lastWeekPersen;
+    lastWeekTotal.textContent = data.lastWeekTotal;
+  }
+
   // move to activities menu
   // default value = category all
   _moveToActivitiesMenu(

@@ -10,6 +10,7 @@ import {
   topCategoryModel,
   totalActivityLastWeek,
   totalActivityThisWeek,
+  totalLastTwoWeek,
 } from "../model/activityManager";
 import { formattedDuration } from "../helpers/format";
 
@@ -93,8 +94,8 @@ export const getWeekController = () => {
 export const weeklyActivityCartController = () => {
   const weeklyActivity = getLastWeek().thisWeek.map((day) => day.length);
 
-  const maximum = Math.max(...weeklyActivity)
-  
+  const maximum = Math.max(...weeklyActivity);
+
   weeklyActivity.forEach((activitiesDay, index) => {
     dashboardView.weeklyActivityChart(activitiesDay, index, maximum);
   });
@@ -111,4 +112,22 @@ export const sumTotalActivities = () => {
 
     return activities;
   });
+};
+
+// activities this vs last week chart
+export const thisVsLastWeekActivityController = () => {
+  const { totalThisWeek, totalLastWeek, totalLasTwotWeeks } = totalLastTwoWeek();
+  const maximum = totalLasTwotWeeks;
+
+  const data = {
+    totalTwoWeeks: `${(totalLasTwotWeeks * 100) / maximum}%`,
+
+    thisWeekPersen: `${(totalThisWeek * 100) / maximum}%`,
+    thisWeekTotal: totalThisWeek,
+
+    lastWeekPersen: `${(totalLastWeek * 100) / maximum}%`,
+    lastWeekTotal: totalLastWeek,
+  };
+
+  dashboardView.thisVsLastActivityView(data);
 };
