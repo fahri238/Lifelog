@@ -108,10 +108,13 @@
             <div class="card__total-content">
               <p class="card__description">00</p>
               <p class="card__total-calc">
-                <span class="count-status">Higher</span> <br />than <br />last week
+                <span class="count-status">Higher</span> <br />than <br />last
+                week
               </p>
             </div>
-            <p class="card-footer">last week : <span class="total-last-week">00</span></p>
+            <p class="card-footer">
+              last week : <span class="total-last-week">00</span>
+            </p>
           </li>
           <li class="card">
             <div class="card__header">
@@ -126,8 +129,12 @@
               <h3 class="card__title">Top Category</h3>
               <i class="bi bi-arrow-up-right card-btn--detail"></i>
             </div>
-            <p class="card__description">Goes to <span class="category-name"> Category </span></p>
-            <p class="card-footer">Total: <span class="total-category">-</span> </p>
+            <p class="card__description">
+              Goes to <span class="category-name"> Category </span>
+            </p>
+            <p class="card-footer">
+              Total: <span class="total-category">-</span>
+            </p>
           </li>
         </ul>
 
@@ -136,13 +143,27 @@
           <h2 class="card__title">Weekly activity chart (this week)</h2>
           <ul class="activity-bar">
             <div id="tooltip" class="hidden">0</div>
-            <li class="bar" style="height: 10%" data-acitvities="2"><p>SUN</p></li>
-            <li class="bar" style="height: 10%" data-acitvities=""><p>MON</p></li>
-            <li class="bar" style="height: 10%" data-acitvities=""><p>TUE</p></li>
-            <li class="bar" style="height: 10%" data-acitvities=""><p>WED</p></li>
-            <li class="bar" style="height: 10%" data-acitvities=""><p>THU</p></li>
-            <li class="bar" style="height: 10%" data-acitvities=""><p>FRI</p></li>
-            <li class="bar" style="height: 10%" data-acitvities=""><p>SAT</p></li>
+            <li class="bar" style="height: 10%" data-acitvities="2">
+              <p>SUN</p>
+            </li>
+            <li class="bar" style="height: 10%" data-acitvities="">
+              <p>MON</p>
+            </li>
+            <li class="bar" style="height: 10%" data-acitvities="">
+              <p>TUE</p>
+            </li>
+            <li class="bar" style="height: 10%" data-acitvities="">
+              <p>WED</p>
+            </li>
+            <li class="bar" style="height: 10%" data-acitvities="">
+              <p>THU</p>
+            </li>
+            <li class="bar" style="height: 10%" data-acitvities="">
+              <p>FRI</p>
+            </li>
+            <li class="bar" style="height: 10%" data-acitvities="">
+              <p>SAT</p>
+            </li>
           </ul>
         </div>
 
@@ -198,19 +219,19 @@
                 <div class="summary-week">
                   <div class="summary__bar-desc">
                     <h3>Activites This week</h3>
-                    <p>Total :70</p>
+                    <p>Total: <span class="label-total">0</span></p>
                   </div>
                   <div class="summary__bar-week">
-                    <div class="chart-progress" style="width: 70%"></div>
+                    <div class="chart-progress" style="width: 0%"></div>
                   </div>
                 </div>
                 <div class="summary-week">
                   <div class="summary__bar-desc">
                     <h3>Activites Last week</h3>
-                    <p>Total :20</p>
+                    <p>Total: <span class="label-total">0</span></p>
                   </div>
                   <div class="summary__bar-week">
-                    <div class="chart-progress" style="width: 20%"></div>
+                    <div class="chart-progress" style="width: 0%"></div>
                   </div>
                 </div>
               </div>
@@ -244,7 +265,9 @@
       <div class="activities-container">
         <div class="toolbar">
           <div class="category">
-            <button class="all-category btn-category btn-category-focus">All</button>
+            <button class="all-category btn-category btn-category-focus">
+              All
+            </button>
             <button class="work-category btn-category">Work</button>
             <button class="study-category btn-category">Study</button>
             <button class="exercise-category btn-category">Exercise</button>
