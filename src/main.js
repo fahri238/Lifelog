@@ -31,6 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // summaries contents
   dashboardController.sumTotalActivities();
 
+  // activities this vs lat week chart
+  dashboardController.thisVsLastWeekActivityController()
+
   // SIDEBAR
   sidebarController.setFocusMenuController();
 
