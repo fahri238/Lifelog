@@ -212,7 +212,7 @@ class DashboardViews {
     const lastWeekTotal = document.querySelectorAll(".label-total")[1];
 
     weeksBarContainer.forEach((container) => {
-      container.style.width = data.totalTwoWeek;
+      container.style.width = data.totalTwoWeeks;
     });
 
     thisWeekBar.style.width = data.thisWeekPersen;

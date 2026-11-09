@@ -198,11 +198,11 @@ export const totalLastTwoWeek = () => {
     .lastWeek.map((day) => day.length)
     .reduce((acc, curr) => acc + curr, 0);
 
-  const lastTwoWeek = {
+  const lastTwoWeeks = {
     totalThisWeek: totalThisWeek,
     totalLastWeek: totalLastWeek,
-    totalLasTwotWeek: totalThisWeek + totalLastWeek,
+    totalLasTwotWeeks: totalThisWeek + totalLastWeek,
   };
 
-  return lastTwoWeek;
+  return lastTwoWeeks;
 };

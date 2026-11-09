@@ -116,11 +116,11 @@ export const sumTotalActivities = () => {
 
 // activities this vs last week chart
 export const thisVsLastWeekActivityController = () => {
-  const { totalThisWeek, totalLastWeek, totalLasTwotWeek } = totalLastTwoWeek();
-  const maximum = totalLasTwotWeek;
+  const { totalThisWeek, totalLastWeek, totalLasTwotWeeks } = totalLastTwoWeek();
+  const maximum = totalLasTwotWeeks;
 
   const data = {
-    totalTwoWeek: `${(totalLasTwotWeek * 100) / maximum}%`,
+    totalTwoWeeks: `${(totalLasTwotWeeks * 100) / maximum}%`,
 
     thisWeekPersen: `${(totalThisWeek * 100) / maximum}%`,
     thisWeekTotal: totalThisWeek,
