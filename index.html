@@ -211,8 +211,15 @@
               <p>Total Activities (All Time)</p>
             </div>
             <div class="summary__content summary__chart">
-              <div class="summary__donut-chart" style="--persen: 90%"></div>
-              <p>Activities differences (Week)</p>
+              <div id="tooltip-donut-chart" class="hidden">
+                <p>
+                  <span id="this-week-donut">0</span>
+                  <br>
+                  <span id="last-week-donut">0</span>
+                </p>
+              </div>
+              <div class="summary__donut-chart" style="--persen: 0%"></div>
+              <p>Total Activities differences (Week)</p>
             </div>
             <div class="summary__content summary__activities">
               <div class="summary__bar-chart">

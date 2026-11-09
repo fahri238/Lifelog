@@ -298,7 +298,8 @@
   box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.1);
 }
 
-#tooltip {
+#tooltip,
+#tooltip-donut-chart {
   position: absolute;
   background-color: var(--color-primary);
   color: #fff;
@@ -307,6 +308,26 @@
   padding: 4px 8px;
   border-radius: 4px;
   z-index: 999;
+}
+
+#tooltip-donut-chart {
+  background-color: transparent;
+}
+
+#this-week-donut,
+#last-week-donut {
+  line-height: 2.2rem;
+  padding: 4px 8px; 
+  border-radius: 6px;
+  border: 1px solid #fff;
+}
+
+#this-week-donut {
+  background-color: var(--color-secondary);
+}
+
+#last-week-donut {
+  background-color: var(--color-primary);
 }
 
 .bar p {
@@ -1274,9 +1295,9 @@ ul.row-container::-webkit-scrollbar {
 }
 
 .preview-list-row {
-  grid-template-columns: 1fr auto; 
+  grid-template-columns: 1fr auto;
   cursor: default;
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 /* Tips List */

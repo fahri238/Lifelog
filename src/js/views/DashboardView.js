@@ -179,7 +179,7 @@ class DashboardViews {
 
   displayamount(actvitiesDay, index) {
     const bars = document.querySelectorAll(".bar");
-    const toolTip = document.getElementById("tooltip");
+    const toolTip = document.getElementById("tooltip"); 
 
     bars[index].addEventListener("mouseenter", (e) => {
       toolTip.textContent = actvitiesDay;
@@ -199,6 +199,31 @@ class DashboardViews {
   // summaries contents
   summaryTotalActivities(activitiesHandler) {
     this._summTotalActivities.textContent = activitiesHandler();
+  }
+
+  // activities differences (week)
+  activitiesDifferencesView(data) {
+    const donutChart = document.querySelector(".summary__donut-chart");
+    const tooltipTotals = document.getElementById("tooltip-donut-chart");
+    const totalThisWeek =  document.getElementById("this-week-donut")
+    const totalLastWeek =  document.getElementById("last-week-donut")
+
+    donutChart.style.setProperty("--persen", `${data.thisActivityPersen}`);
+
+    donutChart.addEventListener("mouseenter", (e) => {
+      totalThisWeek.textContent = `this week: ${data.totalThisWeek}`;
+      totalLastWeek.textContent = `last week: ${data.totalLastWeek}`;
+      tooltipTotals.classList.remove("hidden");
+    });
+
+    donutChart.addEventListener("mousemove", (e) => {
+      tooltipTotals.style.left = e.pageX + 5 + "px";
+      tooltipTotals.style.top = e.pageY + -25 + "px";
+    });
+
+    donutChart.addEventListener("mouseleave", (e) => {
+      tooltipTotals.classList.add("hidden");
+    });
   }
 
   // activities this vs last week chart

@@ -28,9 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // weekly activity chart
   dashboardController.weeklyActivityCartController();
 
-  // summaries contents
+  // SUMMARIES CONTENTS
+  // total activity (all time)
   dashboardController.sumTotalActivities();
 
+  // activities differences (week)
+  dashboardController.activitiesDifferencesController()
+  
   // activities this vs lat week chart
   dashboardController.thisVsLastWeekActivityController()
 

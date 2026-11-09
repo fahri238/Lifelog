@@ -114,9 +114,25 @@ export const sumTotalActivities = () => {
   });
 };
 
+// activities differences (week)
+export const activitiesDifferencesController = () => {
+  const { totalThisWeek, totalLastWeek, totalLasTwotWeeks } =
+    totalLastTwoWeek();
+
+  const totalThisWeekPersen = `${(totalThisWeek * 100) / totalLasTwotWeeks}%`;
+
+  const data = {
+    thisActivityPersen: totalThisWeekPersen,
+    totalThisWeek: totalThisWeek,
+    totalLastWeek: totalLastWeek,
+  };
+  dashboardView.activitiesDifferencesView(data);
+};
+
 // activities this vs last week chart
 export const thisVsLastWeekActivityController = () => {
-  const { totalThisWeek, totalLastWeek, totalLasTwotWeeks } = totalLastTwoWeek();
+  const { totalThisWeek, totalLastWeek, totalLasTwotWeeks } =
+    totalLastTwoWeek();
   const maximum = totalLasTwotWeeks;
 
   const data = {
