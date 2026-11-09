@@ -187,3 +187,22 @@ export const statusActivityWeek = () => {
 
   return thisWeek > lastWeek ? "Higher" : "Lower";
 };
+
+// get total activity for the last two weeks
+export const totalLastTwoWeek = () => {
+  const totalThisWeek = getLastWeek()
+    .thisWeek.map((day) => day.length)
+    .reduce((acc, curr) => acc + curr, 0);
+
+  const totalLastWeek = getLastWeek()
+    .lastWeek.map((day) => day.length)
+    .reduce((acc, curr) => acc + curr, 0);
+
+  const lastTwoWeek = {
+    totalThisWeek: totalThisWeek,
+    totalLastWeek: totalLastWeek,
+    totalLasTwotWeek: totalThisWeek + totalLastWeek,
+  };
+
+  return lastTwoWeek;
+};
