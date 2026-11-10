@@ -11,6 +11,7 @@ import {
   totalActivityLastWeek,
   totalActivityThisWeek,
   totalLastTwoWeek,
+  weatherStatusModel,
 } from "../model/activityManager";
 import { formattedDuration } from "../helpers/format";
 
@@ -147,3 +148,8 @@ export const thisVsLastWeekActivityController = () => {
 
   dashboardView.thisVsLastActivityView(data);
 };
+
+// weather status
+export const weatherStatusController = () => {
+  weatherStatusModel()
+}

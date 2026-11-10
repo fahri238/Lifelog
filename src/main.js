@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // activities differences (week)
   dashboardController.activitiesDifferencesController()
+
+  // weather status
+  dashboardController.weatherStatusController()
   
   // activities this vs lat week chart
   dashboardController.thisVsLastWeekActivityController()
