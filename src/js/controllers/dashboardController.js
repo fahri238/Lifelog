@@ -11,8 +11,9 @@ import {
   totalActivityLastWeek,
   totalActivityThisWeek,
   totalLastTwoWeek,
+  weatherStatusModel,
 } from "../model/activityManager";
-import { formattedDuration } from "../helpers/format";
+import { getIcon } from "../helpers/weatherIconMapper";
 
 const activityData = state.activities;
 
@@ -146,4 +147,18 @@ export const thisVsLastWeekActivityController = () => {
   };
 
   dashboardView.thisVsLastActivityView(data);
+};
+
+// weather status
+export const weatherStatusController = async () => {
+  try {
+    const { isDay, code, temp, condition } = await weatherStatusModel();
+
+    // const weatherIcon = getIcon(code, isDay);
+    const weatherIcon = getIcon(code, isDay);
+
+    dashboardView.weatherStatusView(Math.trunc(temp), condition, weatherIcon);
+  } catch (error) {
+    console.error(error);
+  }
 };

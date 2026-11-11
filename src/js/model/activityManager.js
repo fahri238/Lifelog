@@ -206,3 +206,25 @@ export const totalLastTwoWeek = () => {
 
   return lastTwoWeeks;
 };
+
+export const weatherStatusModel = async () => {
+  try {
+    const baseUrl = import.meta.env.VITE_WEATHER_API_URL;
+    const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+
+    // api docs
+    // [base_url]key=[apiKey]&q=[City]
+
+    const res = await fetch(`${baseUrl}key=${apiKey}&q=Banjarmasin`);
+    const data = await res.json();
+
+    return {
+      isDay: data.current.is_day,
+      code: data.current.condition.code,
+      temp: data.current.temp_c,
+      condition: data.current.condition.text,
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
