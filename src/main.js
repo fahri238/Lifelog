@@ -5,9 +5,13 @@ import * as activitiesController from "./js/controllers/activitiesController";
 import * as sortingController from "./js/controllers/sortingController";
 // import * as dfa from "./js/controllers/dashboardController"
 import * as dashboardController from "./js/controllers/dashboardController";
+import * as settingController from "./js/controllers/settingsController"
 
-document.addEventListener("DOMContentLoaded", () => {
-  // DASHBOARD
+document.addEventListener("DOMContentLoaded", () => {  
+  // SIDEBAR
+  sidebarController.setFocusMenuController();
+  
+  // DASHBOARD MENU
   // list of activities
   dashboardController.listOfActivityController();
   dashboardController.sortingActivityList();
@@ -41,19 +45,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // activities this vs lat week chart
   dashboardController.thisVsLastWeekActivityController()
 
-  // SIDEBAR
-  sidebarController.setFocusMenuController();
-
-  // ADD ACTIVITY
+  // ADD ACTIVITY MENU
   addActivityController.livePreviewController();
   addActivityController.addActivityController();
 
-  // activties
+  // ACTIVTIES MENU
   activitiesController.detailActivityController();
   activitiesController.renderActivityList();
   activitiesController.editActivityController();
   activitiesController.deleteActivityController();
   activitiesController.categoriesController();
+
+  // SETTINGS MENU
+  settingController.userSettingController();
 
   // sorting
   sortingController.sortingDefaultController();
