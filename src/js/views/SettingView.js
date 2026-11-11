@@ -15,7 +15,6 @@ class SettingsView {
     const btnSetting = document.querySelector(".btn-setting");
 
     btnSetting.addEventListener("click", () => {
-      console.log("test");
       if (userNameForm.value.length === 0 || userRoleForm.value.length === 0) {
         errorMessage("Please fill in all required fields.");
       } else {

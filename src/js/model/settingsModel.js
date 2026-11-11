@@ -4,11 +4,11 @@ export const userProfileModel = (username, role) => {
     role: role,
   };
 
-  localStorage.setItem("user", JSON.stringify(userProfile));
+  localStorage.setItem("user-profile", JSON.stringify(userProfile));
 };
 
 export const getUserProfile = () => {
-  const data = JSON.parse(localStorage.getItem("user"));
+  const data = JSON.parse(localStorage.getItem("user-profile"));
   const defaultData = {username: "Your Name", role: "Your Role"};
   return data? data: defaultData;
 };
