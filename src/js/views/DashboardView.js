@@ -179,7 +179,7 @@ class DashboardViews {
 
   displayamount(actvitiesDay, index) {
     const bars = document.querySelectorAll(".bar");
-    const toolTip = document.getElementById("tooltip"); 
+    const toolTip = document.getElementById("tooltip");
 
     bars[index].addEventListener("mouseenter", (e) => {
       toolTip.textContent = actvitiesDay;
@@ -205,8 +205,8 @@ class DashboardViews {
   activitiesDifferencesView(data) {
     const donutChart = document.querySelector(".summary__donut-chart");
     const tooltipTotals = document.getElementById("tooltip-donut-chart");
-    const totalThisWeek =  document.getElementById("this-week-donut")
-    const totalLastWeek =  document.getElementById("last-week-donut")
+    const totalThisWeek = document.getElementById("this-week-donut");
+    const totalLastWeek = document.getElementById("last-week-donut");
 
     donutChart.style.setProperty("--persen", `${data.thisActivityPersen}`);
 
@@ -264,6 +264,21 @@ class DashboardViews {
       btn.classList.remove("btn-category-focus"),
     );
     categoryFocus.classList.add("btn-category-focus");
+  }
+
+  weatherStatusView(temp, condition, weatherIcon) {
+    const weatherIconEl = document.querySelector(".weather-icon");
+    const weatherTemp = document.querySelector(".weather-status");
+    const weatherToday = document.querySelector(".weather-today");
+
+    // change the icon
+    const currentIcon = [...weatherIconEl.classList].at(-1);
+    weatherIconEl.classList.remove(currentIcon);
+    weatherIconEl.classList.add(weatherIcon);
+
+    // change the temperature and the condition description
+    weatherTemp.textContent = `${temp}°`;
+    weatherToday.textContent = condition;
   }
 }
 
