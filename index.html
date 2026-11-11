@@ -29,7 +29,7 @@
       </div>
       <ul class="menus">
         <li>
-          <a href="#dashboard" class="menu menu__focus">
+          <a href="#dashboard" class="menu">
             <!-- <i class="bi bi-grid-1x2 menu__icon"></i> -->
             <i class="bi bi-grid-1x2-fill menu__icon menu__icon--active"></i>
             Dashboard</a
@@ -50,7 +50,7 @@
           >
         </li>
         <li>
-          <a href="#settings" class="menu">
+          <a href="#settings" class="menu menu__focus">
             <i class="bi bi-gear menu__icon"></i>
             <!-- <i class="bi bi-gear-fill menu__icon"></i> -->
             Settings</a
@@ -60,14 +60,14 @@
       <div class="profile">
         <i class="bi bi-person-circle"></i>
         <div class="bio">
-          <h3>Fahri Ilmi</h3>
-          <span>Frontend Web Developer</span>
+          <h3 class="user-name-bio">Your Name</h3>
+          <span class="role-bio">Role</span>
         </div>
       </div>
     </aside>
 
     <!-- content -->
-    <section id="dashboard" class="section-dashboard section-container">
+    <section id="dashboard" class="section-dashboard section-container hidden">
       <div class="section__header">
         <h2 class="title">Dashboard</h2>
 
@@ -561,7 +561,7 @@
       </div>
     </section>
 
-    <section id="settings" class="section-settings section-container hidden">
+    <section id="settings" class="section-settings section-container">
       <div class="section__header">
         <h2 class="title">Settings & Preferences</h2>
       </div>
@@ -580,7 +580,7 @@
               <input
                 type="text"
                 id="user-name"
-                value="Fahri Ilmi"
+                placeholder="Full name..."
                 class="setting-input"
               />
 
@@ -588,7 +588,7 @@
               <input
                 type="text"
                 id="user-role"
-                value="Frontend Web Developer"
+                placeholder="Role e.g Web Developer"
                 class="setting-input"
               />
             </div>
