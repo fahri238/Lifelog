@@ -400,7 +400,6 @@
                   name="activity-category"
                   required
                 >
-                  <option value="" disabled></option>
                   <option value="" disabled selected>
                     Select a category...
                   </option>
@@ -633,19 +632,19 @@
           <p class="setting-card__desc">Customize your activity tags.</p>
 
           <div class="category-badges-list">
-            <span class="badge-setting badge--work"
+            <span class="badge-setting badge--work badge-color-1"
               >Work <i class="bi bi-x"></i
             ></span>
-            <span class="badge-setting badge--study"
+            <span class="badge-setting badge--study badge-color-2"
               >Study <i class="bi bi-x"></i
             ></span>
-            <span class="badge-setting badge--exercise"
+            <span class="badge-setting badge--exercise badge-color-3"
               >Exercise <i class="bi bi-x"></i
             ></span>
-            <span class="badge-setting badge--social"
+            <span class="badge-setting badge--social badge-color-4"
               >Social <i class="bi bi-x"></i
             ></span>
-            <span class="badge-setting badge--hobby"
+            <span class="badge-setting badge--hobby badge-color-5"
               >Hobby <i class="bi bi-x"></i
             ></span>
           </div>
@@ -654,9 +653,9 @@
             <input
               type="text"
               placeholder="New category name..."
-              class="setting-input"
+              class="setting-input input-category"
             />
-            <button class="btn-setting btn-setting--outline">
+            <button class="btn-setting btn-add-category btn-setting--outline">
               <i class="bi bi-plus"></i> Add
             </button>
           </div>
@@ -713,7 +712,7 @@
         </div>
 
         <div class="form-group">
-          <label for="activity-category">Category</label>
+          <label for="activity-category">Category</label>     
           <div class="input-wrapper">
             <i class="bi bi-tags input-icon"></i>
             <select
