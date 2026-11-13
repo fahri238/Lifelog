@@ -62,15 +62,7 @@ class DashboardViews {
       const selectedActivity = e.target.closest(".activity");
       if (!selectedActivity) return;
 
-      sidebarView.menusEl.forEach((menu) =>
-        menu.classList.remove("menu__focus"),
-      );
-      this._activityMenu.classList.add("menu__focus");
-
-      sidebarView.contentsEl.forEach((content) =>
-        content.classList.add("hidden"),
-      );
-      this._activityContent.classList.remove("hidden");
+      this._moveToActivitiesMenu();
 
       handler(selectedActivity.id);
     });
@@ -254,6 +246,11 @@ class DashboardViews {
   ) {
     sidebarView.menusEl.forEach((menu) => menu.classList.remove("menu__focus"));
     this._activityMenu.classList.add("menu__focus");
+
+    const dashboardIcon = document.querySelector(".bi-grid-1x2-fill");
+    const activitiesIcon = document.querySelector(".bi-clipboard");
+    dashboardIcon.classList.replace("bi-grid-1x2-fill", "bi-grid-1x2");
+    activitiesIcon.classList.replace("bi-clipboard", "bi-clipboard-fill");
 
     sidebarView.contentsEl.forEach((content) =>
       content.classList.add("hidden"),
