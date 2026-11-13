@@ -705,24 +705,25 @@ ul.row-container::-webkit-scrollbar {
   letter-spacing: 0.5px;
 }
 
-.badge--work {
+.badge--work, .badge-color-1{
   background-color: #f0ebff;
   color: var(--color-primary-darker);
 }
-.badge--study {
+.badge--study, .badge-color-2 {
   background-color: #e3f2fd;
   color: #1565c0;
 }
-.badge--exercise {
+.badge--exercise, .badge-color-3 {
   background-color: #e8f5e9;
   color: #2e7d32;
 }
 
-.badge--social {
+.badge--social, .badge-color-4{
   background-color: #fff3e0;
   color: #e65100;
-} /* Nuansa Oranye */
-.badge--hobby {
+}
+
+.badge--hobby, .badge-color-5 {
   background-color: #fce4ec;
   color: #c2185b;
 }
