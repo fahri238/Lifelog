@@ -14,11 +14,11 @@ class SidebarView {
       selectEl.classList.add("menu__focus");
 
       const selectedIcon = selectEl.querySelector(".menu__icon");
-      const classIcon = this._getBaseIcon(selectedIcon);
+      const classIcon = this.getBaseIcon(selectedIcon);
       const classIconActive = `${classIcon}-fill`;
 
       this.iconsEl.forEach((icon) => {
-        const baseIcon = this._getBaseIcon(icon);
+        const baseIcon = this.getBaseIcon(icon);
         const activeIcon = `${baseIcon}-fill`;
         icon.classList.replace(activeIcon, baseIcon);
       });
@@ -33,7 +33,7 @@ class SidebarView {
     });
   }
 
-  _getBaseIcon(iconEl) {
+  getBaseIcon(iconEl) {
     return [...iconEl.classList].at(0).includes("-fill")
       ? [...iconEl.classList].at(0).replace("-fill", "")
       : [...iconEl.classList].at(0);
