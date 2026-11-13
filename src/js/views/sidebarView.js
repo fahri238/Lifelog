@@ -14,19 +14,14 @@ class SidebarView {
       selectEl.classList.add("menu__focus");
 
       const selectedIcon = selectEl.querySelector(".menu__icon");
-      const classIcon = [...selectedIcon.classList].at(0).includes("-fill")
-        ? [...selectedIcon.classList].at(0).replace("-fill", "")
-        : [...selectedIcon.classList].at(0);
+      const classIcon = this._getBaseIcon(selectedIcon);
       const classIconActive = `${classIcon}-fill`;
 
       this.iconsEl.forEach((icon) => {
-        const baseIcon = [...icon.classList].at(0).includes("-fill")
-          ? [...icon.classList].at(0).replace("-fill", "")
-          : [...icon.classList].at(0);
+        const baseIcon = this._getBaseIcon(icon);
         const activeIcon = `${baseIcon}-fill`;
         icon.classList.replace(activeIcon, baseIcon);
       });
-
       selectedIcon.classList.replace(classIcon, classIconActive);
 
       this.contentsEl.forEach((content) => content.classList.add("hidden"));
@@ -36,6 +31,12 @@ class SidebarView {
       const targetContent = document.querySelector(targetId);
       if (targetContent) targetContent.classList.remove("hidden");
     });
+  }
+
+  _getBaseIcon(iconEl) {
+    return [...iconEl.classList].at(0).includes("-fill")
+      ? [...iconEl.classList].at(0).replace("-fill", "")
+      : [...iconEl.classList].at(0);
   }
 }
 
