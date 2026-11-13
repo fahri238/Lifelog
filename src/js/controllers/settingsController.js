@@ -9,3 +9,7 @@ export const userSettingController = () => {
   const {username, role} = getUserProfile();
   SettingView.userSettingView(username, role);
 };
+
+export const addCategoryController = () => {
+  SettingView.addCategoryView()
+}

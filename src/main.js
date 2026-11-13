@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // SETTINGS MENU
   settingController.userSettingController();
+  settingController.addCategoryController();
 
   // sorting
   sortingController.sortingDefaultController();
