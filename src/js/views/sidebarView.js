@@ -14,16 +14,20 @@ class SidebarView {
       selectEl.classList.add("menu__focus");
 
       const selectedIcon = selectEl.querySelector(".menu__icon");
-      const classIcon = [...selectedIcon.classList].at(0);
+      const classIcon = [...selectedIcon.classList].at(0).includes("-fill")
+        ? [...selectedIcon.classList].at(0).replace("-fill", "")
+        : [...selectedIcon.classList].at(0);
       const classIconActive = `${classIcon}-fill`;
-      const classIcons = [...this.iconsEl].map((iconEl) =>
-        [...iconEl.classList].at(0),
-      );
 
-      this.iconsEl.forEach((icon, i) => {
-        console.log(classIcons[3])
-        return icon.classList.replace(classIcons[i] ,`${classIcons[i]}-fill`);
+      this.iconsEl.forEach((icon) => {
+        const baseIcon = [...icon.classList].at(0).includes("-fill")
+          ? [...icon.classList].at(0).replace("-fill", "")
+          : [...icon.classList].at(0);
+        const activeIcon = `${baseIcon}-fill`;
+        icon.classList.replace(activeIcon, baseIcon);
       });
+
+      selectedIcon.classList.replace(classIcon, classIconActive);
 
       this.contentsEl.forEach((content) => content.classList.add("hidden"));
       const targetId = selectEl.getAttribute("href");
