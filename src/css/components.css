@@ -317,7 +317,7 @@
 #this-week-donut,
 #last-week-donut {
   line-height: 2.2rem;
-  padding: 4px 8px; 
+  padding: 4px 8px;
   border-radius: 6px;
   border: 1px solid #fff;
 }
@@ -705,25 +705,25 @@ ul.row-container::-webkit-scrollbar {
   letter-spacing: 0.5px;
 }
 
-.badge--work, .badge-color-1{
+.badge--work {
   background-color: #f0ebff;
   color: var(--color-primary-darker);
 }
-.badge--study, .badge-color-2 {
+.badge--study {
   background-color: #e3f2fd;
   color: #1565c0;
 }
-.badge--exercise, .badge-color-3 {
+.badge--exercise {
   background-color: #e8f5e9;
   color: #2e7d32;
 }
 
-.badge--social, .badge-color-4{
+.badge--social {
   background-color: #fff3e0;
   color: #e65100;
 }
 
-.badge--hobby, .badge-color-5 {
+.badge--hobby {
   background-color: #fce4ec;
   color: #c2185b;
 }
