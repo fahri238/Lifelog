@@ -28,20 +28,8 @@ class SettingsView {
   }
 
   // MANAGE CATEGORIES
-  addCategoryView() {
-    const inputCategory = document.querySelector(".input-category");
-    const categoryListContainer = document.querySelector(
-      ".category-badges-list",
-    );
+  addCategoryView(handler) {
     const btnAddCategory = document.querySelector(".btn-add-category");
-
-    const inputSelectCategory = document.querySelector("#activity-category");
-    const editSelectCategory = document.querySelector(
-      "#activity-category-edit",
-    );
-
-    const activitiesCategories = document.querySelector(".category");
-
     const colors = [
       "badge-color-1",
       "badge-color-2",
@@ -49,37 +37,65 @@ class SettingsView {
       "badge-color-4",
       "badge-color-5",
     ];
-
     let initialColor = 5;
+
     btnAddCategory.addEventListener("click", () => {
+      const inputCategory = document.querySelector(".input-category");
       if (inputCategory.value.length === 0)
         return errorMessage("This field is required!");
 
       const colorGenerator =
         initialColor === 0 ? (initialColor = 4) : (initialColor -= 1);
 
-      const markupList = `
-        <span class="badge-setting ${colors[colorGenerator]}"
-        >${inputCategory.value} <i class="bi bi-x" ></i>
-        </span>
-        `;
+      const newCategory = inputCategory.value;
+      const badgeColor = colors[colorGenerator];
 
-      categoryListContainer.insertAdjacentHTML("afterbegin", markupList);
+      const categoryData = {
+        category: newCategory,
+        badgeColor: badgeColor,
+      };
 
-      const markupSelect = `
-      <option value="${inputCategory.value.toLowerCase()}">${inputCategory.value}</option>
-      `;
+      console.log(newCategory, badgeColor);
 
-      [inputSelectCategory, editSelectCategory].forEach((element) =>
-        element.insertAdjacentHTML("beforeend", markupSelect),
-      );
-
-      const markupCategories = `
-      <button class="${inputCategory.value.toLowerCase()}-category btn-category">${inputCategory.value}</button>
-      `;
-
-      activitiesCategories.insertAdjacentHTML("beforeend", markupCategories);
+      this.renderCategory(categoryData);
+      handler(inputCategory.value, colors[colorGenerator]);
     });
+  }
+
+  renderCategory(categoryData) {
+    const { category, badgeColor } = categoryData;
+
+    const categoryListContainer = document.querySelector(
+      ".category-badges-list",
+    );
+
+    const markupList = `
+      <span class="badge-setting ${badgeColor}"
+      >${category} <i class="bi bi-x" ></i>
+      </span>
+      `;
+
+    categoryListContainer.insertAdjacentHTML("afterbegin", markupList);
+
+    const inputSelectCategory = document.querySelector("#activity-category");
+    const editSelectCategory = document.querySelector(
+      "#activity-category-edit",
+    );
+    const activitiesCategories = document.querySelector(".category");
+
+    const markupSelect = `
+      <option value="${category.toLowerCase()}">${category}</option>
+      `;
+
+    [inputSelectCategory, editSelectCategory].forEach((element) =>
+      element.insertAdjacentHTML("beforeend", markupSelect),
+    );
+
+    const markupCategories = `
+      <button class="${category.toLowerCase()}-category btn-category">${category}</button>
+      `;
+
+    activitiesCategories.insertAdjacentHTML("beforeend", markupCategories);
   }
 }
 
