@@ -9,6 +9,18 @@ export const userProfileModel = (username, role) => {
 
 export const getUserProfile = () => {
   const data = JSON.parse(localStorage.getItem("user-profile"));
-  const defaultData = {username: "Your Name", role: "Your Role"};
-  return data? data: defaultData;
+  const defaultData = { username: "Your Name", role: "Your Role" };
+  return data ? data : defaultData;
+};
+
+export const addCategoryModel = (category, badgeColor) => {
+  const existingCategory =
+    JSON.parse(localStorage.getItem("new category")) || [];
+
+existingCategory.push({category: category, badgeColor: badgeColor})
+  return localStorage.setItem("new category", JSON.stringify(existingCategory));
+};
+
+export const getCategories = () => {
+  return JSON.parse(localStorage.getItem("new category")) || [];
 };
