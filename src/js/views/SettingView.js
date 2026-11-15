@@ -1,4 +1,8 @@
-import { errorMessage, succesMessage } from "../helpers/utils";
+import {
+  badgeColorGenerator,
+  errorMessage,
+  succesMessage,
+} from "../helpers/utils";
 
 class SettingsView {
   _usernameBio = document.querySelector(".user-name-bio");
@@ -30,35 +34,22 @@ class SettingsView {
   // MANAGE CATEGORIES
   addCategoryView(handler) {
     const btnAddCategory = document.querySelector(".btn-add-category");
-    const colors = [
-      "badge-color-1",
-      "badge-color-2",
-      "badge-color-3",
-      "badge-color-4",
-      "badge-color-5",
-    ];
-    let initialColor = 5;
 
     btnAddCategory.addEventListener("click", () => {
       const inputCategory = document.querySelector(".input-category");
       if (inputCategory.value.length === 0)
         return errorMessage("This field is required!");
 
-      const colorGenerator =
-        initialColor === 0 ? (initialColor = 4) : (initialColor -= 1);
-
       const newCategory = inputCategory.value;
-      const badgeColor = colors[colorGenerator];
+      const badgeColor = badgeColorGenerator();
 
       const categoryData = {
         category: newCategory,
         badgeColor: badgeColor,
       };
 
-      console.log(newCategory, badgeColor);
-
       this.renderCategory(categoryData);
-      handler(inputCategory.value, colors[colorGenerator]);
+      handler(newCategory, badgeColor);
     });
   }
 
@@ -81,21 +72,24 @@ class SettingsView {
     const editSelectCategory = document.querySelector(
       "#activity-category-edit",
     );
-    const activitiesCategories = document.querySelector(".category");
+
+    const selectCategory = document.querySelectorAll(".select-placeholder");
+
+    const activitiesCategories = document.querySelector(".all-category");
 
     const markupSelect = `
       <option value="${category.toLowerCase()}">${category}</option>
       `;
 
-    [inputSelectCategory, editSelectCategory].forEach((element) =>
-      element.insertAdjacentHTML("beforeend", markupSelect),
+    selectCategory.forEach((element) =>
+      element.insertAdjacentHTML("afterend", markupSelect),
     );
 
     const markupCategories = `
       <button class="${category.toLowerCase()}-category btn-category">${category}</button>
       `;
 
-    activitiesCategories.insertAdjacentHTML("beforeend", markupCategories);
+    activitiesCategories.insertAdjacentHTML("afterend", markupCategories);
   }
 }
 
