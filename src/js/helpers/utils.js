@@ -51,3 +51,21 @@ export const errorMessage = (message) => {
     toastParentEl.classList.toggle("fade-out");
   }, 3000);
 };
+
+
+let initialColor = 5;
+export const badgeColorGenerator = () => {
+  const colors = [
+    "badge--work",
+    "badge--study",
+    "badge--exercise",
+    "badge--social",
+    "badge--hobby",
+  ];
+
+  const colorGenerator =
+    initialColor === 0 ? (initialColor = 4) : (initialColor -= 1);
+
+  return colors[colorGenerator];
+};
+
