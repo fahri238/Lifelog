@@ -1,7 +1,6 @@
 import {
   formattedCreatedAt,
   formattedDate,
-  getTimeNow,
 } from "../helpers/format.js";
 import * as activityManager from "../model/activityManager.js";
 import FormView from "./FormView.js";
