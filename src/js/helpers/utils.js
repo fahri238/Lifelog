@@ -53,7 +53,7 @@ export const errorMessage = (message) => {
 };
 
 
-let initialColor = 5;
+let initialColor = -1;
 export const badgeColorGenerator = () => {
   const colors = [
     "badge--work",
@@ -64,8 +64,8 @@ export const badgeColorGenerator = () => {
   ];
 
   const colorGenerator =
-    initialColor === 0 ? (initialColor = 4) : (initialColor -= 1);
-
+    initialColor === 4 ? (initialColor = 0) : (initialColor += 1);
+    
   return colors[colorGenerator];
 };
 
