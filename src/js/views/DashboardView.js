@@ -1,5 +1,5 @@
 import { formattedCreatedAt } from "../helpers/format";
-import sidebarView, * as SideBar from "./SidebarView";
+import sidebarView, * as SideBar from "./sidebarView";
 
 class DashboardViews {
   // list of activities

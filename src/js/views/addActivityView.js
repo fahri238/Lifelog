@@ -1,4 +1,4 @@
-import { badgeColorGenerator, getTodayDateString } from "../helpers/utils";
+import { formattedString } from "../helpers/utils";
 import { DAILY_GOAL } from "../config";
 import FormView from "./FormView";
 
@@ -33,6 +33,21 @@ class AddActivityViews extends FormView {
     );
   }
 
+  generateColorBadge(selectedCategory) {
+    const badgesClass = document.querySelectorAll(".badge-setting");
+
+    const findEl = [...badgesClass].find(
+      (element) =>
+        formattedString(element.textContent) ===
+        formattedString(selectedCategory),
+    );
+
+    const getClassBadge = findEl
+      ? findEl.className.split(" ").at(1)
+      : "badge--work";
+    return getClassBadge;
+  }
+
   renderLivePreview(handlerTime, newCategoryData) {
     this._inputTitle.addEventListener("input", (e) => {
       this._previewTitle.textContent =
@@ -44,20 +59,7 @@ class AddActivityViews extends FormView {
         this._inputCategory.options[this._inputCategory.selectedIndex].text;
       this._previewCategory.textContent = getCategory;
 
-      const categories = [...document.querySelectorAll(".base-category")].map(
-        (category) => category.textContent,
-      );
-
-      if (categories.includes(getCategory)) {
-        this._previewCategory.className = `label badge--${this._inputCategory.value}`;
-        return;
-      }
-
-      const { category, badgeColor } = newCategoryData.find(
-        (item) => item.category === getCategory,
-      );
-
-      this._previewCategory.className = `label ${badgeColor}`;
+      this._previewCategory.className = `label ${this.generateColorBadge(getCategory)}`;
     });
 
     [this._inputStartTime, this._inputEndTime].forEach((input) => {

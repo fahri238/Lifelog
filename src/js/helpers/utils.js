@@ -52,9 +52,8 @@ export const errorMessage = (message) => {
   }, 3000);
 };
 
-
-let initialColor = -1;
 export const badgeColorGenerator = () => {
+  const lengtOfCategory = document.querySelectorAll(".badge-setting").length;
   const colors = [
     "badge--work",
     "badge--study",
@@ -63,9 +62,15 @@ export const badgeColorGenerator = () => {
     "badge--hobby",
   ];
 
-  const colorGenerator =
-    initialColor === 4 ? (initialColor = 0) : (initialColor += 1);
-    
-  return colors[colorGenerator];
+  const colorIndex = lengtOfCategory % 5;
+
+  return colors[colorIndex];
 };
 
+export const uppercaseAtFirst = (text) => {
+  return text.split("")[0].toUpperCase() + text.slice(1).toLowerCase();
+};
+
+export const formattedString = (text) => {
+  return text.toLowerCase().trim();
+};

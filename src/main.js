@@ -49,6 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
   addActivityController.livePreviewController();
   addActivityController.addActivityController();
 
+  // SETTINGS MENU
+  settingController.userSettingController();
+  settingController.addCategoryController();
+
   // ACTIVTIES MENU
   activitiesController.detailActivityController();
   activitiesController.renderActivityList();
@@ -56,9 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
   activitiesController.deleteActivityController();
   activitiesController.categoriesController();
 
-  // SETTINGS MENU
-  settingController.userSettingController();
-  settingController.addCategoryController();
 
   // sorting
   sortingController.sortingDefaultController();
