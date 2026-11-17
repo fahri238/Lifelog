@@ -1,11 +1,8 @@
-import {
-  formattedCreatedAt,
-  formattedDate,
-  getTimeNow,
-} from "../helpers/format.js";
+import { formattedCreatedAt, formattedDate } from "../helpers/format.js";
 import * as activityManager from "../model/activityManager.js";
 import FormView from "./FormView.js";
 import {
+  badgeColorGenerator,
   errorMessage,
   showDeleteValidation,
   succesMessage,
@@ -47,7 +44,7 @@ class ActivitiesViews extends FormView {
     this._detailContainer.dataset.id = activity.id;
 
     this._detailCategory.textContent = activity.category;
-    this._detailCategory.className = `badge-category badge--${activity.category}`;
+    this._detailCategory.className = `badge-category ${this.generateColorBadge(activity.category)}`;
     this._detailTitle.textContent = activity.title;
     this._detailDate.textContent = formattedDate(activity.date);
     this._detailDuration.textContent = `${activity.startTime} - ${activity.endTime}`;
@@ -96,12 +93,24 @@ class ActivitiesViews extends FormView {
     `;
   }
 
+  generateColorBadge(activityCategory) {
+    const badgesClass = document.querySelectorAll(".badge-setting");
+
+    const findEl = [...badgesClass].find(
+      (element) =>
+        element.textContent.toLowerCase().trim() === activityCategory,
+    );
+
+    const getClassBadge = findEl? findEl.className.split(" ").at(1) : 'badge--work'
+    return getClassBadge;
+  }
+
   activityMarkup(activiy) {
     return `
     <li class="list-row" data-id="${activiy.id}">
       <div class="row-info">
         <h4 class="shorter-text">${activiy.title}</h4> 
-        <span class="label badge--${activiy.category}">${activiy.category}</span>
+        <span class="label ${this.generateColorBadge(activiy.category)}">${activiy.category}</span>
       </div>
       <div class="row-date">
         <i class="bi bi-calendar3"></i>

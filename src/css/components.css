@@ -317,7 +317,7 @@
 #this-week-donut,
 #last-week-donut {
   line-height: 2.2rem;
-  padding: 4px 8px; 
+  padding: 4px 8px;
   border-radius: 6px;
   border: 1px solid #fff;
 }
@@ -705,24 +705,25 @@ ul.row-container::-webkit-scrollbar {
   letter-spacing: 0.5px;
 }
 
-.badge--work {
+.badge--work, .color-badge--1 {
   background-color: #f0ebff;
   color: var(--color-primary-darker);
 }
-.badge--study {
+.badge--study, .color-badge--2 {
   background-color: #e3f2fd;
   color: #1565c0;
 }
-.badge--exercise {
+.badge--exercise, .color-badge--3 {
   background-color: #e8f5e9;
   color: #2e7d32;
 }
 
-.badge--social {
+.badge--social, .color-badge--4 {
   background-color: #fff3e0;
   color: #e65100;
-} /* Nuansa Oranye */
-.badge--hobby {
+}
+
+.badge--hobby, .color-badge--5 {
   background-color: #fce4ec;
   color: #c2185b;
 }

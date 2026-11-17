@@ -51,3 +51,26 @@ export const errorMessage = (message) => {
     toastParentEl.classList.toggle("fade-out");
   }, 3000);
 };
+
+export const badgeColorGenerator = () => {
+  const lengtOfCategory = document.querySelectorAll(".badge-setting").length;
+  const colors = [
+    "badge--work",
+    "badge--study",
+    "badge--exercise",
+    "badge--social",
+    "badge--hobby",
+  ];
+
+  const colorIndex = lengtOfCategory % 5;
+
+  return colors[colorIndex];
+};
+
+export const uppercaseAtFirst = (text) => {
+  return text.split("")[0].toUpperCase() + text.slice(1).toLowerCase();
+};
+
+export const formattedString = (text) => {
+  return text.toLowerCase().trim();
+};

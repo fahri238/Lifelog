@@ -275,11 +275,11 @@
             <button class="all-category btn-category btn-category-focus">
               All
             </button>
-            <button class="work-category btn-category">Work</button>
-            <button class="study-category btn-category">Study</button>
-            <button class="exercise-category btn-category">Exercise</button>
-            <button class="social-category btn-category">Social</button>
             <button class="hobby-category btn-category">Hobby</button>
+            <button class="social-category btn-category">Social</button>
+            <button class="exercise-category btn-category">Exercise</button>
+            <button class="study-category btn-category">Study</button>
+            <button class="work-category btn-category">Work</button>
           </div>
           <div class="sorting">
             <select name="sort" id="sort">
@@ -400,15 +400,16 @@
                   name="activity-category"
                   required
                 >
-                  <option value="" disabled></option>
-                  <option value="" disabled selected>
+                  <option value="" disabled selected class="select-placeholder">
                     Select a category...
                   </option>
-                  <option value="work">Work</option>
-                  <option value="study">Study</option>
-                  <option value="exercise">Exercise</option>
-                  <option value="social">Social</option>
-                  <option value="hobby">Hobby</option>
+                  <option value="hobby" class="base-category">Hobby</option>
+                  <option value="social" class="base-category">Social</option>
+                  <option value="exercise" class="base-category">
+                    Exercise
+                  </option>
+                  <option value="study" class="base-category">Study</option>
+                  <option value="work" class="base-category">Work</option>
                 </select>
               </div>
             </div>
@@ -633,20 +634,20 @@
           <p class="setting-card__desc">Customize your activity tags.</p>
 
           <div class="category-badges-list">
-            <span class="badge-setting badge--work"
-              >Work <i class="bi bi-x"></i
+            <span class="badge-setting badge--hobby .color-badge--1"
+              >Hobby <i class="bi bi-x"></i
             ></span>
-            <span class="badge-setting badge--study"
-              >Study <i class="bi bi-x"></i
-            ></span>
-            <span class="badge-setting badge--exercise"
-              >Exercise <i class="bi bi-x"></i
-            ></span>
-            <span class="badge-setting badge--social"
+            <span class="badge-setting badge--social .color-badge--2"
               >Social <i class="bi bi-x"></i
             ></span>
-            <span class="badge-setting badge--hobby"
-              >Hobby <i class="bi bi-x"></i
+            <span class="badge-setting badge--exercise .color-badge--3"
+              >Exercise <i class="bi bi-x"></i
+            ></span>
+            <span class="badge-setting badge--study .color-badge--4"
+              >Study <i class="bi bi-x"></i
+            ></span>
+            <span class="badge-setting badge--work .color-badge--5"
+              >Work <i class="bi bi-x"></i
             ></span>
           </div>
 
@@ -654,9 +655,9 @@
             <input
               type="text"
               placeholder="New category name..."
-              class="setting-input"
+              class="setting-input input-category"
             />
-            <button class="btn-setting btn-setting--outline">
+            <button class="btn-setting btn-add-category btn-setting--outline">
               <i class="bi bi-plus"></i> Add
             </button>
           </div>
@@ -721,12 +722,14 @@
               name="activity-category"
               required
             >
-              <option value="" disabled selected>Select a category...</option>
-              <option value="work">Work</option>
-              <option value="study">Study</option>
-              <option value="exercise">Exercise</option>
-              <option value="social">Social</option>
+              <option value="" disabled selected class="select-placeholder">
+                Select a category...
+              </option>
               <option value="hobby">Hobby</option>
+              <option value="social">Social</option>
+              <option value="exercise">Exercise</option>
+              <option value="study">Study</option>
+              <option value="work">Work</option>
             </select>
           </div>
         </div>

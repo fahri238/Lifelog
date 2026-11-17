@@ -1,16 +1,15 @@
-import AddActivityView from "../views/AddActivityView";
+import addActivityView from "../views/addActivityView";
 import * as activityManager from "../model/activityManager";
 import activitiesView from "../views/activitiesView";
-import { saveDataForm, getActivityData, state } from "../model/state";
-import { GOAL_STATES } from "../config";
-import { editActivityController } from "./activitiesController";
+import { saveDataForm } from "../model/state";
+import { getCategories } from "../model/settingsModel";
 
 export const livePreviewController = () => {
-  AddActivityView.renderLivePreview(activityManager.countTimeDifference);
+  addActivityView.renderLivePreview(activityManager.countTimeDifference);
 };
 
 export const addActivityController = () => {
-  AddActivityView.formData((data) => {
+  addActivityView.formData((data) => {
     activityManager.countTimeDifference;
     saveDataForm(data);
 
@@ -18,13 +17,11 @@ export const addActivityController = () => {
     activitiesView.detailValue(data);
 
     const updateData = activityManager.processdailyCounter();
-    console.log(updateData.currentCount, updateData.stateDailyGoal)
-    AddActivityView.renderDailyGoal(
+    addActivityView.renderDailyGoal(
       updateData.currentCount,
       updateData.stateDailyGoal,
     );
-
   });
 
-  AddActivityView.resetForm();
+  addActivityView.resetForm();
 };

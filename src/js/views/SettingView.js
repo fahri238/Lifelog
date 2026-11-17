@@ -1,9 +1,16 @@
-import { errorMessage, succesMessage } from "../helpers/utils";
+import {
+  badgeColorGenerator,
+  errorMessage,
+  formattedString,
+  succesMessage,
+  uppercaseAtFirst,
+} from "../helpers/utils";
 
 class SettingsView {
   _usernameBio = document.querySelector(".user-name-bio");
   _roleBio = document.querySelector(".role-bio");
 
+  // USER PROFILE
   userSettingView(username, role) {
     this._usernameBio.textContent = username;
     this._roleBio.textContent = role;
@@ -24,6 +31,71 @@ class SettingsView {
         succesMessage("Form submitted successfully!");
       }
     });
+  }
+
+  // MANAGE CATEGORIES
+  addCategoryView(handler) {
+    const btnAddCategory = document.querySelector(".btn-add-category");
+
+    btnAddCategory.addEventListener("click", () => {
+      const inputCategory = document.querySelector(".input-category");
+      const allCategories = [...document.querySelectorAll(".badge-setting")].map(
+        (element) => formattedString(element.textContent),
+      );
+
+      if (inputCategory.value.length === 0)
+        return errorMessage("This field is required!");
+
+      const newCategory = uppercaseAtFirst(inputCategory.value);
+      const badgeColor = badgeColorGenerator();
+
+      if (allCategories.includes(formattedString(newCategory)))
+        return errorMessage(`this ${newCategory} category already added!`);
+      
+      if (newCategory.split(" ").length !== 1) return errorMessage("The category should contains 1 word!");
+
+      const categoryData = {
+        category: newCategory,
+        badgeColor: badgeColor,
+      };
+
+      this.renderCategory(categoryData);
+      handler(newCategory, badgeColor);
+    });
+  }
+
+  renderCategory(categoryData) {
+    const { category, badgeColor } = categoryData;
+
+    const categoryListContainer = document.querySelector(
+      ".category-badges-list",
+    );
+
+    const markupList = `
+      <span class="badge-setting ${badgeColor}"
+      >${category} <i class="bi bi-x" ></i>
+      </span>
+      `;
+
+    categoryListContainer.insertAdjacentHTML("afterbegin", markupList);
+
+    const selectCategory = document.querySelectorAll(".select-placeholder");
+
+    const activitiesCategories = document.querySelector(".all-category");
+
+    const markupSelect = `
+      <option value="${category.toLowerCase()}">${category}</option>
+      `;
+
+    selectCategory.forEach((element) =>
+      element.insertAdjacentHTML("afterend", markupSelect),
+    );
+
+    const markupCategories = `
+      <button class="${category.toLowerCase()}-category btn-category">${category}</button>
+      `;
+
+    activitiesCategories.insertAdjacentHTML("afterend", markupCategories);
   }
 }
 
