@@ -1,7 +1,9 @@
 import {
   badgeColorGenerator,
   errorMessage,
+  formattedString,
   succesMessage,
+  uppercaseAtFirst,
 } from "../helpers/utils";
 
 class SettingsView {
@@ -37,11 +39,20 @@ class SettingsView {
 
     btnAddCategory.addEventListener("click", () => {
       const inputCategory = document.querySelector(".input-category");
+      const allCategories = [...document.querySelectorAll(".badge-setting")].map(
+        (element) => formattedString(element.textContent),
+      );
+
       if (inputCategory.value.length === 0)
         return errorMessage("This field is required!");
 
-      const newCategory = inputCategory.value;
+      const newCategory = uppercaseAtFirst(inputCategory.value);
       const badgeColor = badgeColorGenerator();
+
+      if (allCategories.includes(formattedString(newCategory)))
+        return errorMessage(`this ${newCategory} category already added!`);
+      
+      if (newCategory.split(" ").length !== 1) return errorMessage("The category should contains 1 word!");
 
       const categoryData = {
         category: newCategory,
@@ -67,11 +78,6 @@ class SettingsView {
       `;
 
     categoryListContainer.insertAdjacentHTML("afterbegin", markupList);
-
-    const inputSelectCategory = document.querySelector("#activity-category");
-    const editSelectCategory = document.querySelector(
-      "#activity-category-edit",
-    );
 
     const selectCategory = document.querySelectorAll(".select-placeholder");
 
