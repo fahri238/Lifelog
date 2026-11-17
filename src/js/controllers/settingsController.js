@@ -22,3 +22,7 @@ export const addCategoryController = () => {
     return addCategoryModel(newCategory, colorBadge);
   });
 };
+
+export const editCategoryController = () => {
+  SettingView.editCategoryView();
+};

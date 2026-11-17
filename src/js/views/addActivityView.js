@@ -48,7 +48,7 @@ class AddActivityViews extends FormView {
     return getClassBadge;
   }
 
-  renderLivePreview(handlerTime, newCategoryData) {
+  renderLivePreview(handlerTime) {
     this._inputTitle.addEventListener("input", (e) => {
       this._previewTitle.textContent =
         this._inputTitle.value.trim() || "Activity Title...";

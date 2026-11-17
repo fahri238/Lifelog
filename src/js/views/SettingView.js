@@ -10,6 +10,12 @@ class SettingsView {
   _usernameBio = document.querySelector(".user-name-bio");
   _roleBio = document.querySelector(".role-bio");
 
+  _inputCategory = document.querySelector(".input-category");
+  _categoryListContainer = document.querySelector(".category-badges-list");
+  _allCategories;
+  _btnAddAction = document.querySelectorAll(".btn-action-category")[0];
+  _btnEditAction = document.querySelectorAll(".btn-action-category")[1];
+
   // USER PROFILE
   userSettingView(username, role) {
     this._usernameBio.textContent = username;
@@ -38,21 +44,21 @@ class SettingsView {
     const btnAddCategory = document.querySelector(".btn-add-category");
 
     btnAddCategory.addEventListener("click", () => {
-      const inputCategory = document.querySelector(".input-category");
-      const allCategories = [...document.querySelectorAll(".badge-setting")].map(
-        (element) => formattedString(element.textContent),
-      );
-
-      if (inputCategory.value.length === 0)
+      if (this._inputCategory.value.length === 0)
         return errorMessage("This field is required!");
 
-      const newCategory = uppercaseAtFirst(inputCategory.value);
+      this._allCategories = [
+        ...document.querySelectorAll(".badge-setting"),
+      ].map((element) => formattedString(element.textContent));
+
+      const newCategory = uppercaseAtFirst(this._inputCategory.value);
       const badgeColor = badgeColorGenerator();
 
-      if (allCategories.includes(formattedString(newCategory)))
+      if (this._allCategories.includes(formattedString(newCategory)))
         return errorMessage(`this ${newCategory} category already added!`);
-      
-      if (newCategory.split(" ").length !== 1) return errorMessage("The category should contains 1 word!");
+
+      if (newCategory.split(" ").length !== 1)
+        return errorMessage("The category should contains 1 word!");
 
       const categoryData = {
         category: newCategory,
@@ -64,12 +70,38 @@ class SettingsView {
     });
   }
 
+  // edit category
+  editCategoryView() {
+    const cardCategoryContainer = document.querySelector(".category-card");
+    cardCategoryContainer.addEventListener("click", (e) => {
+      const selectedCategory = e.target.closest(".badge-setting");
+
+      if (!selectedCategory) {
+        this._inputCategory.value = "";
+        this._btnAddAction.classList.remove("hidden");
+        this._btnEditAction.classList.add("hidden");
+        return;
+      }
+
+      this._inputCategory.value = selectedCategory.textContent;
+      this._renderBtnAction();
+    });
+  }
+
+  _renderBtnAction() {
+    this._allCategories = [...document.querySelectorAll(".badge-setting")].map(
+      (element) => formattedString(element.textContent),
+    );
+
+    const selectedCategory = this._inputCategory.value.trim().toLowerCase();
+    if (this._allCategories.includes(selectedCategory)) {
+      (this._btnAddAction.classList.add("hidden"),
+        this._btnEditAction.classList.remove("hidden"));
+    }
+  }
+
   renderCategory(categoryData) {
     const { category, badgeColor } = categoryData;
-
-    const categoryListContainer = document.querySelector(
-      ".category-badges-list",
-    );
 
     const markupList = `
       <span class="badge-setting ${badgeColor}"
@@ -77,7 +109,7 @@ class SettingsView {
       </span>
       `;
 
-    categoryListContainer.insertAdjacentHTML("afterbegin", markupList);
+    this._categoryListContainer.insertAdjacentHTML("afterbegin", markupList);
 
     const selectCategory = document.querySelectorAll(".select-placeholder");
 
