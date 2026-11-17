@@ -72,19 +72,20 @@ class SettingsView {
 
   // edit category
   editCategoryView() {
-    const cardCategoryContainer = document.querySelector(".category-card");
-    cardCategoryContainer.addEventListener("click", (e) => {
+    this._categoryListContainer.addEventListener("click", (e) => {
       const selectedCategory = e.target.closest(".badge-setting");
 
-      if (!selectedCategory) {
-        this._inputCategory.value = "";
-        this._btnAddAction.classList.remove("hidden");
-        this._btnEditAction.classList.add("hidden");
-        return;
-      }
+      if (!selectedCategory) return;
 
       this._inputCategory.value = selectedCategory.textContent;
       this._renderBtnAction();
+    });
+
+    const btnCancel = document.querySelector(".btn-cancel-category");
+    btnCancel.addEventListener("click", () => {
+      this._inputCategory.value = "";
+      this._btnAddAction.classList.remove("hidden");
+      this._btnEditAction.classList.add("hidden");
     });
   }
 
