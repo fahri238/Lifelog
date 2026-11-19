@@ -66,7 +66,7 @@ class SettingsView {
 
       this.renderCategory(categoryData);
       handler(newCategory, badgeColor);
-      succesMessage("New category has been added")
+      succesMessage("New category has been added");
     });
   }
 
@@ -92,12 +92,21 @@ class SettingsView {
     this._btnEditCategory.addEventListener("click", (e) => {
       const categoryEditObj = {
         selectedCategory: selectedCategory.textContent.trim(),
-        editedCategory: this._inputCategory.value,
+        editedCategory: uppercaseAtFirst(this._inputCategory.value),
       };
       if (categoryEditObj.selectedCategory === categoryEditObj.editedCategory)
         return errorMessage("No changes were made");
 
       handler(categoryEditObj);
+
+      // early render changes, and empty the input
+      selectedCategory.textContent = categoryEditObj.editedCategory;
+      this._inputCategory.value = "";
+
+      // change the btns, remove edit btn, and display add btn (default)
+      this._btnEditCategory.classList.add("hidden");
+      this._btnAddCategory.classList.remove("hidden");
+      
       succesMessage("Category has been edited");
     });
   }

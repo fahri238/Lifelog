@@ -28,7 +28,14 @@ export const getCategories = () => {
 
 // edit category
 export const editCategoryModel = (selectedCategory, editedCategory) => {
-  const getCategory = getCategories().find(
-    (data) => data.category === selectedCategory,
+  const currentCategoryIndex = getCategories().findIndex(
+    (item) => item.category === selectedCategory,
   );
+
+  const categories = getCategories();
+  
+  // replace the new edited to old object category
+  categories[currentCategoryIndex].category = editedCategory;
+
+  return localStorage.setItem("new category", JSON.stringify(categories));
 };
