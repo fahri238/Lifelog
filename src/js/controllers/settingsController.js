@@ -1,4 +1,5 @@
 import {
+  editCategoryModel,
   getCategories,
   getUserProfile,
   userProfileModel,
@@ -24,5 +25,8 @@ export const addCategoryController = () => {
 };
 
 export const editCategoryController = () => {
-  SettingView.editCategoryView();
+  SettingView.editCategoryView((editedCategoryObj) => {
+    const { selectedCategory, editedCategory } = editedCategoryObj;
+    editCategoryModel(selectedCategory, editedCategory);
+  });
 };

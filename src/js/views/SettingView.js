@@ -13,8 +13,8 @@ class SettingsView {
   _inputCategory = document.querySelector(".input-category");
   _categoryListContainer = document.querySelector(".category-badges-list");
   _allCategories;
-  _btnAddAction = document.querySelectorAll(".btn-action-category")[0];
-  _btnEditAction = document.querySelectorAll(".btn-action-category")[1];
+  _btnAddCategory = document.querySelector(".btn-add-category");
+  _btnEditCategory = document.querySelector(".btn-edit-category");
 
   // USER PROFILE
   userSettingView(username, role) {
@@ -40,10 +40,9 @@ class SettingsView {
   }
 
   // MANAGE CATEGORIES
+  // add category
   addCategoryView(handler) {
-    const btnAddCategory = document.querySelector(".btn-add-category");
-
-    btnAddCategory.addEventListener("click", () => {
+    this._btnAddCategory.addEventListener("click", (e) => {
       if (this._inputCategory.value.length === 0)
         return errorMessage("This field is required!");
 
@@ -55,7 +54,7 @@ class SettingsView {
       const badgeColor = badgeColorGenerator();
 
       if (this._allCategories.includes(formattedString(newCategory)))
-        return errorMessage(`this ${newCategory} category already added!`);
+        return errorMessage(`${newCategory} category already added!`);
 
       if (newCategory.split(" ").length !== 1)
         return errorMessage("The category should contains 1 word!");
@@ -67,25 +66,39 @@ class SettingsView {
 
       this.renderCategory(categoryData);
       handler(newCategory, badgeColor);
+      succesMessage("New category has been added")
     });
   }
 
   // edit category
-  editCategoryView() {
+  editCategoryView(handler) {
+    let selectedCategory;
     this._categoryListContainer.addEventListener("click", (e) => {
-      const selectedCategory = e.target.closest(".badge-setting");
+      selectedCategory = e.target.closest(".badge-setting");
 
       if (!selectedCategory) return;
 
-      this._inputCategory.value = selectedCategory.textContent;
+      this._inputCategory.value = selectedCategory.textContent.trim();
       this._renderBtnAction();
     });
 
     const btnCancel = document.querySelector(".btn-cancel-category");
     btnCancel.addEventListener("click", () => {
       this._inputCategory.value = "";
-      this._btnAddAction.classList.remove("hidden");
-      this._btnEditAction.classList.add("hidden");
+      this._btnAddCategory.classList.remove("hidden");
+      this._btnEditCategory.classList.add("hidden");
+    });
+
+    this._btnEditCategory.addEventListener("click", (e) => {
+      const categoryEditObj = {
+        selectedCategory: selectedCategory.textContent.trim(),
+        editedCategory: this._inputCategory.value,
+      };
+      if (categoryEditObj.selectedCategory === categoryEditObj.editedCategory)
+        return errorMessage("No changes were made");
+
+      handler(categoryEditObj);
+      succesMessage("Category has been edited");
     });
   }
 
@@ -96,8 +109,8 @@ class SettingsView {
 
     const selectedCategory = this._inputCategory.value.trim().toLowerCase();
     if (this._allCategories.includes(selectedCategory)) {
-      (this._btnAddAction.classList.add("hidden"),
-        this._btnEditAction.classList.remove("hidden"));
+      (this._btnAddCategory.classList.add("hidden"),
+        this._btnEditCategory.classList.remove("hidden"));
     }
   }
 

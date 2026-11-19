@@ -17,10 +17,18 @@ export const addCategoryModel = (category, badgeColor) => {
   const existingCategory =
     JSON.parse(localStorage.getItem("new category")) || [];
 
-existingCategory.push({category: category, badgeColor: badgeColor})
+  existingCategory.push({ category: category, badgeColor: badgeColor });
   return localStorage.setItem("new category", JSON.stringify(existingCategory));
 };
 
 export const getCategories = () => {
+  // e.g {category: "Hangout", badgeColor: "badge--work"}
   return JSON.parse(localStorage.getItem("new category")) || [];
+};
+
+// edit category
+export const editCategoryModel = (selectedCategory, editedCategory) => {
+  const getCategory = getCategories().find(
+    (data) => data.category === selectedCategory,
+  );
 };
