@@ -1725,11 +1725,11 @@ input:checked + .slider:before {
   background-color: var(--color-primary-darker);
 }
 
-.btn-setting--outline {
+.btn-setting--action {
   background-color: var(--color-primary-opacity);
   color: var(--color-primary);
 }
-.btn-setting--outline:hover {
+.btn-setting--action:hover {
   background-color: #c5bbfa;
 }
 
