@@ -51,7 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // SETTINGS MENU
   settingController.userSettingController();
+
   settingController.addCategoryController();
+  settingController.editCategoryController();
 
   // ACTIVTIES MENU
   activitiesController.detailActivityController();

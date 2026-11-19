@@ -10,6 +10,12 @@ class SettingsView {
   _usernameBio = document.querySelector(".user-name-bio");
   _roleBio = document.querySelector(".role-bio");
 
+  _inputCategory = document.querySelector(".input-category");
+  _categoryListContainer = document.querySelector(".category-badges-list");
+  _allCategories;
+  _btnAddCategory = document.querySelector(".btn-add-category");
+  _btnEditCategory = document.querySelector(".btn-edit-category");
+
   // USER PROFILE
   userSettingView(username, role) {
     this._usernameBio.textContent = username;
@@ -34,25 +40,24 @@ class SettingsView {
   }
 
   // MANAGE CATEGORIES
+  // add category
   addCategoryView(handler) {
-    const btnAddCategory = document.querySelector(".btn-add-category");
-
-    btnAddCategory.addEventListener("click", () => {
-      const inputCategory = document.querySelector(".input-category");
-      const allCategories = [...document.querySelectorAll(".badge-setting")].map(
-        (element) => formattedString(element.textContent),
-      );
-
-      if (inputCategory.value.length === 0)
+    this._btnAddCategory.addEventListener("click", (e) => {
+      if (this._inputCategory.value.length === 0)
         return errorMessage("This field is required!");
 
-      const newCategory = uppercaseAtFirst(inputCategory.value);
+      this._allCategories = [
+        ...document.querySelectorAll(".badge-setting"),
+      ].map((element) => formattedString(element.textContent));
+
+      const newCategory = uppercaseAtFirst(this._inputCategory.value);
       const badgeColor = badgeColorGenerator();
 
-      if (allCategories.includes(formattedString(newCategory)))
-        return errorMessage(`this ${newCategory} category already added!`);
-      
-      if (newCategory.split(" ").length !== 1) return errorMessage("The category should contains 1 word!");
+      if (this._allCategories.includes(formattedString(newCategory)))
+        return errorMessage(`${newCategory} category already added!`);
+
+      if (newCategory.split(" ").length !== 1)
+        return errorMessage("The category should contains 1 word!");
 
       const categoryData = {
         category: newCategory,
@@ -61,15 +66,65 @@ class SettingsView {
 
       this.renderCategory(categoryData);
       handler(newCategory, badgeColor);
+      succesMessage("New category has been added");
     });
+  }
+
+  // edit category
+  editCategoryView(handler) {
+    let selectedCategory;
+    this._categoryListContainer.addEventListener("click", (e) => {
+      selectedCategory = e.target.closest(".badge-setting");
+
+      if (!selectedCategory) return;
+
+      this._inputCategory.value = selectedCategory.textContent.trim();
+      this._renderBtnAction();
+    });
+
+    const btnCancel = document.querySelector(".btn-cancel-category");
+    btnCancel.addEventListener("click", () => {
+      this._inputCategory.value = "";
+      this._btnAddCategory.classList.remove("hidden");
+      this._btnEditCategory.classList.add("hidden");
+    });
+
+    this._btnEditCategory.addEventListener("click", (e) => {
+      const categoryEditObj = {
+        selectedCategory: selectedCategory.textContent.trim(),
+        editedCategory: uppercaseAtFirst(this._inputCategory.value),
+      };
+      if (categoryEditObj.selectedCategory === categoryEditObj.editedCategory)
+        return errorMessage("No changes were made");
+
+      handler(categoryEditObj);
+
+      // early render changes, and empty the input
+      selectedCategory.textContent = categoryEditObj.editedCategory;
+      this._inputCategory.value = "";
+
+      // change the btns, remove edit btn, and display add btn (default)
+      this._btnEditCategory.classList.add("hidden");
+      this._btnAddCategory.classList.remove("hidden");
+      
+      succesMessage("Category has been edited");
+    });
+  }
+
+  _renderBtnAction() {
+    this._allCategories = [...document.querySelectorAll(".badge-setting")].map(
+      (element) => formattedString(element.textContent),
+    );
+
+    const selectedCategory = this._inputCategory.value.trim().toLowerCase();
+    if (this._allCategories.includes(selectedCategory)) {
+      (this._btnAddCategory.classList.add("hidden"),
+        this._btnEditCategory.classList.remove("hidden"));
+    }
   }
 
   renderCategory(categoryData) {
     const { category, badgeColor } = categoryData;
-
-    const categoryListContainer = document.querySelector(
-      ".category-badges-list",
-    );
 
     const markupList = `
       <span class="badge-setting ${badgeColor}"
@@ -77,7 +132,7 @@ class SettingsView {
       </span>
       `;
 
-    categoryListContainer.insertAdjacentHTML("afterbegin", markupList);
+    this._categoryListContainer.insertAdjacentHTML("afterbegin", markupList);
 
     const selectCategory = document.querySelectorAll(".select-placeholder");
 

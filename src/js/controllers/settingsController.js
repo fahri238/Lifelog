@@ -1,4 +1,5 @@
 import {
+  editCategoryModel,
   getCategories,
   getUserProfile,
   userProfileModel,
@@ -20,5 +21,12 @@ export const addCategoryController = () => {
 
   SettingView.addCategoryView((newCategory, colorBadge) => {
     return addCategoryModel(newCategory, colorBadge);
+  });
+};
+
+export const editCategoryController = () => {
+  SettingView.editCategoryView((editedCategoryObj) => {
+    const { selectedCategory, editedCategory } = editedCategoryObj;
+    editCategoryModel(selectedCategory, editedCategory);
   });
 };

@@ -36,20 +36,28 @@ export const succesMessage = (message) => {
   const succesMessage = document.getElementById("message-success");
   const toastParentEl = document.querySelector(".toast--success");
   succesMessage.textContent = message;
-  toastParentEl.classList.toggle("hidden");
+  toastParentEl.classList.remove("hidden");
   setTimeout(() => {
-    toastParentEl.classList.toggle("fade-out");
+    toastParentEl.classList.add("fade-out");
   }, 3000);
+  setTimeout(() => {
+    toastParentEl.classList.add("hidden");
+    toastParentEl.classList.remove("fade-out");
+  }, 3200);
 };
 
 export const errorMessage = (message) => {
   const succesMessage = document.getElementById("message-error");
   const toastParentEl = document.querySelector(".toast--error");
   succesMessage.textContent = message;
-  toastParentEl.classList.toggle("hidden");
+  toastParentEl.classList.remove("hidden");
   setTimeout(() => {
-    toastParentEl.classList.toggle("fade-out");
+    toastParentEl.classList.add("fade-out");
   }, 3000);
+  setTimeout(() => {
+    toastParentEl.classList.add("hidden");
+    toastParentEl.classList.remove("fade-out");
+  }, 3200);
 };
 
 export const badgeColorGenerator = () => {

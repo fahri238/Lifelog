@@ -1725,14 +1725,12 @@ input:checked + .slider:before {
   background-color: var(--color-primary-darker);
 }
 
-.btn-setting--outline {
-  background-color: transparent;
-  border: 1px solid var(--color-neutral-3);
-  color: var(--color-neutral-4);
-}
-.btn-setting--outline:hover {
-  border-color: var(--color-primary);
+.btn-setting--action {
+  background-color: var(--color-primary-opacity);
   color: var(--color-primary);
+}
+.btn-setting--action:hover {
+  background-color: #c5bbfa;
 }
 
 .btn-setting--danger {
