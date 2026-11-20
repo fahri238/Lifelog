@@ -30,3 +30,7 @@ export const editCategoryController = () => {
     editCategoryModel(selectedCategory, editedCategory);
   });
 };
+
+export const deleteCategoryController = () => {
+  SettingView.deleteCategoryView()
+}

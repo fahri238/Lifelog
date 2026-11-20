@@ -2,6 +2,7 @@ import {
   badgeColorGenerator,
   errorMessage,
   formattedString,
+  showDeleteValidation,
   succesMessage,
   uppercaseAtFirst,
 } from "../helpers/utils";
@@ -70,6 +71,17 @@ class SettingsView {
     });
   }
 
+  // delete cotegory
+  deleteCategoryView(handler) {
+    this._categoryListContainer.addEventListener("click", (e) => {
+      const btnDelete = e.target.closest(".btn-category__delete");
+      
+      if (!btnDelete) return;
+
+      showDeleteValidation(handler, "category")
+    });
+  }
+
   // edit category
   editCategoryView(handler) {
     let selectedCategory;
@@ -106,7 +118,7 @@ class SettingsView {
       // change the btns, remove edit btn, and display add btn (default)
       this._btnEditCategory.classList.add("hidden");
       this._btnAddCategory.classList.remove("hidden");
-      
+
       succesMessage("Category has been edited");
     });
   }
@@ -128,7 +140,7 @@ class SettingsView {
 
     const markupList = `
       <span class="badge-setting ${badgeColor}"
-      >${category} <i class="bi bi-x" ></i>
+      >${category} <i class="bi bi-x btn-category__delete" ></i>
       </span>
       `;
 
