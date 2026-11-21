@@ -41,8 +41,13 @@ export const editCategoryController = () => {
 
 export const deleteCategoryController = () => {
   const activitiesData = state.activities;
+  console.log(state.activities);
   SettingView.deleteCategoryView((category) => {
     deleteCategoryModel(category);
-    activitiesView.renderActivityList(activitiesData);
+    activitiesView.removeActivityList();
+
+    activitiesData.forEach((activity) =>
+      activitiesView.renderActivityList(activity),
+    );
   });
 };

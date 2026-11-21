@@ -2,7 +2,6 @@ import { formattedCreatedAt, formattedDate } from "../helpers/format.js";
 import * as activityManager from "../model/activityManager.js";
 import FormView from "./FormView.js";
 import {
-  badgeColorGenerator,
   errorMessage,
   showDeleteValidation,
   succesMessage,
@@ -42,8 +41,7 @@ class ActivitiesViews extends FormView {
 
   detailValue(activity = null) {
     this._detailContainer.dataset.id = activity.id;
-
-    this._detailCategory.textContent = activity.category;
+    this._detailCategory.textContent = this.generateLabelCategory(activity.category);
     this._detailCategory.className = `badge-category ${this.generateColorBadge(activity.category)}`;
     this._detailTitle.textContent = activity.title;
     this._detailDate.textContent = formattedDate(activity.date);
@@ -101,16 +99,29 @@ class ActivitiesViews extends FormView {
         element.textContent.toLowerCase().trim() === activityCategory,
     );
 
-    const getClassBadge = findEl? findEl.className.split(" ").at(1) : 'badge--work'
+    const getClassBadge = findEl
+      ? findEl.className.split(" ").at(1)
+      : "badge--unknown";
     return getClassBadge;
   }
 
+  generateLabelCategory(activityCategory) {
+    const label =
+      this.generateColorBadge(activityCategory) === "badge--unknown"
+        ? "-unknown"
+        : activityCategory;
+
+    return label;
+  }
+
   activityMarkup(activiy) {
+    if (!activiy) return;
+    this.generateLabelCategory(activiy.category);
     return `
     <li class="list-row" data-id="${activiy.id}">
       <div class="row-info">
         <h4 class="shorter-text">${activiy.title}</h4> 
-        <span class="label ${this.generateColorBadge(activiy.category)}">${activiy.category}</span>
+        <span class="label ${this.generateColorBadge(activiy.category)}">${this.generateLabelCategory(activiy.category)}</span>
       </div>
       <div class="row-date">
         <i class="bi bi-calendar3"></i>

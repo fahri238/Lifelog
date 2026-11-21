@@ -1,3 +1,5 @@
+import { getActivityData, state } from "./state";
+
 // Base Category (Default)
 const defaultCategory = [
   {
@@ -77,6 +79,26 @@ export const deleteCategoryModel = (category) => {
   const getCategoryIndex = getCategories().findIndex(
     (item) => item.category === category,
   );
+
+  const test = state.activities;
+  const activitiesState = getActivityData();
+
+  console.log(test);
+  console.log(state);
+  const activitiesData = activitiesState.map((activity) => {
+    console.log(activity.category === category.toLowerCase());
+    if (activity.category === category.toLowerCase()) {
+      return {
+        ...activity,
+        category: "unknown",
+      };
+    } else {
+      return activity;
+    }
+  });
+
+  console.log(activitiesData);
+  localStorage.setItem("activity_data", JSON.stringify(activitiesData));
 
   const categories = getCategories();
   categories.splice(getCategoryIndex, 1);
