@@ -729,7 +729,7 @@ ul.row-container::-webkit-scrollbar {
 }
 
 .badge--unknown {
-  background-color: #f8fafc;
+  background-color: #dfe1e2;
   color: #334155;
   border: 1px solid #e2e8f0;
 }
