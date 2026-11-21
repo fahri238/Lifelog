@@ -11,6 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // SIDEBAR
   sidebarController.setFocusMenuController();
 
+  // SETTINGS MENU
+  settingController.userSettingController();
+
+  settingController.initialDefaultCategory();
+  settingController.addCategoryController();
+  settingController.editCategoryController();
+  settingController.deleteCategoryController();
+
   // DASHBOARD MENU
   // list of activities
   dashboardController.listOfActivityController();
@@ -48,13 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // ADD ACTIVITY MENU
   addActivityController.livePreviewController();
   addActivityController.addActivityController();
-
-  // SETTINGS MENU
-  settingController.userSettingController();
-
-  settingController.addCategoryController();
-  settingController.editCategoryController();
-  settingController.deleteCategoryController();
 
   // ACTIVTIES MENU
   activitiesController.detailActivityController();

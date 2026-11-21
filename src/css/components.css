@@ -705,27 +705,33 @@ ul.row-container::-webkit-scrollbar {
   letter-spacing: 0.5px;
 }
 
-.badge--work, .color-badge--1 {
+.badge--work {
   background-color: #f0ebff;
   color: var(--color-primary-darker);
 }
-.badge--study, .color-badge--2 {
+.badge--study {
   background-color: #e3f2fd;
   color: #1565c0;
 }
-.badge--exercise, .color-badge--3 {
+.badge--exercise {
   background-color: #e8f5e9;
   color: #2e7d32;
 }
 
-.badge--social, .color-badge--4 {
+.badge--social {
   background-color: #fff3e0;
   color: #e65100;
 }
 
-.badge--hobby, .color-badge--5 {
+.badge--hobby {
   background-color: #fce4ec;
   color: #c2185b;
+}
+
+.badge--unknown {
+  background-color: #f8fafc;
+  color: #334155;
+  border: 1px solid #e2e8f0;
 }
 
 .row-date,

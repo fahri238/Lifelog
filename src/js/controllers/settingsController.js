@@ -3,12 +3,17 @@ import {
   editCategoryModel,
   getCategories,
   getUserProfile,
+  initialCategoryModel,
   userProfileModel,
 } from "../model/settingsModel";
 import { addCategoryModel } from "../model/settingsModel";
 import { state } from "../model/state";
 import activitiesView from "../views/activitiesView";
 import SettingView from "../views/SettingView";
+
+export const initialDefaultCategory = () => {
+  initialCategoryModel();
+};
 
 export const userSettingController = () => {
   SettingView.inputUserProfile((username, role) => {

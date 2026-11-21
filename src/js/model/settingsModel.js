@@ -1,3 +1,36 @@
+// Base Category (Default)
+const defaultCategory = [
+  {
+    category: "Work",
+    badgeColor: "badge--work",
+  },
+  {
+    category: "Study",
+    badgeColor: "badge--study",
+  },
+  {
+    category: "Exercise",
+    badgeColor: "badge--exercise",
+  },
+  {
+    category: "Social",
+    badgeColor: "badge--social",
+  },
+  {
+    category: "Hobby",
+    badgeColor: "badge--hobby",
+  },
+];
+
+export const initialCategoryModel = () => {
+  const existingData = localStorage.getItem("categories");
+
+  if (!existingData) {
+    localStorage.setItem("categories", JSON.stringify(defaultCategory));
+    console.log(JSON.stringify(defaultCategory));
+  }
+};
+
 export const userProfileModel = (username, role) => {
   const userProfile = {
     username: username,
@@ -14,16 +47,15 @@ export const getUserProfile = () => {
 };
 
 export const addCategoryModel = (category, badgeColor) => {
-  const existingCategory =
-    JSON.parse(localStorage.getItem("new category")) || [];
+  const existingCategory = JSON.parse(localStorage.getItem("categories")) || [];
 
   existingCategory.push({ category: category, badgeColor: badgeColor });
-  return localStorage.setItem("new category", JSON.stringify(existingCategory));
+  return localStorage.setItem("categories", JSON.stringify(existingCategory));
 };
 
 export const getCategories = () => {
   // e.g {category: "Hangout", badgeColor: "badge--work"}
-  return JSON.parse(localStorage.getItem("new category")) || [];
+  return JSON.parse(localStorage.getItem("categories")) || [];
 };
 
 // edit category
@@ -37,7 +69,7 @@ export const editCategoryModel = (selectedCategory, editedCategory) => {
   // replace the new edited to old object category
   categories[currentCategoryIndex].category = editedCategory;
 
-  return localStorage.setItem("new category", JSON.stringify(categories));
+  return localStorage.setItem("categories", JSON.stringify(categories));
 };
 
 // delete category
@@ -48,5 +80,5 @@ export const deleteCategoryModel = (category) => {
 
   const categories = getCategories();
   categories.splice(getCategoryIndex, 1);
-  return localStorage.setItem("new category", JSON.stringify(categories));
+  return localStorage.setItem("categories", JSON.stringify(categories));
 };
