@@ -72,13 +72,18 @@ class SettingsView {
   }
 
   // delete cotegory
-  deleteCategoryView(handler) {
+  deleteCategoryView(handleDelete) {
     this._categoryListContainer.addEventListener("click", (e) => {
       const btnDelete = e.target.closest(".btn-category__delete");
-      
       if (!btnDelete) return;
-
-      showDeleteValidation(handler, "category")
+      const selectedCategory = e.target.closest(".badge-setting");
+      this._inputCategory.value = "";
+      const formattedCategory = selectedCategory.textContent.trim();
+      showDeleteValidation(() => {
+        selectedCategory.remove();
+        handleDelete(formattedCategory);
+        succesMessage(`${formattedCategory} category has been deleted`);
+      }, "category");
     });
   }
 

@@ -1,10 +1,13 @@
 import {
+  deleteCategoryModel,
   editCategoryModel,
   getCategories,
   getUserProfile,
   userProfileModel,
 } from "../model/settingsModel";
 import { addCategoryModel } from "../model/settingsModel";
+import { state } from "../model/state";
+import activitiesView from "../views/activitiesView";
 import SettingView from "../views/SettingView";
 
 export const userSettingController = () => {
@@ -32,5 +35,9 @@ export const editCategoryController = () => {
 };
 
 export const deleteCategoryController = () => {
-  SettingView.deleteCategoryView()
-}
+  const activitiesData = state.activities;
+  SettingView.deleteCategoryView((category) => {
+    deleteCategoryModel(category);
+    activitiesView.renderActivityList(activitiesData);
+  });
+};
