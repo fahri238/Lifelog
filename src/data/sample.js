@@ -1,0 +1,37 @@
+const activityData = [
+  {
+    id: 1795260380825,
+    title: "test",
+    category: "hobby",
+    date: "2026-11-21",
+    startTime: "19:26",
+    endTime: "20:26",
+    description: "test",
+    duration: "01h 00m",
+    createdAt: "2026-11-21T11:26:00.000Z",
+  },
+  {
+    id: 1795260532131,
+    title: "ets",
+    category: "unknown",
+    date: "2026-11-21",
+    startTime: "19:28",
+    endTime: "20:28",
+    description: "test",
+    duration: "01h 00m",
+    createdAt: "2026-11-21T11:28:00.000Z",
+  },
+  {
+    id: 1795262849408,
+    title: "testing",
+    category: "unknown",
+    date: "2026-11-21",
+    startTime: "20:07",
+    endTime: "22:07",
+    description: "yes",
+    duration: "02h 00m",
+    createdAt: "2026-11-21T12:07:29.408Z",
+  },
+];
+
+// localStorage.setItem("activity_data", JSON.stringify(currentActivities));
