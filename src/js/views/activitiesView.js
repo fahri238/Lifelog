@@ -41,7 +41,9 @@ class ActivitiesViews extends FormView {
 
   detailValue(activity = null) {
     this._detailContainer.dataset.id = activity.id;
-    this._detailCategory.textContent = this.generateLabelCategory(activity.category);
+    this._detailCategory.textContent = this.generateLabelCategory(
+      activity.category,
+    );
     this._detailCategory.className = `badge-category ${this.generateColorBadge(activity.category)}`;
     this._detailTitle.textContent = activity.title;
     this._detailDate.textContent = formattedDate(activity.date);

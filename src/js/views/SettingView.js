@@ -77,11 +77,31 @@ class SettingsView {
     this._categoryListContainer.addEventListener("click", (e) => {
       const btnDelete = e.target.closest(".btn-category__delete");
       if (!btnDelete) return;
+
       const selectedCategory = e.target.closest(".badge-setting");
       this._inputCategory.value = "";
       const formattedCategory = selectedCategory.textContent.trim();
+
       showDeleteValidation(() => {
         selectedCategory.remove();
+
+        selectedCategory.textContent;
+
+        const getAllCategoriesTab = document.querySelectorAll(".btn-category");
+        getAllCategoriesTab.forEach((categeoryTab) => {
+          if (categeoryTab.textContent === selectedCategory.textContent.trim())
+            categeoryTab.remove();
+        });
+
+        const getAllSelectInput = document.querySelectorAll(
+          ".select-input-category",
+        );
+
+        getAllSelectInput.forEach((category) => {
+          if (category.textContent === selectedCategory.textContent.trim())
+            category.remove();
+        });
+
         handleDelete(formattedCategory);
         succesMessage(`${formattedCategory} category has been deleted`);
       }, "category");
@@ -108,6 +128,9 @@ class SettingsView {
     });
 
     this._btnEditCategory.addEventListener("click", (e) => {
+      if (this._inputCategory.value.length === 0)
+        return errorMessage("The category should contains 1 word!");
+
       const categoryEditObj = {
         selectedCategory: selectedCategory.textContent.trim(),
         editedCategory: uppercaseAtFirst(this._inputCategory.value),
@@ -119,10 +142,8 @@ class SettingsView {
         return errorMessage("The category should contains 1 word!");
       }
 
-      handler(categoryEditObj);
-
       // early render changes, and empty the input
-      const categoryText = selectedCategory.querySelector(".category-text")
+      const categoryText = selectedCategory.querySelector(".category-text");
       categoryText.textContent = categoryEditObj.editedCategory;
       this._inputCategory.value = "";
 
@@ -130,6 +151,14 @@ class SettingsView {
       this._btnEditCategory.classList.add("hidden");
       this._btnAddCategory.classList.remove("hidden");
 
+      // render activities menu part
+      const categoryTabs = document.querySelectorAll(".btn-category");
+      categoryTabs.forEach((item) => {
+        if (item.textContent === categoryEditObj.selectedCategory)
+          item.textContent = categoryEditObj.editedCategory;
+      });
+
+      handler(categoryEditObj);
       succesMessage("Category has been edited");
     });
   }
@@ -162,7 +191,7 @@ class SettingsView {
     const activitiesCategories = document.querySelector(".all-category");
 
     const markupSelect = `
-      <option value="${category.toLowerCase()}">${category}</option>
+      <option class="select-input-category" value="${category.toLowerCase()}">${category}</option>
       `;
 
     selectCategory.forEach((element) =>

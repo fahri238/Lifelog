@@ -28,20 +28,27 @@ export const addCategoryController = () => {
   getCategories().forEach((category) => SettingView.renderCategory(category));
 
   SettingView.addCategoryView((newCategory, colorBadge) => {
+    const activitiesData = getActivityData();
+
+    activitiesView.categories(activitiesData);
     return addCategoryModel(newCategory, colorBadge);
   });
 };
 
 export const editCategoryController = () => {
-  const activitiesData = getActivityData();
   SettingView.editCategoryView((editedCategoryObj) => {
     const { selectedCategory, editedCategory } = editedCategoryObj;
     editCategoryModel(selectedCategory, editedCategory);
 
-    console.log(activitiesData)
+    const activitiesData = getActivityData();
+
+    console.log(document.querySelectorAll(".badge-setting")[0].textContent);
+
+    activitiesView.removeActivityList();
     activitiesData.forEach((activity) =>
       activitiesView.renderActivityList(activity),
     );
+    activitiesView.categories(activitiesData);
   });
 };
 
