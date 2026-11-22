@@ -35,6 +35,7 @@ export const getGoalState = (count) => {
 };
 
 export const getTodayRange = (dateRange = getTodayDateString()) => {
+  if (!getActivityData()) return;
   const startDate = new Date(dateRange + "T00:00:00");
   const endDate = new Date(dateRange + "T23:59:59");
 
@@ -97,8 +98,9 @@ export const countDuration = (hourMin) => {
   return totalDurationInHour;
 };
 
+// DASHBOARD
 export const topCategoryModel = () => {
-  if (!activities) return;
+  if (!getActivityData()) return;
   const countCategory = [...getActivityData()].reduce((acc, activity) => {
     const activityCategory = activity.category;
     acc[activityCategory] = (acc[activityCategory] || 0) + 1;
@@ -117,6 +119,7 @@ export const topCategoryModel = () => {
 
 // handle productivity time today card
 export const productivityTodayModel = () => {
+  if (!getActivityData()) return;
   const singleInputedActivity = getTodayRange().at(-1)
     ? getDurationMin(getTodayRange().at(-1).duration)
     : 0;
@@ -132,6 +135,8 @@ export const productivityTodayModel = () => {
 };
 
 export const getLastWeek = () => {
+  if (!getActivityData()) return;
+
   const today = new Date();
 
   const sundayOffset = today.getDate() - today.getDay() - 7;
@@ -150,6 +155,7 @@ export const getLastWeek = () => {
 };
 
 export const totalActivityThisWeek = () => {
+  if (!getActivityData()) return;
   const thisWeekTotal = getLastWeek()
     .thisWeek.filter((item) => {
       return item.length != 0;
@@ -160,6 +166,8 @@ export const totalActivityThisWeek = () => {
 };
 
 export const totalActivityLastWeek = () => {
+  if (!getActivityData()) return;
+
   const lastWeekTotal = getLastWeek()
     .lastWeek.filter((item) => {
       return item.length != 0;
@@ -171,6 +179,7 @@ export const totalActivityLastWeek = () => {
 };
 
 export const statusActivityWeek = () => {
+  if (!getActivityData()) return;
   const thisWeek = getLastWeek()
     .thisWeek.filter((item) => {
       return item.length != 0;
@@ -190,6 +199,8 @@ export const statusActivityWeek = () => {
 
 // get total activity for the last two weeks
 export const totalLastTwoWeek = () => {
+  if (!getActivityData()) return;
+
   const totalThisWeek = getLastWeek()
     .thisWeek.map((day) => day.length)
     .reduce((acc, curr) => acc + curr, 0);

@@ -33,5 +33,6 @@ export const deleteDataForm = (selectedActivity) => {
 };
 
 export const getActivityData = () => {
+  if (state.activities.length === 0 || !state.activities) return false; 
   return state.activities;
 };
