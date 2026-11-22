@@ -7,7 +7,7 @@ import {
   userProfileModel,
 } from "../model/settingsModel";
 import { addCategoryModel } from "../model/settingsModel";
-import { state } from "../model/state";
+import { getActivityData, state } from "../model/state";
 import activitiesView from "../views/activitiesView";
 import SettingView from "../views/SettingView";
 
@@ -33,15 +33,20 @@ export const addCategoryController = () => {
 };
 
 export const editCategoryController = () => {
+  const activitiesData = getActivityData();
   SettingView.editCategoryView((editedCategoryObj) => {
     const { selectedCategory, editedCategory } = editedCategoryObj;
     editCategoryModel(selectedCategory, editedCategory);
+
+    console.log(activitiesData)
+    activitiesData.forEach((activity) =>
+      activitiesView.renderActivityList(activity),
+    );
   });
 };
 
 export const deleteCategoryController = () => {
-  const activitiesData = state.activities;
-  console.log(state.activities);
+  const activitiesData = getActivityData();
   SettingView.deleteCategoryView((category) => {
     deleteCategoryModel(category);
     activitiesView.removeActivityList();

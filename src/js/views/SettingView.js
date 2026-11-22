@@ -67,6 +67,7 @@ class SettingsView {
 
       this.renderCategory(categoryData);
       handler(newCategory, badgeColor);
+      this._inputCategory.value = "";
       succesMessage("New category has been added");
     });
   }
@@ -111,13 +112,18 @@ class SettingsView {
         selectedCategory: selectedCategory.textContent.trim(),
         editedCategory: uppercaseAtFirst(this._inputCategory.value),
       };
+
       if (categoryEditObj.selectedCategory === categoryEditObj.editedCategory)
         return errorMessage("No changes were made");
+      if (categoryEditObj.editedCategory.split(" ").length !== 1) {
+        return errorMessage("The category should contains 1 word!");
+      }
 
       handler(categoryEditObj);
 
       // early render changes, and empty the input
-      selectedCategory.textContent = categoryEditObj.editedCategory;
+      const categoryText = selectedCategory.querySelector(".category-text")
+      categoryText.textContent = categoryEditObj.editedCategory;
       this._inputCategory.value = "";
 
       // change the btns, remove edit btn, and display add btn (default)
@@ -145,7 +151,7 @@ class SettingsView {
 
     const markupList = `
       <span class="badge-setting ${badgeColor}"
-      >${category} <i class="bi bi-x btn-category__delete" ></i>
+      ><span class="category-text">${category}</span> <i class="bi bi-x btn-category__delete" ></i>
       </span>
       `;
 

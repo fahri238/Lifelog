@@ -66,7 +66,18 @@ export const editCategoryModel = (selectedCategory, editedCategory) => {
     (item) => item.category === selectedCategory,
   );
 
+  const formattedCurrentCategory = selectedCategory.toLowerCase();
+  const formattedNewCategory = editedCategory.toLowerCase();
   const categories = getCategories();
+  const activities = getActivityData().map((activity) => {
+    if (activity.category.trim() === formattedCurrentCategory) {
+      return { ...activity, category: formattedNewCategory };
+    } else {
+      return activity;
+    }
+  });
+
+  localStorage.setItem("activity_data", JSON.stringify(activities))
 
   // replace the new edited to old object category
   categories[currentCategoryIndex].category = editedCategory;
@@ -80,13 +91,7 @@ export const deleteCategoryModel = (category) => {
     (item) => item.category === category,
   );
 
-  const test = state.activities;
-  const activitiesState = getActivityData();
-
-  console.log(test);
-  console.log(state);
-  const activitiesData = activitiesState.map((activity) => {
-    console.log(activity.category === category.toLowerCase());
+  const activities = getActivityData().map((activity) => {
     if (activity.category === category.toLowerCase()) {
       return {
         ...activity,
@@ -97,8 +102,7 @@ export const deleteCategoryModel = (category) => {
     }
   });
 
-  console.log(activitiesData);
-  localStorage.setItem("activity_data", JSON.stringify(activitiesData));
+  localStorage.setItem("activity_data", JSON.stringify(activities));
 
   const categories = getCategories();
   categories.splice(getCategoryIndex, 1);
