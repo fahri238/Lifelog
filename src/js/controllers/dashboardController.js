@@ -1,5 +1,5 @@
 import dashboardView from "../views/DashboardView";
-import { state } from "../model/state";
+import { getActivityData, state } from "../model/state";
 import activitiesView from "../views/activitiesView";
 import {
   alphabetSorting,
@@ -45,8 +45,9 @@ export const goToActivityController = () => {
 
 // handle newest activity
 export const newestController = () => {
+  if (!getActivityData()) return;
   dashboardView.newestActivityView(
-    (activityhandler) => {
+    () => {
       const activity = activityData.at(-1);
       return activity;
     },
@@ -63,6 +64,7 @@ export const newestController = () => {
 
 // top category
 export const topCategoryController = () => {
+  if (!getActivityData()) return;
   const categoryName = topCategoryModel()[0];
   const categoryTotal = topCategoryModel()[1];
   dashboardView.topCategoryViews(categoryName, categoryTotal, () => {
@@ -93,6 +95,8 @@ export const getWeekController = () => {
 
 // weekly activity chart
 export const weeklyActivityCartController = () => {
+  if (!getActivityData()) return;
+
   const weeklyActivity = getLastWeek().thisWeek.map((day) => day.length);
 
   const maximum = Math.max(...weeklyActivity);
@@ -117,6 +121,7 @@ export const sumTotalActivities = () => {
 
 // activities differences (week)
 export const activitiesDifferencesController = () => {
+  if (!totalLastTwoWeek()) return;
   const { totalThisWeek, totalLastWeek, totalLasTwotWeeks } =
     totalLastTwoWeek();
 
@@ -132,6 +137,8 @@ export const activitiesDifferencesController = () => {
 
 // activities this vs last week chart
 export const thisVsLastWeekActivityController = () => {
+  if (!totalLastTwoWeek()) return;
+
   const { totalThisWeek, totalLastWeek, totalLasTwotWeeks } =
     totalLastTwoWeek();
   const maximum = totalLasTwotWeeks;

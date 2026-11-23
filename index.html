@@ -275,11 +275,11 @@
             <button class="all-category btn-category btn-category-focus">
               All
             </button>
-            <button class="hobby-category btn-category">Hobby</button>
+            <!-- <button class="hobby-category btn-category">Hobby</button>
             <button class="social-category btn-category">Social</button>
             <button class="exercise-category btn-category">Exercise</button>
             <button class="study-category btn-category">Study</button>
-            <button class="work-category btn-category">Work</button>
+            <button class="work-category btn-category">Work</button> -->
           </div>
           <div class="sorting">
             <select name="sort" id="sort">
@@ -403,13 +403,13 @@
                   <option value="" disabled selected class="select-placeholder">
                     Select a category...
                   </option>
-                  <option value="hobby" class="base-category">Hobby</option>
+                  <!-- <option value="hobby" class="base-category">Hobby</option>
                   <option value="social" class="base-category">Social</option>
                   <option value="exercise" class="base-category">
                     Exercise
                   </option>
                   <option value="study" class="base-category">Study</option>
-                  <option value="work" class="base-category">Work</option>
+                  <option value="work" class="base-category">Work</option> -->
                 </select>
               </div>
             </div>
@@ -634,21 +634,21 @@
           <p class="setting-card__desc">Customize your activity tags.</p>
 
           <div class="category-badges-list">
-            <span class="badge-setting badge--hobby .color-badge--1"
-              >Hobby <i class="bi bi-x"></i
+            <!-- <span class="badge-setting badge--hobby"
+              >Hobby <i class="bi bi-x btn-category__delete"></i
             ></span>
-            <span class="badge-setting badge--social .color-badge--2"
-              >Social <i class="bi bi-x"></i
+            <span class="badge-setting badge--social"
+              >Social <i class="bi bi-x btn-category__delete"></i
             ></span>
-            <span class="badge-setting badge--exercise .color-badge--3"
-              >Exercise <i class="bi bi-x"></i
+            <span class="badge-setting badge--exercise"
+              >Exercise <i class="bi bi-x btn-category__delete"></i
             ></span>
-            <span class="badge-setting badge--study .color-badge--4"
-              >Study <i class="bi bi-x"></i
+            <span class="badge-setting badge--study"
+              >Study <i class="bi bi-x btn-category__delete"></i
             ></span>
-            <span class="badge-setting badge--work .color-badge--5"
-              >Work <i class="bi bi-x"></i
-            ></span>
+            <span class="badge-setting badge--work"
+              >Work <i class="bi bi-x btn-category__delete"></i
+            ></span> -->
           </div>
 
           <div class="add-category-input mt-16">
@@ -739,11 +739,11 @@
               <option value="" disabled selected class="select-placeholder">
                 Select a category...
               </option>
-              <option value="hobby">Hobby</option>
+              <!-- <option value="hobby">Hobby</option>
               <option value="social">Social</option>
               <option value="exercise">Exercise</option>
               <option value="study">Study</option>
-              <option value="work">Work</option>
+              <option value="work">Work</option> -->
             </select>
           </div>
         </div>
@@ -811,10 +811,12 @@
         <div class="delete-modal-icon">
           <i class="bi bi-exclamation-triangle"></i>
         </div>
-        <h3 class="delete-modal-title">Delete Activity?</h3>
+        <h3 class="delete-modal-title">
+          Delete <span class="type-item">Activity</span>?
+        </h3>
         <p class="delete-modal-text">
-          Are you sure you want to delete this activity? This action cannot be
-          undone.
+          Are you sure you want to delete this
+          <span class="type-item">activity</span>? This action cannot be undone.
         </p>
         <div class="delete-modal-actions">
           <button class="btn-modal btn-modal--cancel" id="btn-cancel-delete">

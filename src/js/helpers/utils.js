@@ -4,11 +4,16 @@ export const getTodayDateString = (date = new Date()) => {
   return localToday.toISOString().split("T")[0];
 };
 
-export const showDeleteValidation = (handler) => {
+export const showDeleteValidation = (handler, typeItem = "activity") => {
   const overlayParentEl = document.querySelector(".delete-modal");
   const cancelBtn = document.getElementById("btn-cancel-delete");
   let confirmBtn = document.getElementById("btn-confirm-delete");
-  const overlay = document.querySelector(".overlay");
+
+  const typeItemHeading = document.querySelectorAll(".type-item")[0];
+  const typeItemBody = document.querySelectorAll(".type-item")[1];
+
+  typeItemBody.textContent = typeItem;
+  typeItemHeading.textContent = uppercaseAtFirst(typeItem);
 
   const newConfirmBtn = confirmBtn.cloneNode(true);
   confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);

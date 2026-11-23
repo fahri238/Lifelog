@@ -5,12 +5,20 @@ import * as activitiesController from "./js/controllers/activitiesController";
 import * as sortingController from "./js/controllers/sortingController";
 // import * as dfa from "./js/controllers/dashboardController"
 import * as dashboardController from "./js/controllers/dashboardController";
-import * as settingController from "./js/controllers/settingsController"
+import * as settingController from "./js/controllers/settingsController";
 
-document.addEventListener("DOMContentLoaded", () => {  
+document.addEventListener("DOMContentLoaded", () => {
   // SIDEBAR
   sidebarController.setFocusMenuController();
-  
+
+  // SETTINGS MENU
+  settingController.userSettingController();
+
+  settingController.initialDefaultCategory();
+  settingController.addCategoryController();
+  settingController.editCategoryController();
+  settingController.deleteCategoryController();
+
   // DASHBOARD MENU
   // list of activities
   dashboardController.listOfActivityController();
@@ -37,23 +45,17 @@ document.addEventListener("DOMContentLoaded", () => {
   dashboardController.sumTotalActivities();
 
   // activities differences (week)
-  dashboardController.activitiesDifferencesController()
+  dashboardController.activitiesDifferencesController();
 
   // weather status
-  dashboardController.weatherStatusController()
-  
+  dashboardController.weatherStatusController();
+
   // activities this vs lat week chart
-  dashboardController.thisVsLastWeekActivityController()
+  dashboardController.thisVsLastWeekActivityController();
 
   // ADD ACTIVITY MENU
   addActivityController.livePreviewController();
   addActivityController.addActivityController();
-
-  // SETTINGS MENU
-  settingController.userSettingController();
-
-  settingController.addCategoryController();
-  settingController.editCategoryController();
 
   // ACTIVTIES MENU
   activitiesController.detailActivityController();
@@ -61,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
   activitiesController.editActivityController();
   activitiesController.deleteActivityController();
   activitiesController.categoriesController();
-
 
   // sorting
   sortingController.sortingDefaultController();

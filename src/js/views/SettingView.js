@@ -2,6 +2,7 @@ import {
   badgeColorGenerator,
   errorMessage,
   formattedString,
+  showDeleteValidation,
   succesMessage,
   uppercaseAtFirst,
 } from "../helpers/utils";
@@ -13,6 +14,8 @@ class SettingsView {
   _inputCategory = document.querySelector(".input-category");
   _categoryListContainer = document.querySelector(".category-badges-list");
   _allCategories;
+  _allInputsSelect;
+  _allCategoriesTab;
   _btnAddCategory = document.querySelector(".btn-add-category");
   _btnEditCategory = document.querySelector(".btn-edit-category");
 
@@ -66,6 +69,7 @@ class SettingsView {
 
       this.renderCategory(categoryData);
       handler(newCategory, badgeColor);
+      this._inputCategory.value = "";
       succesMessage("New category has been added");
     });
   }
@@ -90,24 +94,84 @@ class SettingsView {
     });
 
     this._btnEditCategory.addEventListener("click", (e) => {
+      if (this._inputCategory.value.length === 0)
+        return errorMessage("The category should contains 1 word!");
+
       const categoryEditObj = {
         selectedCategory: selectedCategory.textContent.trim(),
         editedCategory: uppercaseAtFirst(this._inputCategory.value),
       };
+
       if (categoryEditObj.selectedCategory === categoryEditObj.editedCategory)
         return errorMessage("No changes were made");
-
-      handler(categoryEditObj);
+      if (categoryEditObj.editedCategory.split(" ").length !== 1) {
+        return errorMessage("The category should contains 1 word!");
+      }
 
       // early render changes, and empty the input
-      selectedCategory.textContent = categoryEditObj.editedCategory;
+      const categoryText = selectedCategory.querySelector(".category-text");
+      categoryText.textContent = categoryEditObj.editedCategory;
       this._inputCategory.value = "";
 
       // change the btns, remove edit btn, and display add btn (default)
       this._btnEditCategory.classList.add("hidden");
       this._btnAddCategory.classList.remove("hidden");
-      
+
+      this._allCategoriesTab = document.querySelectorAll(".btn-category");
+      this._allInputsSelect = document.querySelectorAll(
+        ".select-input-category",
+      );
+
+      // render activities menu part
+      this._allCategoriesTab.forEach((item) => {
+        if (item.textContent === categoryEditObj.selectedCategory)
+          item.textContent = categoryEditObj.editedCategory;
+      });
+
+      this._allInputsSelect.forEach((category) => {
+        if (category.textContent === categoryEditObj.selectedCategory.trim())
+          category.textContent = categoryEditObj.editedCategory.trim();
+      });
+
+      handler(categoryEditObj);
       succesMessage("Category has been edited");
+    });
+  }
+
+  // delete cotegory
+  deleteCategoryView(handleDelete) {
+    this._categoryListContainer.addEventListener("click", (e) => {
+      const btnDelete = e.target.closest(".btn-category__delete");
+      if (!btnDelete) return;
+
+      const selectedCategory = e.target.closest(".badge-setting");
+      this._inputCategory.value = "";
+      const formattedCategory = selectedCategory.textContent.trim();
+
+      showDeleteValidation(() => {
+        selectedCategory.remove();
+
+        selectedCategory.textContent;
+
+        this._allCategoriesTab = document.querySelectorAll(".btn-category");
+
+        this._allInputsSelect = document.querySelectorAll(
+          ".select-input-category",
+        );
+
+        this._allCategoriesTab.forEach((categeoryTab) => {
+          if (categeoryTab.textContent === selectedCategory.textContent.trim())
+            categeoryTab.remove();
+        });
+
+        this._allInputsSelect.forEach((category) => {
+          if (category.textContent === selectedCategory.textContent.trim())
+            category.remove();
+        });
+
+        handleDelete(formattedCategory);
+        succesMessage(`${formattedCategory} category has been deleted`);
+      }, "category");
     });
   }
 
@@ -128,7 +192,7 @@ class SettingsView {
 
     const markupList = `
       <span class="badge-setting ${badgeColor}"
-      >${category} <i class="bi bi-x" ></i>
+      ><span class="category-text">${category}</span> <i class="bi bi-x btn-category__delete" ></i>
       </span>
       `;
 
@@ -139,7 +203,7 @@ class SettingsView {
     const activitiesCategories = document.querySelector(".all-category");
 
     const markupSelect = `
-      <option value="${category.toLowerCase()}">${category}</option>
+      <option class="select-input-category" value="${category.toLowerCase()}">${category}</option>
       `;
 
     selectCategory.forEach((element) =>
