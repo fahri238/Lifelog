@@ -14,6 +14,8 @@ class SettingsView {
   _inputCategory = document.querySelector(".input-category");
   _categoryListContainer = document.querySelector(".category-badges-list");
   _allCategories;
+  _allInputsSelect;
+  _allCategoriesTab;
   _btnAddCategory = document.querySelector(".btn-add-category");
   _btnEditCategory = document.querySelector(".btn-edit-category");
 
@@ -72,42 +74,6 @@ class SettingsView {
     });
   }
 
-  // delete cotegory
-  deleteCategoryView(handleDelete) {
-    this._categoryListContainer.addEventListener("click", (e) => {
-      const btnDelete = e.target.closest(".btn-category__delete");
-      if (!btnDelete) return;
-
-      const selectedCategory = e.target.closest(".badge-setting");
-      this._inputCategory.value = "";
-      const formattedCategory = selectedCategory.textContent.trim();
-
-      showDeleteValidation(() => {
-        selectedCategory.remove();
-
-        selectedCategory.textContent;
-
-        const getAllCategoriesTab = document.querySelectorAll(".btn-category");
-        getAllCategoriesTab.forEach((categeoryTab) => {
-          if (categeoryTab.textContent === selectedCategory.textContent.trim())
-            categeoryTab.remove();
-        });
-
-        const getAllSelectInput = document.querySelectorAll(
-          ".select-input-category",
-        );
-
-        getAllSelectInput.forEach((category) => {
-          if (category.textContent === selectedCategory.textContent.trim())
-            category.remove();
-        });
-
-        handleDelete(formattedCategory);
-        succesMessage(`${formattedCategory} category has been deleted`);
-      }, "category");
-    });
-  }
-
   // edit category
   editCategoryView(handler) {
     let selectedCategory;
@@ -151,15 +117,61 @@ class SettingsView {
       this._btnEditCategory.classList.add("hidden");
       this._btnAddCategory.classList.remove("hidden");
 
+      this._allCategoriesTab = document.querySelectorAll(".btn-category");
+      this._allInputsSelect = document.querySelectorAll(
+        ".select-input-category",
+      );
+
       // render activities menu part
-      const categoryTabs = document.querySelectorAll(".btn-category");
-      categoryTabs.forEach((item) => {
+      this._allCategoriesTab.forEach((item) => {
         if (item.textContent === categoryEditObj.selectedCategory)
           item.textContent = categoryEditObj.editedCategory;
       });
 
+      this._allInputsSelect.forEach((category) => {
+        if (category.textContent === categoryEditObj.selectedCategory.trim())
+          category.textContent = categoryEditObj.editedCategory.trim();
+      });
+
       handler(categoryEditObj);
       succesMessage("Category has been edited");
+    });
+  }
+
+  // delete cotegory
+  deleteCategoryView(handleDelete) {
+    this._categoryListContainer.addEventListener("click", (e) => {
+      const btnDelete = e.target.closest(".btn-category__delete");
+      if (!btnDelete) return;
+
+      const selectedCategory = e.target.closest(".badge-setting");
+      this._inputCategory.value = "";
+      const formattedCategory = selectedCategory.textContent.trim();
+
+      showDeleteValidation(() => {
+        selectedCategory.remove();
+
+        selectedCategory.textContent;
+
+        this._allCategoriesTab = document.querySelectorAll(".btn-category");
+
+        this._allInputsSelect = document.querySelectorAll(
+          ".select-input-category",
+        );
+
+        this._allCategoriesTab.forEach((categeoryTab) => {
+          if (categeoryTab.textContent === selectedCategory.textContent.trim())
+            categeoryTab.remove();
+        });
+
+        this._allInputsSelect.forEach((category) => {
+          if (category.textContent === selectedCategory.textContent.trim())
+            category.remove();
+        });
+
+        handleDelete(formattedCategory);
+        succesMessage(`${formattedCategory} category has been deleted`);
+      }, "category");
     });
   }
 

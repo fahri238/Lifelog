@@ -42,12 +42,14 @@ export const userProfileModel = (username, role) => {
   localStorage.setItem("user-profile", JSON.stringify(userProfile));
 };
 
+// USER PROFILE SETTINGS
 export const getUserProfile = () => {
   const data = JSON.parse(localStorage.getItem("user-profile"));
   const defaultData = { username: "Your Name", role: "Your Role" };
   return data ? data : defaultData;
 };
 
+// MANAGE CATEGORY SETTINGS
 export const addCategoryModel = (category, badgeColor) => {
   const existingCategory = JSON.parse(localStorage.getItem("categories")) || [];
 
@@ -60,21 +62,29 @@ export const getCategories = () => {
   return JSON.parse(localStorage.getItem("categories")) || [];
 };
 
-// edit category
-export const editCategoryModel = (selectedCategory, editedCategory) => {
-  const currentCategoryIndex = getCategories().findIndex(
-    (item) => item.category === selectedCategory,
-  );
-
+// use for delete and edit category to replace old value with the new one in localstorage
+const replaceOldValueCategory = (selectedCategory, newValue = "unknown") => {
   state.activities = getActivityData().map((activity) => {
-    if (activity.category.trim() === selectedCategory.toLowerCase()) {
-      return { ...activity, category: editedCategory.toLowerCase() };
+    if (activity.category === selectedCategory.toLowerCase()) {
+      return {
+        ...activity,
+        category: newValue.toLowerCase(),
+      };
     } else {
       return activity;
     }
   });
 
   localStorage.setItem("activity_data", JSON.stringify(state.activities));
+};
+
+// edit category
+export const editCategoryModel = (selectedCategory, editedCategory) => {
+  const currentCategoryIndex = getCategories().findIndex(
+    (item) => item.category === selectedCategory,
+  );
+
+  replaceOldValueCategory(selectedCategory, editedCategory);
 
   // replace the new edited to old object category
   const categories = getCategories();
@@ -89,18 +99,7 @@ export const deleteCategoryModel = (category) => {
     (item) => item.category === category,
   );
 
-  state.activities = state.activities.map((activity) => {
-    if (activity.category === category.toLowerCase()) {
-      return {
-        ...activity,
-        category: "unknown",
-      };
-    } else {
-      return activity;
-    }
-  });
-
-  localStorage.setItem("activity_data", JSON.stringify(state.activities));
+  replaceOldValueCategory(category);
 
   const categories = getCategories();
   categories.splice(getCategoryIndex, 1);

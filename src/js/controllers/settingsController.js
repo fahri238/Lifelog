@@ -31,7 +31,7 @@ export const addCategoryController = () => {
     const activitiesData = getActivityData();
 
     activitiesView.categories(activitiesData);
-    return addCategoryModel(newCategory, colorBadge);
+    addCategoryModel(newCategory, colorBadge);
   });
 };
 
@@ -41,8 +41,6 @@ export const editCategoryController = () => {
     editCategoryModel(selectedCategory, editedCategory);
 
     const activitiesData = getActivityData();
-
-    console.log(document.querySelectorAll(".badge-setting")[0].textContent);
 
     activitiesView.removeActivityList();
     activitiesData.forEach((activity) =>
@@ -56,8 +54,8 @@ export const deleteCategoryController = () => {
   const activitiesData = getActivityData();
   SettingView.deleteCategoryView((category) => {
     deleteCategoryModel(category);
-    activitiesView.removeActivityList();
 
+    activitiesView.removeActivityList();
     activitiesData.forEach((activity) =>
       activitiesView.renderActivityList(activity),
     );
