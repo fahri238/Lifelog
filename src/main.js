@@ -12,12 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   sidebarController.setFocusMenuController();
 
   // SETTINGS MENU
-  settingController.userSettingController();
-
-  settingController.initialDefaultCategory();
-  settingController.addCategoryController();
-  settingController.editCategoryController();
-  settingController.deleteCategoryController();
+  settingController.init();
 
   // DASHBOARD MENU
   // list of activities

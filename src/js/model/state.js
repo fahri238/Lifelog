@@ -1,5 +1,7 @@
+export const ACTIVITIES_KEY = "activity_data";
+
 export const state = {
-  activities: JSON.parse(localStorage.getItem("activity_data")) || [],
+  activities: JSON.parse(localStorage.getItem(ACTIVITIES_KEY)) || [],
   sortType: ["default", "date", "duration", "alphabet"],
 };
 
@@ -9,7 +11,7 @@ export const saveDataForm = (formData) => {
   const currentData = existingData ? existingData : [];
   currentData.push(formData);
   state.activities = currentData;
-  localStorage.setItem("activity_data", JSON.stringify(state.activities));
+  localStorage.setItem(ACTIVITIES_KEY, JSON.stringify(state.activities));
 };
 
 export const editDataForm = (currentActivity, editedData) => {
@@ -19,7 +21,7 @@ export const editDataForm = (currentActivity, editedData) => {
 
   state.activities[selectedIndex] = editedData;
 
-  localStorage.setItem("activity_data", JSON.stringify(state.activities));
+  localStorage.setItem(ACTIVITIES_KEY, JSON.stringify(state.activities));
 };
 
 export const deleteDataForm = (selectedActivity) => {
@@ -29,10 +31,10 @@ export const deleteDataForm = (selectedActivity) => {
 
   state.activities.splice(activityIndex, 1);
 
-  localStorage.setItem("activity_data", JSON.stringify(state.activities));
+  localStorage.setItem(ACTIVITIES_KEY, JSON.stringify(state.activities));
 };
 
 export const getActivityData = () => {
-  if (state.activities.length === 0 || !state.activities) return false; 
+  if (state.activities.length === 0 || !state.activities) return false;
   return state.activities;
 };
