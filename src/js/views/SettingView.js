@@ -56,9 +56,11 @@ class SettingsView {
       const newCategory = uppercaseAtFirst(this._inputCategory.value);
       const badgeColor = badgeColorGenerator();
 
+      // check duplicate category
       if (this._allCategories.includes(formattedString(newCategory)))
         return errorMessage(`${newCategory} category already added!`);
 
+      // check more than 1 word
       if (newCategory.split(" ").length !== 1)
         return errorMessage("The category should contains 1 word!");
 
@@ -80,7 +82,8 @@ class SettingsView {
     this._categoryListContainer.addEventListener("click", (e) => {
       selectedCategory = e.target.closest(".badge-setting");
 
-      if (!selectedCategory) return;
+      if (!selectedCategory || e.target.closest(".btn-category__delete"))
+        return;
 
       this._inputCategory.value = selectedCategory.textContent.trim();
       this._renderBtnAction();
@@ -102,8 +105,13 @@ class SettingsView {
         editedCategory: uppercaseAtFirst(this._inputCategory.value),
       };
 
+      // check if there's no changes
       if (categoryEditObj.selectedCategory === categoryEditObj.editedCategory)
         return errorMessage("No changes were made");
+      // check duplicate category
+      if (this._allCategories.includes(formattedString(categoryEditObj.editedCategory)))
+        return errorMessage(`${categoryEditObj.editedCategory} category already added!`);
+      // check input more than 1 word
       if (categoryEditObj.editedCategory.split(" ").length !== 1) {
         return errorMessage("The category should contains 1 word!");
       }

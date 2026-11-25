@@ -11,11 +11,11 @@ import { getActivityData, state } from "../model/state";
 import activitiesView from "../views/activitiesView";
 import SettingView from "../views/SettingView";
 
-export const initialDefaultCategory = () => {
+const initialDefaultCategory = () => {
   initialCategoryModel();
 };
 
-export const userSettingController = () => {
+const userSettingController = () => {
   SettingView.inputUserProfile((username, role) => {
     userProfileModel(username, role);
   });
@@ -24,7 +24,7 @@ export const userSettingController = () => {
   SettingView.userSettingView(username, role);
 };
 
-export const addCategoryController = () => {
+const addCategoryController = () => {
   getCategories().forEach((category) => SettingView.renderCategory(category));
 
   SettingView.addCategoryView((newCategory, colorBadge) => {
@@ -35,7 +35,7 @@ export const addCategoryController = () => {
   });
 };
 
-export const editCategoryController = () => {
+const editCategoryController = () => {
   SettingView.editCategoryView((editedCategoryObj) => {
     const { selectedCategory, editedCategory } = editedCategoryObj;
     editCategoryModel(selectedCategory, editedCategory);
@@ -50,14 +50,22 @@ export const editCategoryController = () => {
   });
 };
 
-export const deleteCategoryController = () => {
-  const activitiesData = getActivityData();
+const deleteCategoryController = () => {
   SettingView.deleteCategoryView((category) => {
     deleteCategoryModel(category);
+    const activitiesData = getActivityData();
 
     activitiesView.removeActivityList();
     activitiesData.forEach((activity) =>
       activitiesView.renderActivityList(activity),
     );
   });
+};
+
+export const init = () => {
+  initialDefaultCategory();
+  userSettingController();
+  addCategoryController();
+  editCategoryController();
+  deleteCategoryController();
 };

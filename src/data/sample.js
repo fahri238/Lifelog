@@ -1,4 +1,4 @@
-const activityData = [
+export const initialActivityData = [
   {
     id: 1795260380825,
     title: "test",
@@ -33,5 +33,3 @@ const activityData = [
     createdAt: "2026-11-21T12:07:29.408Z",
   },
 ];
-
-// localStorage.setItem("activity_data", JSON.stringify(currentActivities));
