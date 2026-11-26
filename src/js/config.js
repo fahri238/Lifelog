@@ -30,3 +30,11 @@ export const GOAL_STATES = {
     fire: false,
   },
 };
+
+export const BADGE_COLORS = [
+  "badge--work",
+  "badge--study",
+  "badge--exercise",
+  "badge--social",
+  "badge--hobby",
+];

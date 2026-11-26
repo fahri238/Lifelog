@@ -3,7 +3,6 @@ import * as sidebarController from "./js/controllers/sidebarController";
 import * as addActivityController from "./js/controllers/addActivityController";
 import * as activitiesController from "./js/controllers/activitiesController";
 import * as sortingController from "./js/controllers/sortingController";
-// import * as dfa from "./js/controllers/dashboardController"
 import * as dashboardController from "./js/controllers/dashboardController";
 import * as settingController from "./js/controllers/settingsController";
 
