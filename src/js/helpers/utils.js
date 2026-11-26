@@ -1,3 +1,6 @@
+import { BADGE_COLORS } from "../config";
+import { getCategories } from "../model/settingsModel";
+
 export const getTodayDateString = (date = new Date()) => {
   const offset = date.getTimezoneOffset();
   const localToday = new Date(date.getTime() - offset * 60 * 1000);
@@ -65,7 +68,13 @@ export const errorMessage = (message) => {
   }, 3200);
 };
 
+// generate color
+export const badgeColorGenerator = () => {
+  const lengtOfCategory = getCategories().length;
+  const colorIndex = lengtOfCategory % BADGE_COLORS.length;
 
+  return BADGE_COLORS[colorIndex];
+};
 
 export const uppercaseAtFirst = (text) => {
   return text.split("")[0].toUpperCase() + text.slice(1).toLowerCase();
