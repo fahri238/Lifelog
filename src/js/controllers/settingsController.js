@@ -7,14 +7,16 @@ import {
   userProfileModel,
 } from "../model/settingsModel";
 import { addCategoryModel } from "../model/settingsModel";
-import { getActivityData, state } from "../model/state";
+import { getActivityData } from "../model/state";
 import activitiesView from "../views/activitiesView";
+import { renderSelectInputCategory } from "../views/components/selectInputCategory";
 import SettingView from "../views/SettingView";
 
 const initialDefaultCategory = () => {
   initialCategoryModel();
 };
 
+// USER PROFILE
 const userSettingController = () => {
   SettingView.inputUserProfile((username, role) => {
     userProfileModel(username, role);
@@ -24,14 +26,24 @@ const userSettingController = () => {
   SettingView.userSettingView(username, role);
 };
 
+// MANAGE CATEGORIES
+
+// refresh render categories inside multiple menus (setting, activities, addactivities)
+const refreshCategories = () => {
+  const categories = getCategories().map((item) => item.category);
+  
+  renderSelectInputCategory(categories);
+};
+
 const addCategoryController = () => {
   getCategories().forEach((category) => SettingView.renderCategory(category));
 
-  SettingView.addCategoryView((newCategory, colorBadge) => {
+  SettingView.addCategoryView((newCategory, badgeColor) => {
     const activitiesData = getActivityData();
 
     activitiesView.categories(activitiesData);
-    addCategoryModel(newCategory, colorBadge);
+    addCategoryModel(newCategory, badgeColor);
+    refreshCategories();
   });
 };
 
@@ -46,7 +58,7 @@ const editCategoryController = () => {
     activitiesData.forEach((activity) =>
       activitiesView.renderActivityList(activity),
     );
-    activitiesView.categories(activitiesData);
+    refreshCategories();
   });
 };
 
@@ -59,11 +71,13 @@ const deleteCategoryController = () => {
     activitiesData.forEach((activity) =>
       activitiesView.renderActivityList(activity),
     );
+    refreshCategories();
   });
 };
 
 export const init = () => {
   initialDefaultCategory();
+  refreshCategories();
   userSettingController();
   addCategoryController();
   editCategoryController();

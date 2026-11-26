@@ -13,11 +13,11 @@ class SettingsView {
 
   _inputCategory = document.querySelector(".input-category");
   _categoryListContainer = document.querySelector(".category-badges-list");
+  _btnAddCategory = document.querySelector(".btn-add-category");
+  _btnEditCategory = document.querySelector(".btn-edit-category");
   _allCategories;
   _allInputsSelect;
   _allCategoriesTab;
-  _btnAddCategory = document.querySelector(".btn-add-category");
-  _btnEditCategory = document.querySelector(".btn-edit-category");
 
   // USER PROFILE
   userSettingView(username, role) {
@@ -109,8 +109,14 @@ class SettingsView {
       if (categoryEditObj.selectedCategory === categoryEditObj.editedCategory)
         return errorMessage("No changes were made");
       // check duplicate category
-      if (this._allCategories.includes(formattedString(categoryEditObj.editedCategory)))
-        return errorMessage(`${categoryEditObj.editedCategory} category already added!`);
+      if (
+        this._allCategories.includes(
+          formattedString(categoryEditObj.editedCategory),
+        )
+      )
+        return errorMessage(
+          `${categoryEditObj.editedCategory} category already added!`,
+        );
       // check input more than 1 word
       if (categoryEditObj.editedCategory.split(" ").length !== 1) {
         return errorMessage("The category should contains 1 word!");
@@ -126,19 +132,11 @@ class SettingsView {
       this._btnAddCategory.classList.remove("hidden");
 
       this._allCategoriesTab = document.querySelectorAll(".btn-category");
-      this._allInputsSelect = document.querySelectorAll(
-        ".select-input-category",
-      );
 
       // render activities menu part
       this._allCategoriesTab.forEach((item) => {
         if (item.textContent === categoryEditObj.selectedCategory)
           item.textContent = categoryEditObj.editedCategory;
-      });
-
-      this._allInputsSelect.forEach((category) => {
-        if (category.textContent === categoryEditObj.selectedCategory.trim())
-          category.textContent = categoryEditObj.editedCategory.trim();
       });
 
       handler(categoryEditObj);
@@ -172,11 +170,6 @@ class SettingsView {
             categeoryTab.remove();
         });
 
-        this._allInputsSelect.forEach((category) => {
-          if (category.textContent === selectedCategory.textContent.trim())
-            category.remove();
-        });
-
         handleDelete(formattedCategory);
         succesMessage(`${formattedCategory} category has been deleted`);
       }, "category");
@@ -206,17 +199,7 @@ class SettingsView {
 
     this._categoryListContainer.insertAdjacentHTML("afterbegin", markupList);
 
-    const selectCategory = document.querySelectorAll(".select-placeholder");
-
     const activitiesCategories = document.querySelector(".all-category");
-
-    const markupSelect = `
-      <option class="select-input-category" value="${category.toLowerCase()}">${category}</option>
-      `;
-
-    selectCategory.forEach((element) =>
-      element.insertAdjacentHTML("afterend", markupSelect),
-    );
 
     const markupCategories = `
       <button class="${category.toLowerCase()}-category btn-category">${category}</button>

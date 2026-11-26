@@ -52,7 +52,6 @@ export const getUserProfile = () => {
 };
 
 // MANAGE CATEGORY SETTINGS
-
 export const getCategories = () => {
   // e.g {category: "Hangout", badgeColor: "badge--work"}
   return JSON.parse(localStorage.getItem(CATEGORIES_KEY)) || [];
@@ -74,6 +73,7 @@ const replaceOldValueCategory = (selectedCategory, newValue = "unknown") => {
   localStorage.setItem(ACTIVITIES_KEY, JSON.stringify(state.activities));
 };
 
+// add category
 export const addCategoryModel = (category, badgeColor) => {
   const existingCategory =
     JSON.parse(localStorage.getItem(CATEGORIES_KEY)) || [];
