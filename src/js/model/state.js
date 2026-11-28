@@ -1,5 +1,6 @@
-export const ACTIVITIES_KEY = "activity_data";
+import { ACTIVITIES_KEY, CATEGORIES_KEY } from "../config";
 
+// ACTIVITIES STATE
 export const state = {
   activities: JSON.parse(localStorage.getItem(ACTIVITIES_KEY)) || [],
   sortType: ["default", "date", "duration", "alphabet"],
@@ -37,4 +38,10 @@ export const deleteDataForm = (selectedActivity) => {
 export const getActivityData = () => {
   if (state.activities.length === 0 || !state.activities) return false;
   return state.activities;
+};
+
+// CATEGORIES STATE
+export const getCategories = () => {
+  // e.g {category: "Hangout", badgeColor: "badge--work"}
+  return JSON.parse(localStorage.getItem(CATEGORIES_KEY)) || [];
 };

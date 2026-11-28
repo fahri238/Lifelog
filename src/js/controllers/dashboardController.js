@@ -1,9 +1,11 @@
 import dashboardView from "../views/DashboardView";
 import { getActivityData, state } from "../model/state";
 import activitiesView from "../views/activitiesView";
+import { alphabetSorting, defaultSorting } from "../model/activityManager";
+import { getIcon } from "../helpers/weatherIconMapper";
+import { getNewestActivity } from "../model/dashboardModel";
+
 import {
-  alphabetSorting,
-  defaultSorting,
   getLastWeek,
   productivityTodayModel,
   statusActivityWeek,
@@ -12,9 +14,7 @@ import {
   totalActivityThisWeek,
   totalLastTwoWeek,
   weatherStatusModel,
-} from "../model/activityManager";
-import { getIcon } from "../helpers/weatherIconMapper";
-
+} from "../model/dashboardModel";
 const activityData = state.activities;
 
 export const listOfActivityController = () => {
@@ -48,8 +48,7 @@ export const newestController = () => {
   if (!getActivityData()) return;
   dashboardView.newestActivityView(
     () => {
-      const activity = activityData.at(-1);
-      return activity;
+      return getNewestActivity(activityData);
     },
     (id) => {
       const activity = activityData.find(
@@ -65,8 +64,8 @@ export const newestController = () => {
 // top category
 export const topCategoryController = () => {
   if (!getActivityData()) return;
-  const categoryName = topCategoryModel()[0];
-  const categoryTotal = topCategoryModel()[1];
+  const { categoryName, categoryTotal } = topCategoryModel();
+
   dashboardView.topCategoryViews(categoryName, categoryTotal, () => {
     const filteredCategory = [...activityData].filter(
       (activity) => activity.category === categoryName,

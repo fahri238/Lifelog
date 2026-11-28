@@ -5,6 +5,7 @@ import {
   errorMessage,
   showDeleteValidation,
   succesMessage,
+  uppercaseAtFirst,
 } from "../helpers/utils.js";
 
 class ActivitiesViews extends FormView {
@@ -288,6 +289,24 @@ class ActivitiesViews extends FormView {
   }
 
   // HANDLE CATEGORY
+  renderCategoryTab(categories) {
+    const categoryContainer = document.querySelector(".category");
+    const btnCategories = document.querySelectorAll(".btn-category");
+
+    btnCategories.forEach((btn) => {
+      if (btn.classList.contains("all-category")) return;
+      btn.remove();
+    });
+
+    categories.forEach((category) => {
+      categoryContainer.insertAdjacentHTML(
+        "beforeend",
+        `<button class="btn-category">${uppercaseAtFirst(category)}</button>`,
+      );
+    });
+  }
+
+  // category focus
   categories(activies) {
     const categories = document.querySelector(".category");
     const categoryBtns = document.querySelectorAll(".btn-category");

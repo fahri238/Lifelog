@@ -1,3 +1,6 @@
+import { BADGE_COLORS } from "../config";
+import { getCategories } from "../model/state";
+
 export const getTodayDateString = (date = new Date()) => {
   const offset = date.getTimezoneOffset();
   const localToday = new Date(date.getTime() - offset * 60 * 1000);
@@ -65,19 +68,12 @@ export const errorMessage = (message) => {
   }, 3200);
 };
 
+// generate color
 export const badgeColorGenerator = () => {
-  const lengtOfCategory = document.querySelectorAll(".badge-setting").length;
-  const colors = [
-    "badge--work",
-    "badge--study",
-    "badge--exercise",
-    "badge--social",
-    "badge--hobby",
-  ];
+  const lengtOfCategory = getCategories().length;
+  const colorIndex = lengtOfCategory % BADGE_COLORS.length;
 
-  const colorIndex = lengtOfCategory % 5;
-
-  return colors[colorIndex];
+  return BADGE_COLORS[colorIndex];
 };
 
 export const uppercaseAtFirst = (text) => {

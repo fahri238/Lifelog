@@ -111,6 +111,10 @@ class DashboardViews {
     });
   }
 
+  renderCategoryNewest(category) {
+    this._newestCategory.textContent = `Category: ${category}`;
+  }
+
   // HANDLE TOP CATEGORY
   topCategoryViews(nameCategory, totalCategory, handler) {
     this._categoryName.textContent = nameCategory;
@@ -126,6 +130,10 @@ class DashboardViews {
 
       handler();
     });
+  }
+
+  renderTopCategory(categoryName) {
+    this._categoryName.textContent = categoryName;
   }
 
   // HANDLE PRODUCTIVE TIME TODAY

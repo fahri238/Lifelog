@@ -2,7 +2,6 @@ import addActivityView from "../views/addActivityView";
 import * as activityManager from "../model/activityManager";
 import activitiesView from "../views/activitiesView";
 import { saveDataForm } from "../model/state";
-import { getCategories } from "../model/settingsModel";
 
 export const livePreviewController = () => {
   addActivityView.renderLivePreview(activityManager.countTimeDifference);

@@ -1,20 +1,24 @@
+import { topCategoryModel } from "../model/dashboardModel";
+import { getNewestActivity } from "../model/dashboardModel";
 import {
   deleteCategoryModel,
   editCategoryModel,
-  getCategories,
   getUserProfile,
   initialCategoryModel,
   userProfileModel,
 } from "../model/settingsModel";
 import { addCategoryModel } from "../model/settingsModel";
-import { getActivityData, state } from "../model/state";
+import { getActivityData, getCategories } from "../model/state";
 import activitiesView from "../views/activitiesView";
+import { renderSelectInputCategory } from "../views/components/selectInputCategory";
+import DashboardView from "../views/DashboardView";
 import SettingView from "../views/SettingView";
 
 const initialDefaultCategory = () => {
   initialCategoryModel();
 };
 
+// USER PROFILE
 const userSettingController = () => {
   SettingView.inputUserProfile((username, role) => {
     userProfileModel(username, role);
@@ -24,14 +28,35 @@ const userSettingController = () => {
   SettingView.userSettingView(username, role);
 };
 
+// MANAGE CATEGORIES
+// refresh render categories inside multiple menus (setting, activities, addactivities & dashboard)
+const refreshCategories = () => {
+  const categories = getCategories().map((item) => item.category);
+  const lastActivityCategory = getNewestActivity(getActivityData()).category;
+  const { categoryName, _ } = topCategoryModel();
+
+  // Activities & Add Activities Menu
+  renderSelectInputCategory(categories);
+  activitiesView.renderCategoryTab([...categories].reverse());
+
+  // Dashboard Menu
+  DashboardView.renderCategoryNewest(lastActivityCategory);
+  DashboardView.renderTopCategory(categoryName);
+
+  // Activities Menu
+  activitiesView.removeActivityList();
+  getActivityData().forEach((activity) => {
+    activitiesView.renderActivityList(activity);
+  });
+  activitiesView.categories(getActivityData());
+};
+
 const addCategoryController = () => {
   getCategories().forEach((category) => SettingView.renderCategory(category));
 
-  SettingView.addCategoryView((newCategory, colorBadge) => {
-    const activitiesData = getActivityData();
-
-    activitiesView.categories(activitiesData);
-    addCategoryModel(newCategory, colorBadge);
+  SettingView.addCategoryView((newCategory, badgeColor) => {
+    addCategoryModel(newCategory, badgeColor);
+    refreshCategories();
   });
 };
 
@@ -40,25 +65,15 @@ const editCategoryController = () => {
     const { selectedCategory, editedCategory } = editedCategoryObj;
     editCategoryModel(selectedCategory, editedCategory);
 
-    const activitiesData = getActivityData();
-
-    activitiesView.removeActivityList();
-    activitiesData.forEach((activity) =>
-      activitiesView.renderActivityList(activity),
-    );
-    activitiesView.categories(activitiesData);
+    refreshCategories();
   });
 };
 
 const deleteCategoryController = () => {
   SettingView.deleteCategoryView((category) => {
     deleteCategoryModel(category);
-    const activitiesData = getActivityData();
 
-    activitiesView.removeActivityList();
-    activitiesData.forEach((activity) =>
-      activitiesView.renderActivityList(activity),
-    );
+    refreshCategories();
   });
 };
 

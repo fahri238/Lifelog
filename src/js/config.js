@@ -1,3 +1,8 @@
+// LOCAL STORAGE
+export const ACTIVITIES_KEY = "activity_data";
+export const CATEGORIES_KEY = "categories";
+export const USER_PROFILE_KEY = "user-profile";
+
 export const NOW = new Date();
 export const DEFAULT_TIME = `${String(NOW.getHours()).padStart(2, "0")}:${String(NOW.getMinutes()).padStart(2, "0")}`;
 
@@ -30,3 +35,11 @@ export const GOAL_STATES = {
     fire: false,
   },
 };
+
+export const BADGE_COLORS = [
+  "badge--work",
+  "badge--study",
+  "badge--exercise",
+  "badge--social",
+  "badge--hobby",
+];

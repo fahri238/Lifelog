@@ -3,6 +3,7 @@ import {
   getActivityData,
   editDataForm,
   deleteDataForm,
+  getCategories,
 } from "../model/state";
 
 import { processdailyCounter } from "../model/activityManager";
@@ -51,6 +52,9 @@ export const renderActivityList = () => {
 };
 
 export const categoriesController = () => {
+  const categories = getCategories().map((item) => item.category);
   const activityData = state.activities;
+
+  activitiesView.renderCategoryTab([...categories].reverse());
   activitiesView.categories(activityData);
 };

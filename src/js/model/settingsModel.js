@@ -1,7 +1,6 @@
-import { ACTIVITIES_KEY, getActivityData, state } from "./state";
-
-const CATEGORIES_KEY = "categories";
-const USER_PROFILE_KEY = "user-profile";
+import { getActivityData, state } from "./state";
+import { ACTIVITIES_KEY, CATEGORIES_KEY, USER_PROFILE_KEY } from "../config";
+import { getCategories } from "./state";
 
 // Base Category (Default)
 const defaultCategory = [
@@ -52,12 +51,6 @@ export const getUserProfile = () => {
 };
 
 // MANAGE CATEGORY SETTINGS
-
-export const getCategories = () => {
-  // e.g {category: "Hangout", badgeColor: "badge--work"}
-  return JSON.parse(localStorage.getItem(CATEGORIES_KEY)) || [];
-};
-
 // use for delete and edit category to replace old value with the new one in localstorage
 const replaceOldValueCategory = (selectedCategory, newValue = "unknown") => {
   state.activities = getActivityData().map((activity) => {
@@ -74,6 +67,7 @@ const replaceOldValueCategory = (selectedCategory, newValue = "unknown") => {
   localStorage.setItem(ACTIVITIES_KEY, JSON.stringify(state.activities));
 };
 
+// add category
 export const addCategoryModel = (category, badgeColor) => {
   const existingCategory =
     JSON.parse(localStorage.getItem(CATEGORIES_KEY)) || [];
