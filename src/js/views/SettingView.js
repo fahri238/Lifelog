@@ -16,8 +16,6 @@ class SettingsView {
   _btnAddCategory = document.querySelector(".btn-add-category");
   _btnEditCategory = document.querySelector(".btn-edit-category");
   _allCategories;
-  _allInputsSelect;
-  _allCategoriesTab;
 
   // USER PROFILE
   userSettingView(username, role) {
@@ -131,14 +129,6 @@ class SettingsView {
       this._btnEditCategory.classList.add("hidden");
       this._btnAddCategory.classList.remove("hidden");
 
-      this._allCategoriesTab = document.querySelectorAll(".btn-category");
-
-      // render activities menu part
-      this._allCategoriesTab.forEach((item) => {
-        if (item.textContent === categoryEditObj.selectedCategory)
-          item.textContent = categoryEditObj.editedCategory;
-      });
-
       handler(categoryEditObj);
       succesMessage("Category has been edited");
     });
@@ -158,17 +148,6 @@ class SettingsView {
         selectedCategory.remove();
 
         selectedCategory.textContent;
-
-        this._allCategoriesTab = document.querySelectorAll(".btn-category");
-
-        this._allInputsSelect = document.querySelectorAll(
-          ".select-input-category",
-        );
-
-        this._allCategoriesTab.forEach((categeoryTab) => {
-          if (categeoryTab.textContent === selectedCategory.textContent.trim())
-            categeoryTab.remove();
-        });
 
         handleDelete(formattedCategory);
         succesMessage(`${formattedCategory} category has been deleted`);
@@ -198,14 +177,6 @@ class SettingsView {
       `;
 
     this._categoryListContainer.insertAdjacentHTML("afterbegin", markupList);
-
-    const activitiesCategories = document.querySelector(".all-category");
-
-    const markupCategories = `
-      <button class="${category.toLowerCase()}-category btn-category">${category}</button>
-      `;
-
-    activitiesCategories.insertAdjacentHTML("afterend", markupCategories);
   }
 }
 

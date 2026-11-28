@@ -31,17 +31,16 @@ const userSettingController = () => {
 // refresh render categories inside multiple menus (setting, activities, addactivities)
 const refreshCategories = () => {
   const categories = getCategories().map((item) => item.category);
-  
   renderSelectInputCategory(categories);
+  activitiesView.renderCategoryTab([...categories].reverse())
 };
 
 const addCategoryController = () => {
   getCategories().forEach((category) => SettingView.renderCategory(category));
 
   SettingView.addCategoryView((newCategory, badgeColor) => {
-    const activitiesData = getActivityData();
 
-    activitiesView.categories(activitiesData);
+    // activitiesView.categories(activitiesData);
     addCategoryModel(newCategory, badgeColor);
     refreshCategories();
   });
