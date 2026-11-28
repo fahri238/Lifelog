@@ -1,3 +1,4 @@
+import { topCategoryModel } from "../model/activityManager";
 import { getNewestActivity } from "../model/dashboardModel";
 import {
   deleteCategoryModel,
@@ -30,23 +31,25 @@ const userSettingController = () => {
 
 // MANAGE CATEGORIES
 
-// refresh render categories inside multiple menus (setting, activities, addactivities)
+// refresh render categories inside multiple menus (setting, activities, addactivities & dashboard)
 const refreshCategories = () => {
   const categories = getCategories().map((item) => item.category);
   const lastActivityCategory = getNewestActivity(getActivityData()).category;
+  const { categoryName, _ } = topCategoryModel();
 
   // Activities Menu
-  renderSelectInputCategory(categories);
   activitiesView.removeActivityList();
   getActivityData().forEach((activity) =>
     activitiesView.renderActivityList(activity),
   );
-  
+
   // Activities & Add Activities Menu
+  renderSelectInputCategory(categories);
   activitiesView.renderCategoryTab([...categories].reverse());
 
   // Dashboard Menu
   DashboardView.renderCategoryNewest(lastActivityCategory);
+  DashboardView.renderTopCategory(categoryName);
 };
 
 const addCategoryController = () => {
@@ -70,15 +73,16 @@ const editCategoryController = () => {
 const deleteCategoryController = () => {
   SettingView.deleteCategoryView((category) => {
     deleteCategoryModel(category);
-    const activitiesData = getActivityData();
 
     refreshCategories();
   });
 };
 
 export const init = () => {
+  const categories = getCategories().map((item) => item.category);
+  activitiesView.renderCategoryTab([...categories].reverse());
+
   initialDefaultCategory();
-  refreshCategories();
   userSettingController();
   addCategoryController();
   editCategoryController();

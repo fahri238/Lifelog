@@ -108,13 +108,16 @@ export const topCategoryModel = () => {
   }, {});
 
   const categoryArray = Object.values(countCategory);
+  
+  // total highest category
   const totalHigestCategory = Math.max(...categoryArray);
 
-  const higestCategory = Object.keys(countCategory).reduce((a, b) => {
+  // highest category
+  const highestCategory = Object.keys(countCategory).reduce((a, b) => {
     return countCategory[a] > countCategory[b] ? a : b;
   });
 
-  return [higestCategory, totalHigestCategory];
+  return { categoryName: highestCategory, categoryTotal: totalHigestCategory };
 };
 
 // handle productivity time today card

@@ -132,6 +132,10 @@ class DashboardViews {
     });
   }
 
+  renderTopCategory(categoryName) {
+    this._categoryName.textContent = categoryName;
+  }
+
   // HANDLE PRODUCTIVE TIME TODAY
   productyTime(handler) {
     const cardDescription = document.querySelectorAll(".card__description")[2];

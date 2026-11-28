@@ -65,8 +65,8 @@ export const newestController = () => {
 // top category
 export const topCategoryController = () => {
   if (!getActivityData()) return;
-  const categoryName = topCategoryModel()[0];
-  const categoryTotal = topCategoryModel()[1];
+  const { categoryName, categoryTotal } = topCategoryModel();
+
   dashboardView.topCategoryViews(categoryName, categoryTotal, () => {
     const filteredCategory = [...activityData].filter(
       (activity) => activity.category === categoryName,
