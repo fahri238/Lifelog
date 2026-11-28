@@ -14,6 +14,7 @@ import {
   weatherStatusModel,
 } from "../model/activityManager";
 import { getIcon } from "../helpers/weatherIconMapper";
+import { getNewestActivity } from "../model/dashboardModel";
 
 const activityData = state.activities;
 
@@ -48,8 +49,7 @@ export const newestController = () => {
   if (!getActivityData()) return;
   dashboardView.newestActivityView(
     () => {
-      const activity = activityData.at(-1);
-      return activity;
+      return getNewestActivity(activityData);
     },
     (id) => {
       const activity = activityData.find(

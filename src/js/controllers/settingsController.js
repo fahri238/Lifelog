@@ -1,3 +1,4 @@
+import { getNewestActivity } from "../model/dashboardModel";
 import {
   deleteCategoryModel,
   editCategoryModel,
@@ -10,6 +11,7 @@ import { addCategoryModel } from "../model/settingsModel";
 import { getActivityData } from "../model/state";
 import activitiesView from "../views/activitiesView";
 import { renderSelectInputCategory } from "../views/components/selectInputCategory";
+import DashboardView from "../views/DashboardView";
 import SettingView from "../views/SettingView";
 
 const initialDefaultCategory = () => {
@@ -31,16 +33,26 @@ const userSettingController = () => {
 // refresh render categories inside multiple menus (setting, activities, addactivities)
 const refreshCategories = () => {
   const categories = getCategories().map((item) => item.category);
+  const lastActivityCategory = getNewestActivity(getActivityData()).category;
+
+  // Activities Menu
   renderSelectInputCategory(categories);
-  activitiesView.renderCategoryTab([...categories].reverse())
+  activitiesView.removeActivityList();
+  getActivityData().forEach((activity) =>
+    activitiesView.renderActivityList(activity),
+  );
+  
+  // Activities & Add Activities Menu
+  activitiesView.renderCategoryTab([...categories].reverse());
+
+  // Dashboard Menu
+  DashboardView.renderCategoryNewest(lastActivityCategory);
 };
 
 const addCategoryController = () => {
   getCategories().forEach((category) => SettingView.renderCategory(category));
 
   SettingView.addCategoryView((newCategory, badgeColor) => {
-
-    // activitiesView.categories(activitiesData);
     addCategoryModel(newCategory, badgeColor);
     refreshCategories();
   });
@@ -51,12 +63,6 @@ const editCategoryController = () => {
     const { selectedCategory, editedCategory } = editedCategoryObj;
     editCategoryModel(selectedCategory, editedCategory);
 
-    const activitiesData = getActivityData();
-
-    activitiesView.removeActivityList();
-    activitiesData.forEach((activity) =>
-      activitiesView.renderActivityList(activity),
-    );
     refreshCategories();
   });
 };
@@ -66,10 +72,6 @@ const deleteCategoryController = () => {
     deleteCategoryModel(category);
     const activitiesData = getActivityData();
 
-    activitiesView.removeActivityList();
-    activitiesData.forEach((activity) =>
-      activitiesView.renderActivityList(activity),
-    );
     refreshCategories();
   });
 };

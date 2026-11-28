@@ -111,6 +111,10 @@ class DashboardViews {
     });
   }
 
+  renderCategoryNewest(category) {
+    this._newestCategory.textContent = `Category: ${category}`;
+  }
+
   // HANDLE TOP CATEGORY
   topCategoryViews(nameCategory, totalCategory, handler) {
     this._categoryName.textContent = nameCategory;
