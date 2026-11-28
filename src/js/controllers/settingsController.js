@@ -37,12 +37,6 @@ const refreshCategories = () => {
   const lastActivityCategory = getNewestActivity(getActivityData()).category;
   const { categoryName, _ } = topCategoryModel();
 
-  // Activities Menu
-  activitiesView.removeActivityList();
-  getActivityData().forEach((activity) =>
-    activitiesView.renderActivityList(activity),
-  );
-
   // Activities & Add Activities Menu
   renderSelectInputCategory(categories);
   activitiesView.renderCategoryTab([...categories].reverse());
@@ -50,6 +44,13 @@ const refreshCategories = () => {
   // Dashboard Menu
   DashboardView.renderCategoryNewest(lastActivityCategory);
   DashboardView.renderTopCategory(categoryName);
+
+  // Activities Menu
+  activitiesView.removeActivityList();
+  getActivityData().forEach((activity) => {
+    activitiesView.renderActivityList(activity);
+  });
+  activitiesView.categories(getActivityData());
 };
 
 const addCategoryController = () => {
@@ -79,9 +80,6 @@ const deleteCategoryController = () => {
 };
 
 export const init = () => {
-  const categories = getCategories().map((item) => item.category);
-  activitiesView.renderCategoryTab([...categories].reverse());
-
   initialDefaultCategory();
   userSettingController();
   addCategoryController();

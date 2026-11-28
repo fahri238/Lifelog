@@ -8,6 +8,7 @@ import {
 import { processdailyCounter } from "../model/activityManager";
 import activitiesView from "../views/activitiesView";
 import addActivityView from "../views/addActivityView";
+import { getCategories } from "../model/settingsModel";
 
 export const detailActivityController = () => {
   const activityData = state.activities;
@@ -51,6 +52,9 @@ export const renderActivityList = () => {
 };
 
 export const categoriesController = () => {
+  const categories = getCategories().map((item) => item.category);
   const activityData = state.activities;
+
+  activitiesView.renderCategoryTab([...categories].reverse());
   activitiesView.categories(activityData);
 };
