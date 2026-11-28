@@ -1,9 +1,11 @@
 import dashboardView from "../views/DashboardView";
 import { getActivityData, state } from "../model/state";
 import activitiesView from "../views/activitiesView";
+import { alphabetSorting, defaultSorting } from "../model/activityManager";
+import { getIcon } from "../helpers/weatherIconMapper";
+import { getNewestActivity } from "../model/dashboardModel";
+
 import {
-  alphabetSorting,
-  defaultSorting,
   getLastWeek,
   productivityTodayModel,
   statusActivityWeek,
@@ -12,10 +14,7 @@ import {
   totalActivityThisWeek,
   totalLastTwoWeek,
   weatherStatusModel,
-} from "../model/activityManager";
-import { getIcon } from "../helpers/weatherIconMapper";
-import { getNewestActivity } from "../model/dashboardModel";
-
+} from "../model/dashboardModel";
 const activityData = state.activities;
 
 export const listOfActivityController = () => {

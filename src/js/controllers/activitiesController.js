@@ -3,12 +3,12 @@ import {
   getActivityData,
   editDataForm,
   deleteDataForm,
+  getCategories,
 } from "../model/state";
 
 import { processdailyCounter } from "../model/activityManager";
 import activitiesView from "../views/activitiesView";
 import addActivityView from "../views/addActivityView";
-import { getCategories } from "../model/settingsModel";
 
 export const detailActivityController = () => {
   const activityData = state.activities;

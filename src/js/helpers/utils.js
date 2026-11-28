@@ -1,5 +1,5 @@
 import { BADGE_COLORS } from "../config";
-import { getCategories } from "../model/settingsModel";
+import { getCategories } from "../model/state";
 
 export const getTodayDateString = (date = new Date()) => {
   const offset = date.getTimezoneOffset();

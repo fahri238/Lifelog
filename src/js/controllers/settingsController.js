@@ -1,15 +1,14 @@
-import { topCategoryModel } from "../model/activityManager";
+import { topCategoryModel } from "../model/dashboardModel";
 import { getNewestActivity } from "../model/dashboardModel";
 import {
   deleteCategoryModel,
   editCategoryModel,
-  getCategories,
   getUserProfile,
   initialCategoryModel,
   userProfileModel,
 } from "../model/settingsModel";
 import { addCategoryModel } from "../model/settingsModel";
-import { getActivityData } from "../model/state";
+import { getActivityData, getCategories } from "../model/state";
 import activitiesView from "../views/activitiesView";
 import { renderSelectInputCategory } from "../views/components/selectInputCategory";
 import DashboardView from "../views/DashboardView";
@@ -30,7 +29,6 @@ const userSettingController = () => {
 };
 
 // MANAGE CATEGORIES
-
 // refresh render categories inside multiple menus (setting, activities, addactivities & dashboard)
 const refreshCategories = () => {
   const categories = getCategories().map((item) => item.category);
